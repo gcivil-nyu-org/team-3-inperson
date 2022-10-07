@@ -23,7 +23,7 @@ class Book(models.Model):
     isbn10 = models.IntegerField()
     isbn13 = models.IntegerField()
 
-    # language = models.ForeignKey(Language)
+    # language = models.ForeignKey(Language, on_delete=models.SET_NULL)
 
 # Genres
 class Genre(models.Model):
@@ -33,20 +33,20 @@ class Genre(models.Model):
 class User(models.Model):
     name = models.CharField(max_length=256)
     email = models.EmailField(max_length=256)
-    # language = models.ForeignKey(Language)
+    # language = models.ForeignKey(Language, on_delete=models.SET_NULL)
 
 # Genres for each book. Many-to-Many
 class BookGenre(models.Model):
-    book_id = models.ForeignKey(Book)
-    genre_id = models.ForeignKey(Genre)
+    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
+    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
 # User's followed genres. Many to Many
 class UserGenre(models.Model):
-    user_id = models.ForeignKey(User)
-    genre_id = models.ForeignKey(Genre)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
 # Shelf, alternatively could be called UserBooks
 class Bookshelf(models.Model):
-    book_id = models.ForeignKey(Book)
-    user_id = models.ForeignKey(User)
+    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     read_status = models.BooleanField() # FALSE = want to read, TRUE = read
