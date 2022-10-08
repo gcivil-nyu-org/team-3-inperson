@@ -1,10 +1,12 @@
 body {
-    background-color: #f5f5f5;
-    justify-content: space-evenly;
+    /*background-color: #f5f5f5;*/
+    /*justify-content: space-evenly;*/
     /*background: linear-gradient(0deg, rgb(65, 73, 38), rgb(174, 217, 182)) no-repeat;*/
 
 }
+
 /* SWIPING FUNCTIONALITY */
+
 #swiper {
     height: 70vh;
     aspect-ratio: 2 / 3;
@@ -19,12 +21,14 @@ body {
     height: 100%;
     position: absolute;
     border-radius: 20px;
+    /*object-position: center;*/
     overflow: hidden;
-    transform: translateZ(calc(-30px * var(--i))) translateY(calc(-20px * var(--i))) rotate(calc(-4deg * var(--i)));
+    transform: translateZ(calc(-30px * var(--i))) translateY(calc(20px * var(--i))) rotate(calc(4deg * var(--i)));
     filter: drop-shadow(2px 2px 20px rgba(0, 0, 0, 0.5));
+
     cursor: pointer;
     user-select: none;
-    transition: transform 0.5s;
+    transition: transform 0.5s ease-in-out;
 }
 
 .card img {
@@ -37,65 +41,65 @@ body {
 
 #like,
 #dislike,
-#bookshelf{
-  font-size: 5vh;
-  border-radius: 50%;
-  padding: 20px;
-  /*position: relative;*/
-  z-index: 1;
-  animation-name: animation1;
-  animation-duration: .5s;
-  animation-timing-function: ease-out;
-  animation-fill-mode: both;
-  /* don't run animation at the beginning */
-  animation-play-state: paused;
-  cursor: pointer;
+#bookshelf {
+    font-size: 5vh;
+    border-radius: 50%;
+    padding: 20px;
+    margin-top: 50px;
+    position: relative;
+    z-index: 1;
+    animation-name: animation1;
+    animation-duration: .5s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+    /* don't run animation at the beginning */
+    animation-play-state: paused;
+    cursor: pointer;
 }
 
 #like.trigger,
 #dislike.trigger {
-  animation-name: animation2;
+    animation-name: animation2;
 }
 
 #like {
-  color: red;
-  background-color: rgba(255, 255, 255, 0.5);
+    color: red;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 #dislike {
-  color: #ccc;
-  background-color: rgba(0, 0, 0, 0.5);
+    color: #ccc;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-#bookshelf{
-  color: #ccc;
-  background-color: rgba(0, 0, 0, 0.5);
+#bookshelf {
+    color: #ccc;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 @keyframes animation1 {
 
-  0%,
-  100% {
-    opacity: 0.2;
-  }
+    0%,
+    100% {
+        opacity: 0.7;
+    }
 
-  50% {
-    opacity: 1;
-  }
+    50% {
+        opacity: 1;
+    }
 }
 
 @keyframes animation2 {
 
-  0%,
-  100% {
-    opacity: 0.2;
-  }
+    0%,
+    100% {
+        opacity: 0.2;
+    }
 
-  50% {
-    opacity: 1;
-  }
+    50% {
+        opacity: 1;
+    }
 }
-
 
 
 /* NAV BAR */

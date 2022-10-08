@@ -1,16 +1,19 @@
 console.log("https://github.com/gcivil-nyu-org/team-3-inperson")
+
 // CLASSES
-class BookStack{
+class BookStack {
     bookStack = [];
-    addBook(book){
+
+    addBook(book) {
         this.bookStack.push(book);
     }
-    removeBook(book){
+
+    removeBook(book) {
         this.bookStack.remove(book);
     }
 }
 
-class Book{
+class Book {
     constructor({
                     imageUrl,
                     onDismiss,
@@ -23,6 +26,7 @@ class Book{
         this.onDislike = onDislike;
         this.#init();
     }
+
     #startPoint;
     #offsetX;
     #offsetY;
@@ -208,7 +212,7 @@ dislike.addEventListener('click', () => {
     dislike.classList.toggle('trigger');
 });
 
-document.onmousemove = function(e){
+document.onmousemove = function (e) {
     let pageCoords = "( " + e.pageX + ", " + e.pageY + " )";
     console.log(pageCoords);
 }
