@@ -1,10 +1,13 @@
 console.log("https://github.com/gcivil-nyu-org/team-3-inperson")
-$(function () {
-    $('.draggable').draggable({
-        // axis: 'x',
-        cursor: "grabbing"
-    });
+$('.draggable').draggable({
+    // axis: 'x',
+    cursor: "grabbing"
+}).addEventListener('dragstart', (e) => {
+    e.preventDefault();
 });
+
+
+
 
 // $(document).ready(function () {
 //     $('.fade-out-btn').click(function () {

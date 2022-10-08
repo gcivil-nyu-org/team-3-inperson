@@ -2,9 +2,7 @@
 {% load static %}
 
 {% block content %}
-    {% comment %}
-    This is where the main swiping functionality happens. This file contains mostly the divs that will be utilized by the javascript file to generate the books.
-    {% endcomment %}
+
     <div class="container outer">
         <div class="book-card-3 book-card-properties ">
             <img src="{% static 'js/book_covers/jurrasic.jpg' %}" class="book-cover" alt="">
@@ -16,10 +14,5 @@
             <img src="{% static 'js/book_covers/image-1.jpg' %}" class="book-cover" alt="">
         </div>
     </div>
-
-{#    <div class="container">#}
-{##}
-{#        <button type="button" class="btn btn-primary fade-out-btn">Testing Button</button>#}
-{#    </div>#}
 
 {% endblock %}
