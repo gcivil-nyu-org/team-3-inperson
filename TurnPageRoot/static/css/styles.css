@@ -59,3 +59,7 @@ body {
 .navbar {
     background-color: #ffcbf0;
 }
+
+.material-symbols-outlined{
+    font-size: 50px;
+}

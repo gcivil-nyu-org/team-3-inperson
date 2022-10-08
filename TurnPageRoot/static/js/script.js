@@ -1,31 +1,26 @@
 console.log("https://github.com/gcivil-nyu-org/team-3-inperson")
+
+let startingPosition;
+let currentPosition;
+
 $('.draggable').draggable({
+    drag: function (e, ui) {
+        startingPosition = ui.originalPosition;
+        currentPosition = ui.position;
+        // console.log(currentPosition)
+        if (currentPosition.left > 700) {
+            console.log("Swiped right")
+        }
+        else if (currentPosition.left < 50) {
+            console.log("Swiped left")
+        }
+        else if (currentPosition.top > 300) {
+            console.log("Swiped down")
+        }
+
+
+    },
     // axis: 'x',
     cursor: "grabbing"
-}).addEventListener('dragstart', (e) => {
-    e.preventDefault();
 });
 
-
-
-
-// $(document).ready(function () {
-//     $('.fade-out-btn').click(function () {
-//         $('.draggable').animate(
-//             {deg: 70},
-//             {duration: 700,
-//             step: function(now){
-//                 $(this).css({
-//                     transform:'rotate('+now+'deg)'
-//                 })
-//             }}
-//         ).fadeOut(700).promise();
-//
-//     });
-//
-// });
-
-
-// document.addEventListener('mousemove', (event) => {
-//     console.log(`(${event.clientX}, ${event.clientY})`);
-// });
