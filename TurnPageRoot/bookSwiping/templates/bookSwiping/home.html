@@ -4,20 +4,19 @@
     {% comment %}
     This is where the main swiping functionality happens. This file contains mostly the divs that will be utilized by the javascript file to generate the books.
     {% endcomment %}
-{##}
-{#    <div class=" swiping-container">#}
-{#        <h1 class="display-1">Test!</h1>#}
-{#    </div>#}
+    {% load static %}
+    <div class="container outer">
+        <div class="book-card-3 book-card-properties ">
+            <img src="{% static 'js/book_covers/jurrasic.jpg' %}" class="book-cover" alt="">
+        </div>
+        <div class="book-card-2 book-card-properties ">
+            <img src="{% static 'js/book_covers/american-psycho-670x1024.jpg' %}" class="book-cover" alt="">
+        </div>
+        <div class="book-card-1 book-card-properties draggable">
+            <img src="{% static 'js/book_covers/image-1.jpg' %}" class="book-cover" alt="">
+        </div>
+    </div>
 
-            <div class="container">
 
-                <div id="swiper"></div>
-                <div class="container">
-
-                    <ion-icon id="dislike" name="heart-dislike"></ion-icon>
-                    <ion-icon id="bookshelf" name="book-outline"></ion-icon>
-                    <ion-icon id="like" name="heart"></ion-icon>
-                </div>
-            </div>
 
 {% endblock %}

@@ -5,100 +5,43 @@ body {
 
 }
 
-/* SWIPING FUNCTIONALITY */
-
-#swiper {
-    height: 70vh;
-    aspect-ratio: 2 / 3;
-    perspective: 1000px;
-    perspective-origin: center 50%;
-    transform-style: preserve-3d;
-    position: relative;
+/* BOOKS */
+:root{
+    --rotation: 10deg;
 }
 
-.card{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    border-radius: 20px;
-    /*object-position: center;*/
-    overflow: hidden;
-    transform: translateZ(calc(-30px * var(--i))) translateY(calc(20px * var(--i))) rotate(calc(4deg * var(--i)));
-    filter: drop-shadow(2px 2px 20px rgba(0, 0, 0, 0.5));
 
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.5s ease-in-out;
-}
 
-.card img {
-    width: 100%;
-    height: 100%;
+.book-cover {
+    width: 400px;
+    height: 600px;
     object-fit: cover;
-    object-position: 50% 50%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,.8);
 }
 
+.outer{
+    position:relative;
+    top: 10vh;
+}
 
-#like,
-#dislike,
-#bookshelf {
-    font-size: 5vh;
-    border-radius: 50%;
-    padding: 20px;
-    margin-top: 50px;
-    position: relative;
-    z-index: 1;
-    animation-name: animation1;
-    animation-duration: .5s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: both;
-    /* don't run animation at the beginning */
-    animation-play-state: paused;
+.book-card-properties{
+    position:absolute;
     cursor: pointer;
 }
 
-#like.trigger,
-#dislike.trigger {
-    animation-name: animation2;
+.book-card-3{
+    transform: rotate(calc(var(--rotation) * 1.2));
+
+}
+.book-card-2{
+    transform: rotate(
+            calc(var(--rotation) * .7)
+    );
 }
 
-#like {
-    color: red;
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-#dislike {
-    color: #ccc;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-#bookshelf {
-    color: #ccc;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-@keyframes animation1 {
-
-    0%,
-    100% {
-        opacity: 0.7;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-@keyframes animation2 {
-
-    0%,
-    100% {
-        opacity: 0.2;
-    }
-
-    50% {
-        opacity: 1;
-    }
+.book-card-1{
+    transform: rotate(calc(var(--rotation) * 0));
 }
 
 

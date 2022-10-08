@@ -20,6 +20,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.10 (team-3-inperson)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jquery-ui" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
