@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% comment %}
+    This is where the main swiping functionality happens. This file contains mostly the divs that will be utilized by the javascript file to generate the books.
+    {% endcomment %}
 
-    <h1>If you're seeing this, the install worked!</h1>
+
+    <ion-icon id="dislike" name="heart-dislike"></ion-icon>
+    <ion-icon id="bookshelf" name="book-outline"></ion-icon>
+    <ion-icon id="like" name="heart"></ion-icon>
 
 {% endblock %}
