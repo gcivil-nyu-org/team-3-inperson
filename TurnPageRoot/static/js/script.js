@@ -3,6 +3,6 @@ $( function (){
     $('.draggable').draggable();
 });
 
-document.addEventListener('mousemove', (event) => {
-    console.log(`(${event.clientX}, ${event.clientY})`);
-});
+// document.addEventListener('mousemove', (event) => {
+//     console.log(`(${event.clientX}, ${event.clientY})`);
+// });

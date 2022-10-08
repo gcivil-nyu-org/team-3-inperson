@@ -1,3 +1,8 @@
+:root{
+    --rotation: 10deg;
+}
+
+
 body {
     /*background-color: #f5f5f5;*/
     /*justify-content: space-evenly;*/
@@ -6,11 +11,6 @@ body {
 }
 
 /* BOOKS */
-:root{
-    --rotation: 10deg;
-}
-
-
 
 .book-cover {
     width: 400px;
@@ -23,6 +23,12 @@ body {
 .outer{
     position:relative;
     top: 10vh;
+    margin: auto;
+    /*width: 30%;*/
+    /*padding-left: 500px;*/
+    display: flex;
+    justify-content: center;
+
 }
 
 .book-card-properties{
