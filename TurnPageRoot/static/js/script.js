@@ -7,8 +7,7 @@ $('.draggable').draggable({
     drag: function (e, ui) {
             startingPosition = ui.originalPosition;
             currentPosition = ui.position;
-            // console.log(currentPosition)
-            // TODO snap back to center
+            // console.log(currentPosition);
             // TODO screen width calculation
             if (currentPosition.left > 700) {
                 console.log("Swiped right")
