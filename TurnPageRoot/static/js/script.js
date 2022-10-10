@@ -5,24 +5,26 @@ let currentPosition;
 
 $('.draggable').draggable({
     drag: function (e, ui) {
-        startingPosition = ui.originalPosition;
-        currentPosition = ui.position;
-        // console.log(currentPosition)
-        // TODO screen width calculation
-        if (currentPosition.left > 700) {
-            console.log("Swiped right")
-        }
-        else if (currentPosition.left < 50) {
-            console.log("Swiped left")
-        }
-        else if (currentPosition.top > 300) {
-            console.log("Swiped down")
-        }
-
-
+            startingPosition = ui.originalPosition;
+            currentPosition = ui.position;
+            // console.log(currentPosition)
+            // TODO snap back to center
+            // TODO screen width calculation
+            if (currentPosition.left > 700) {
+                console.log("Swiped right")
+            }
+            else if (currentPosition.left < 50) {
+                console.log("Swiped left")
+            }
+            else if (currentPosition.top > 500) {
+                console.log("Swiped down")
+            }
     },
-    // TODO snap back to center
-    // axis: 'x',
-    cursor: "grabbing"
+    data: {
+        startingPosition: startingPosition,
+        currentPosition: currentPosition,
+    },
+    cursor: "grabbing",
+    revert: true,
+    revertDuration: 50,
 });
-
