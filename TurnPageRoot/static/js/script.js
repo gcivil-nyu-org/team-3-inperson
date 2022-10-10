@@ -8,6 +8,7 @@ $('.draggable').draggable({
         startingPosition = ui.originalPosition;
         currentPosition = ui.position;
         // console.log(currentPosition)
+        // TODO screen width calculation
         if (currentPosition.left > 700) {
             console.log("Swiped right")
         }
@@ -20,6 +21,7 @@ $('.draggable').draggable({
 
 
     },
+    // TODO snap back to center
     // axis: 'x',
     cursor: "grabbing"
 });
