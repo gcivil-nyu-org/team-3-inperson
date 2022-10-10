@@ -17,7 +17,6 @@ body {
 }
 
 .book-card-properties {
-    /*TODO the below property is the issue*/
     position: absolute;
     cursor: pointer;
     bottom: 120px;
