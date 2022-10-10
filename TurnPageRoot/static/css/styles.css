@@ -1,4 +1,4 @@
-:root{
+:root {
     --rotation: 10deg;
 }
 
@@ -17,49 +17,60 @@ body {
     height: 600px;
     object-fit: cover;
     border-radius: 10px;
-    box-shadow: 5px 5px 10px 1px rgba(0,0,0,.8);
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, .8);
 }
 
-.outer{
-    position:relative;
-    top: 10vh;
-    margin: auto;
+.outer {
+
+    /*top: 10vh;*/
+    /*margin: auto;*/
     /*width: 30%;*/
     /*padding-left: 500px;*/
-    display: flex;
-    justify-content: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
 
 }
 
-.book-card-properties{
-    position:absolute;
+.book-card-properties {
+    /*TODO the below property is the issue*/
+    position: absolute;
     cursor: pointer;
+    bottom: 120px;
+    left: 35%;
 }
 
-.book-card-3{
+.book-card-3 {
     transform: rotate(calc(var(--rotation) * 1.2));
 
 }
-.book-card-2{
+
+.book-card-2 {
     transform: rotate(
             calc(var(--rotation) * .7)
     );
 }
 
-.book-card-1{
+.book-card-1 {
     transform: rotate(calc(var(--rotation) * 0));
 }
 
 
 /* NAV BAR */
 .banner {
-     background-color: #ffcbf0;
+    background-color: #ffcbf0;
 }
 
 .navbar {
     background-color: #ffcbf0;
 }
 
-.material-symbols-outlined{
+#arrows {
+    font-size: 100px;
+
+}
+
+#selector {
     font-size: 50px;
+    padding: 20px;
+    margin: 20px;
 }
