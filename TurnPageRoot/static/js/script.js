@@ -44,6 +44,9 @@ $('.draggable').draggable({
                 {'transform': 'rotate(-20deg)'}
             );
         }
+        else if(currentPosition.top > 300){
+            $('.draggable').hide("scale", {percent: 0}, 150);
+        }
 
     },
     revert: true,
