@@ -8,23 +8,17 @@ body {
 
 /* BOOKS */
 
-.book-cover {
+.book-cover-img {
     width: 400px;
     height: 600px;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, .8);
-}
-
-.book-card-properties {
-    position: absolute;
     cursor: pointer;
-    bottom: 120px;
-    left: 35%;
 }
 
-.book-card {
-
+.book-swiping-container{
+    padding: 30px;
 }
 
 
@@ -37,7 +31,7 @@ body {
     background-color: #ffcbf0;
 }
 
-#arrows {
+.arrows {
     font-size: 100px;
 
 }
@@ -46,4 +40,16 @@ body {
     font-size: 50px;
     padding: 20px;
     margin: 20px;
+}
+
+#swipe-left-btn{
+    color: darkred;
+}
+
+#swipe-right-btn{
+    color: green;
+}
+
+.hidden{
+    display: none;
 }
