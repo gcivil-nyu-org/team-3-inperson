@@ -18,26 +18,29 @@ $('.draggable').draggable({
             // TODO screen width calculation
             if (currentPosition.left > 300) {
                 swipedRight = true;
-                // console.log("swipe right");
+                console.log("swipe right");
+                $('.draggable').draggable("option","revert", false);
 
 
             }
             else if (currentPosition.left < -300) {
                 console.log("swipe left");
+                $('.draggable').draggable("option","revert", false);
             }
             else if (currentPosition.top > 300) {
                 console.log("swipe down");
+                $('.draggable').draggable("option","revert", false);
             }
 
     },
     stop: function(e, ui) {
         if(currentPosition.left > 300){
-            $('.draggable').draggable("option","revert", false).animate({left: 1000}, 300).css(
+            $('.draggable').animate({left: 1000}, 300).css(
                 {'transform': 'rotate(20deg)'}
             );
         }
         else if (currentPosition.left < -300){
-            $('.draggable').draggable("option","revert", false).animate({left: -1000}, 300).css(
+            $('.draggable').animate({left: -1000}, 300).css(
                 {'transform': 'rotate(-20deg)'}
             );
         }
