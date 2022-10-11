@@ -26,12 +26,8 @@ SECRET_KEY = 'django-insecure-&smq%2()o5s8ha9dqq1^qlym)f87)w2wtxdf32t+!5fn60mbt&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< Updated upstream
-ALLOWED_HOSTS = ['tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com', '127.0.0.1']
-=======
-ALLOWED_HOSTS = ['127.0.0.1', 'tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com']
 
->>>>>>> Stashed changes
+ALLOWED_HOSTS = ['127.0.0.1', 'tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com']
 
 # Application definition
 
@@ -123,9 +119,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'checkstatic/static/')
+   BASE_DIR / "static",
 ]
 
 # Default primary key field type
