@@ -2,8 +2,9 @@
     --rotation: 10deg;
 }
 
-body {
-
+body{
+    background-color: #f5f5f5;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* BOOKS */
@@ -20,16 +21,6 @@ body {
 .book-swiping-container{
     padding: 30px;
     min-height: 700px;
-}
-
-
-/* NAV BAR */
-.banner {
-    background-color: #ffcbf0;
-}
-
-.navbar {
-    background-color: #ffcbf0;
 }
 
 .arrows {
@@ -53,4 +44,21 @@ body {
 
 .hidden{
     display: none;
+}
+
+
+/* NAV BAR */
+.banner {
+    background-color: #ffcbf0;
+}
+
+.navbar {
+    background-color: #ffcbf0;
+}
+
+.nav-item a:link, .nav-item a:visited {
+    text-decoration: none;
+}
+.nav-item a:hover {
+    cursor: pointer;
 }
