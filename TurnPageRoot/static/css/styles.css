@@ -2,7 +2,7 @@
     --rotation: 10deg;
 }
 
-body{
+body {
     background-color: #f5f5f5;
     font-family: 'Montserrat', sans-serif;
 }
@@ -10,42 +10,46 @@ body{
 /* BOOKS */
 .card-list {
     display: flex;
-  padding-right: 5rem;
-  
+    /*padding-right: 5rem;*/
+
 }
+
 .card {
-    height: 500px;
-    width: 400px;
+    /*height: 354px;*/
+    /*width: 600px;*/
     min-width: 50px;
-    padding: 1.5rem;
-    border-radius: 16px;
-    background: #ffcbf0;
-    display: flex;
-    flex-direction: column;
-    transition: .2s;
-    position: relative;
-    box-shadow: -1rem 0 3rem #9F2B68;
+    /*padding: 1.5rem;*/
+    /*border-radius: 16px;*/
+    background: rgba(0, 0, 0, 0);
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    transition: .1s;
+    /*position: relative;*/
+    /*box-shadow: -.5rem 1px 1rem rgba(44, 44, 44, 0.55);*/
 }
-.card:focus-within~.card, .card:hover~.card {
-    transform: translateX(200px);
-}
+
+/*.card:focus-within~.card, .card:hover~.card {*/
+/*    transform: translateX(200px);*/
+/*}*/
 .card:hover {
     transform: translateY(-1rem);
 }
+
 .card:not(:first-child) {
     margin-left: -150px;
 }
-/*
+
+
 .book-cover-img {
-    width: 400px;
-    height: 600px;
+    width: 314px;
+    height: 478px;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, .8);
     cursor: pointer;
 }
-*/
-.book-swiping-container{
+
+.book-swiping-container {
     padding: 30px;
     min-height: 700px;
 }
@@ -61,15 +65,15 @@ body{
     margin: 20px;
 }
 
-#swipe-left-btn{
+#swipe-left-btn {
     color: darkred;
 }
 
-#swipe-right-btn{
+#swipe-right-btn {
     color: green;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
@@ -86,6 +90,7 @@ body{
 .nav-item a:link, .nav-item a:visited {
     text-decoration: none;
 }
+
 .nav-item a:hover {
     cursor: pointer;
 }
