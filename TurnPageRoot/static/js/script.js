@@ -54,3 +54,5 @@ $('.draggable').draggable({
 
     revertDuration: 50,
 });
+
+//the logic should be: when a card is hidden, it should get the draggable class removed and the next card should get the draggable class added.
