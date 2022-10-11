@@ -1,8 +1,53 @@
+:root {
+    --rotation: 10deg;
+}
+
 body{
     background-color: #f5f5f5;
     font-family: 'Montserrat', sans-serif;
 }
 
+/* BOOKS */
+
+.book-cover-img {
+    width: 400px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, .8);
+    cursor: pointer;
+}
+
+.book-swiping-container{
+    padding: 30px;
+    min-height: 700px;
+}
+
+.arrows {
+    font-size: 100px;
+
+}
+
+#selector {
+    font-size: 50px;
+    padding: 20px;
+    margin: 20px;
+}
+
+#swipe-left-btn{
+    color: darkred;
+}
+
+#swipe-right-btn{
+    color: green;
+}
+
+.hidden{
+    display: none;
+}
+
+
+/* NAV BAR */
 .banner {
     background-color: #ffcbf0;
 }
