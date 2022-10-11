@@ -6,34 +6,29 @@
 
 
     <div class="container">
-        <div class="row text-center align-items-center" style="height: 600px;">
-            <div class="col-2 block">
-                <button type="button" class="material-symbols-outlined btn" id="arrows">chevron_left</button>
+        <!--Swiping -->
+        <div class="row text-center align-items-center book-swiping-container">
+            <div class="col-2">
+                <button type="button" class="material-symbols-outlined btn arrows" id="swipe-left-btn">chevron_left</button>
             </div>
-            <div class="col block">
-                {# books #}
-                <div class="container outer">
-
-                    <div class="book-card-3 book-card-properties draggable">
-                        <img src="{% static 'js/book_covers/jurrasic.jpg' %}" class="book-cover" alt="">
-                    </div>
-                    <div class="book-card-2 book-card-properties draggable ">
-                        <img src="{% static 'js/book_covers/american-psycho-670x1024.jpg' %}" class="book-cover" alt="">
-                    </div>
-                    <div class="book-card-1 book-card-properties draggable top-of-stack">
-                        <img src="{% static 'js/book_covers/image-1.jpg' %}" class="book-cover" alt="">
-                    </div>
+            <div class="col ">
+                <div class="draggable">
+                    <img src="{% static 'js/book_covers/harrypotter.jpg' %}" class="book-cover-img" alt="">
                 </div>
+{#                <div>#}
+{#                    <img src="{% static 'images/no_more_books.jpg' %}" alt="">#}
+{#                </div>#}
+
             </div>
-            <div class="col-2 block">
-                <button type="button" class="material-symbols-outlined btn" id="arrows">chevron_right</button>
+            <div class="col-2 ">
+                <button type="button" class="material-symbols-outlined btn arrows" id="swipe-right-btn">chevron_right</button>
             </div>
         </div>
     </div>
 
 
-    <div class="container" style="width: 290px">
-        <div class="row text-center align-items-center" style="height: 400px;">
+    <div class="container" style="width: 300px">
+        <div class="row">
             <div class="col-2 ">
                 <span class="material-symbols-outlined" id="selector">heart_minus</span>
             </div>
@@ -45,8 +40,6 @@
             </div>
         </div>
     </div>
-
-
 
 
 {% endblock %}
