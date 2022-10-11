@@ -37,12 +37,12 @@ $('.draggable').draggable({
         if(currentPosition.left > 300){
             $('.draggable').animate({left: 1000}, 300).css(
                 {'transform': 'rotate(20deg)'}
-            );
+            ).hide("fade",{percent:0}, 150);
         }
         else if (currentPosition.left < -300){
             $('.draggable').animate({left: -1000}, 300).css(
                 {'transform': 'rotate(-20deg)'}
-            );
+            ).hide("fade",{percent:0}, 150);
         }
         else if(currentPosition.top > 300){
             $('.draggable').hide("scale", {percent: 0}, 150);
