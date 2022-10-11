@@ -19,6 +19,7 @@ body {
 
 .book-swiping-container{
     padding: 30px;
+    min-height: 700px;
 }
 
 
