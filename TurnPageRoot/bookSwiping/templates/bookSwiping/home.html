@@ -9,35 +9,28 @@
         <!--Swiping -->
         <div class="row text-center align-items-center book-swiping-container">
             <div class="col-2">
-                <button type="button" class="material-symbols-outlined btn arrows" id="swipe-left-btn">chevron_left</button>
+                <button type="button" class="material-symbols-outlined btn arrows" id="swipe-left-btn">heart_minus
+                </button>
             </div>
             <div class="col ">
                 <div class="draggable">
                     <img src="{% static 'js/book_covers/harrypotter.jpg' %}" class="book-cover-img" alt="">
                 </div>
-{#                <div>#}
-{#                    <img src="{% static 'images/no_more_books.jpg' %}" alt="">#}
-{#                </div>#}
 
             </div>
             <div class="col-2 ">
-                <button type="button" class="material-symbols-outlined btn arrows" id="swipe-right-btn">chevron_right</button>
+                <button type="button" class="material-symbols-outlined btn arrows" id="swipe-right-btn">heart_plus
+                </button>
             </div>
         </div>
     </div>
-
-
-    <div class="container" style="width: 300px">
+    <div class="container">
         <div class="row">
-            <div class="col-2 ">
-                <span class="material-symbols-outlined" id="selector">heart_minus</span>
+            <div class="col"></div>
+            <div class="col text-center">
+                 <button class="material-symbols-outlined btn " id="bookshelf-btn">menu_book</button>
             </div>
-            <div class="col-2 ">
-                <span class="material-symbols-outlined" id="selector">menu_book</span>
-            </div>
-            <div class="col-2 ">
-                <span class="material-symbols-outlined" id="selector">favorite</span>
-            </div>
+            <div class="col"></div>
         </div>
     </div>
 
