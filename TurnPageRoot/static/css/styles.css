@@ -16,6 +16,11 @@ body{
     border-radius: 10px;
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, .8);
     cursor: pointer;
+    transition: .1s;
+}
+
+.book-cover-img:hover {
+    transform: translateY(-1rem);
 }
 
 .book-swiping-container{
