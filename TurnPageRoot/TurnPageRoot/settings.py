@@ -91,7 +91,7 @@ if 'RDS_DB_NAME' in os.environ:  # RDS database
         }
     }
 else:  # local database
-    # TODO add your own database settings to .env file in the same directory as this file
+    #  add your own database settings to .env file in the same directory as this file
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
