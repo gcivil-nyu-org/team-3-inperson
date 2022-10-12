@@ -24,6 +24,7 @@ jobs:
     - name: move_to_root
       run: |
         cd TurnPageRoot
+        ls
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
