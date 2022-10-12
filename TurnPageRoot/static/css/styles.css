@@ -10,8 +10,7 @@ body{
 /* BOOKS */
 
 .book-cover-img {
-    width: 400px;
-    height: 600px;
+    width: 50%;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, .8);
@@ -23,20 +22,24 @@ body{
     transform: translateY(-1rem);
 }
 
+@media only screen and (max-width: 991px) {
+    .book-cover-img {
+        width: 70%;
+    }
+  }
+
+@media only screen and (max-width: 600px) {
+    .book-cover-img {
+        width: 90%;
+    }
+}
+
 .book-swiping-container{
     padding: 30px;
-    min-height: 700px;
 }
 
 .arrows {
-    font-size: 100px;
-
-}
-
-#bookshelf-btn {
-    font-size: 50px;
-    padding: 20px;
-    margin: 20px;
+    font-size: 8vw;
 }
 
 #swipe-left-btn{

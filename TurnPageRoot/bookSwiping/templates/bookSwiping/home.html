@@ -5,32 +5,28 @@
 
 
 
-    <div class="container">
+    <div class="container-fluid">
         <!--Swiping -->
-        <div class="row text-center align-items-center book-swiping-container">
-            <div class="col-2">
-                <button type="button" class="material-symbols-outlined btn arrows" id="swipe-left-btn">heart_minus
+        <div class="row align-items-center justify-content-between book-swiping-container pt-5">
+            <div class="col-1 p-0">
+                <button type="button" class="material-symbols-outlined btn arrows text-center w-100 p-0" id="swipe-left-btn">heart_minus
                 </button>
             </div>
-            <div class="col ">
-                <div class="draggable">
+            <div class="col">
+                <div class="draggable text-center">
                     <img src="{% static 'js/book_covers/harrypotter.jpg' %}" class="book-cover-img" alt="">
                 </div>
 
             </div>
-            <div class="col-2 ">
-                <button type="button" class="material-symbols-outlined btn arrows" id="swipe-right-btn">heart_plus
+            <div class="col-1 p-0">
+                <button type="button" class="material-symbols-outlined btn arrows text-center w-100 p-0" id="swipe-right-btn">heart_plus
                 </button>
             </div>
         </div>
-    </div>
-    <div class="container">
         <div class="row">
-            <div class="col"></div>
             <div class="col text-center">
-                 <button class="material-symbols-outlined btn " id="bookshelf-btn">menu_book</button>
+                 <button type="button" class="material-symbols-outlined btn arrows" id="bookshelf-btn">menu_book</button>
             </div>
-            <div class="col"></div>
         </div>
     </div>
 
