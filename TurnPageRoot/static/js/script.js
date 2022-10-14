@@ -5,6 +5,11 @@ let currentPosition;
 let swipedRight = false;
 let swipedLeft = false;
 
+// VALUES
+let shrinkValue = 45;
+let rotateValue = 30;
+
+
 $('.draggable').draggable({
     data: {
         startingPosition: startingPosition,
@@ -18,8 +23,8 @@ $('.draggable').draggable({
         // TODO screen width calculation
 
         // BOOK ROTATES TOWARDS POSITION
-        $('.book-cover-img').css('transform', 'rotate(' + currentPosition.left / 30 + 'deg)')
-            .css('width', '45%')
+        $('.book-cover-img').css('transform', 'rotate(' + currentPosition.left / rotateValue + 'deg)')
+            .css('width', shrinkValue + '%')
             .css('opacity', 1 - Math.abs(currentPosition.left / 700))
 
         ;
@@ -51,14 +56,17 @@ $('.draggable').draggable({
 
         // LISTENERS FOR SWIPING ACTION
         if (currentPosition.left > 300) {
-            $('.draggable').animate({left: 1000}, 300).css(
-                {'transform': 'rotate(20deg)'}
-            ).hide("fade", {percent: 0}, 150);
+            $('.book-cover-img').css('width', shrinkValue + '%');
+            $('.draggable').animate({left: 1000}, 300)
+                .css({'transform': 'rotate(20deg)'})
+                .hide("fade", {percent: 0}, 150);
         } else if (currentPosition.left < -300) {
-            $('.draggable').animate({left: -1000}, 300).css(
-                {'transform': 'rotate(-20deg)'}
-            ).hide("fade", {percent: 0}, 150);
+            $('.book-cover-img').css('width', shrinkValue + '%');
+            $('.draggable').animate({left: -1000}, 300)
+                .css({'transform': 'rotate(-20deg)'})
+                .hide("fade", {percent: 0}, 150);
         } else if (currentPosition.top > 300) {
+            $('.book-cover-img').css('width', shrinkValue + '%');
             $('.draggable').hide("scale", {percent: 0}, 150);
         }
 
