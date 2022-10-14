@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Language is commented out in all places it is called for the time being. I have included it where necessary if we decide to use it.
 """
@@ -6,7 +7,6 @@ class Language(models.Model):
     # 2 character ISO 639-1 language code. Contains 5 characters to accommodate cases like brazilian portugese, "pt-BR"
     code = models.CharField(max_length=5, primary_key=True)
 """
-
 
 # Books
 class Book(models.Model):
@@ -33,12 +33,7 @@ class Genre(models.Model):
     genre = models.CharField(max_length=128)
 
 
-# User Profile
-class User(models.Model):
-    name = models.CharField(max_length=256)
-    email = models.EmailField(max_length=256)
-    # language = models.ForeignKey(Language, on_delete=models.SET_NULL)
-
+# User Profile is imported from the django default auth model in the header and the incorrect custom model has been deleted.
 
 # Genres for each book. Many-to-Many
 class BookGenre(models.Model):
