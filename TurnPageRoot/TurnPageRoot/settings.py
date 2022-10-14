@@ -104,6 +104,8 @@ else:  # local database
     #         'PORT': os.environ.get('DB_PORT', '5430'),
     #     }
     # }
+
+    # SQLITE DATABASE:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -111,7 +113,6 @@ else:  # local database
         }
     }
 
-# SQLITE DATABASE:
 
 
 
