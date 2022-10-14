@@ -16,6 +16,13 @@ $('.draggable').draggable({
             currentPosition = ui.position;
             // console.log(currentPosition);
             // TODO screen width calculation
+
+            // BOOK ROTATES TOWARDS POSITION
+            $('.book-cover-img').css('transform', 'rotate(' + currentPosition.left / 30 + 'deg)');
+
+
+
+            //WHEN SWIPING, MAKE SURE IT DOESN'T SNAP BACK
             if (currentPosition.left > 300) {
                 swipedRight = true;
                 console.log("swipe right");
@@ -34,6 +41,11 @@ $('.draggable').draggable({
 
     },
     stop: function(e, ui) {
+        // RESET ROTATION
+        $('.book-cover-img').css('transform', 'rotate(0deg)');
+
+
+        // LISTENERS FOR SWIPING ACTION
         if(currentPosition.left > 300){
             $('.draggable').animate({left: 1000}, 300).css(
                 {'transform': 'rotate(20deg)'}
