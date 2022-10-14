@@ -18,8 +18,7 @@ $('.draggable').draggable({
             // TODO screen width calculation
 
             // BOOK ROTATES TOWARDS POSITION
-            $('.book-cover-img').css('transform', 'rotate(' + currentPosition.left / 30 + 'deg)');
-
+            $('.book-cover-img').css('transform', 'rotate(' + currentPosition.left / 30 + 'deg)').css('width', '45%');
 
 
             //WHEN SWIPING, MAKE SURE IT DOESN'T SNAP BACK
@@ -42,7 +41,7 @@ $('.draggable').draggable({
     },
     stop: function(e, ui) {
         // RESET ROTATION
-        $('.book-cover-img').css('transform', 'rotate(0deg)');
+        $('.book-cover-img').css('transform', 'rotate(0deg)').css('width', '50%');
 
 
         // LISTENERS FOR SWIPING ACTION

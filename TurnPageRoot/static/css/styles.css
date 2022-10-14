@@ -70,7 +70,3 @@ body{
 .nav-item a:hover {
     cursor: pointer;
 }
-
-.make-smaller{
-    width: 45%;
-}
