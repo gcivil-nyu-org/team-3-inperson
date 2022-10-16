@@ -38,15 +38,14 @@ body {
 }
 
 .deck {
-
-
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 .book {
-    /*flex: 100px 2 1;*/
-    position: relative;
-    margin-bottom: -75%;
+    padding: 50px;
+    grid-row-start: 1;
+    grid-column-start: 1;
 }
 
 .book-swiping-container {
