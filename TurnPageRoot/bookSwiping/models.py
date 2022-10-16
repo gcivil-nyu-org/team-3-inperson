@@ -17,6 +17,10 @@ class Book(models.Model):
     # A book can have more than one author... I think we should just take the first one instead of storing a list.
     author = models.CharField(max_length=256)
     description = models.CharField(max_length=8192)
+
+    # We will be automatically generating image links from Google Books API results
+    # By pulling the book's ID and inputting here replacing <id>:
+    # https://books.google.com/books/publisher/content/images/frontcover/<id>?fife=w1333-h2000&source=gbs_api
     cover_img = models.URLField(max_length=1024)  # book cover provided as a URL.
     published_date = models.DateField()
 
