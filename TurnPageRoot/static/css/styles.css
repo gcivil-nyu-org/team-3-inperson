@@ -38,9 +38,8 @@ body {
 }
 
 .deck {
-    /*TODO flex is causing some issues for display*/
-    display: flex;
-    height: 200px;
+
+
     flex-direction: column;
 }
 
@@ -51,6 +50,7 @@ body {
 }
 
 .book-swiping-container {
+    display: flex;
     padding: 30px;
 }
 
