@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.views.generic import *
-
+from .models import *
 
 # Create your views here.
 class HomeView(TemplateView):
+    model = Book
+    context_object_name = "books"
     template_name = 'bookSwiping/home.html'
     extra_context = {}
 
