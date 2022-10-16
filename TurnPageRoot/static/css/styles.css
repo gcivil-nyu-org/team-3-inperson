@@ -72,6 +72,9 @@ body{
 }
 
 /* LOGIN */
+.login-flex-container {
+    height: 100vh;
+}
 .login-container {
     background-color: #484554;
     box-shadow: 12px 12px 22px grey;
