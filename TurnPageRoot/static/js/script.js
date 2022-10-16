@@ -27,7 +27,7 @@ $('.draggable').draggable({
         currentPosition = ui.position;
 
         // BOOK ROTATES TOWARDS POSITION
-        $('.book-cover-img').css('transform', 'rotate(' + currentPosition.left / rotateValue + 'deg)')
+        $('.top-of-stack').css('transform', 'rotate(' + currentPosition.left / rotateValue + 'deg)')
             .css('width', shrinkValue + '%')
             .css('opacity', 1 - Math.abs(currentPosition.left / 700))
 
@@ -52,7 +52,7 @@ $('.draggable').draggable({
     },
     stop: function (e, ui) {
         // RESET ROTATION
-        $('.book-cover-img').css('transform', 'rotate(0deg)')
+        $('.top-of-stack').css('transform', 'rotate(0deg)')
             .css('width', bookWidth+'%')
             .css('opacity', 100)
         ;
@@ -60,17 +60,17 @@ $('.draggable').draggable({
 
         // LISTENERS FOR SWIPING ACTION
         if (currentPosition.left > horizontalSwipeCutoffPoint) {
-            $('.book-cover-img').css('width', shrinkValue + '%');
+            $('.top-of-stack').css('width', shrinkValue + '%');
             $('.draggable').animate({left: 1000}, 300)
                 .css({'transform': 'rotate(20deg)'})
                 .hide("fade", {percent: 0}, 150);
         } else if (currentPosition.left < -1*horizontalSwipeCutoffPoint) {
-            $('.book-cover-img').css('width', shrinkValue + '%');
+            $('.top-of-stack').css('width', shrinkValue + '%');
             $('.draggable').animate({left: -1000}, 300)
                 .css({'transform': 'rotate(-20deg)'})
                 .hide("fade", {percent: 0}, 150);
         } else if (currentPosition.top > downSwipeCutoffPoint) {
-            $('.book-cover-img').css('width', shrinkValue + '%');
+            $('.top-of-stack').css('width', shrinkValue + '%');
             $('.draggable').hide("scale", {percent: 0}, 150);
         }
 
