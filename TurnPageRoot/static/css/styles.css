@@ -38,6 +38,7 @@ body {
 }
 
 .deck {
+    /*TODO flex is causing some issues for display*/
     display: flex;
     height: 200px;
     flex-direction: column;
@@ -46,7 +47,7 @@ body {
 .book {
     /*flex: 100px 2 1;*/
     position: relative;
-    margin-bottom: -677px;
+    margin-bottom: -75%;
 }
 
 .book-swiping-container {
