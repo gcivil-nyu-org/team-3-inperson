@@ -22,6 +22,8 @@ class Book(models.Model):
     # By pulling the book's ID and inputting here replacing <id>:
     # https://books.google.com/books/publisher/content/images/frontcover/<id>?fife=w1333-h2000&source=gbs_api
     cover_img = models.URLField(max_length=1024)  # book cover provided as a URL.
+    date_created = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField(default=0)
     published_date = models.DateField()
 
     # We won't use ISBN as our ID because there are 2 ISBNs: 10 and 13... and the data might not be complete on some Books
@@ -30,6 +32,11 @@ class Book(models.Model):
     isbn13 = models.IntegerField()
 
     # language = models.ForeignKey(Language, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.title + " by " + self.author
+
+
 
 
 # Genres
