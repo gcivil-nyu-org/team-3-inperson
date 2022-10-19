@@ -1,0 +1,18 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Team 3 Project Repo\n## Installation instructions\n1. First, get your venv setup\n2. Install the requirements from `requirements.txt` using `pip install -r requirements.txt`\n3. then 'cd TurnPageRoot' and run `python manage.py migrate` -- this will make a sqlite database for you, we will change it to postgres later\n4. run `python manage.py runserver` to start the server
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision 1c266473bf6a681bd74ab3ad29ac01d1a2bbac13)
++++ b/README.md	(date 1665150356293)
+@@ -3,4 +3,4 @@
+ 1. First, get your venv setup
+ 2. Install the requirements from `requirements.txt` using `pip install -r requirements.txt`
+ 3. then 'cd TurnPageRoot' and run `python manage.py migrate` -- this will make a sqlite database for you, we will change it to postgres later
+-4. run `python manage.py runserver` to start the server
+\ No newline at end of file
++4. run `python manage .py runserver` to start the server
+\ No newline at end of file
