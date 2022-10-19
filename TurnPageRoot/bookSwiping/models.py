@@ -22,7 +22,7 @@ class Book(models.Model):
     # By pulling the book's ID and inputting here replacing <id>:
     # https://books.google.com/books/publisher/content/images/frontcover/<id>?fife=w1333-h2000&source=gbs_api
     cover_img = models.URLField(max_length=1024)  # book cover provided as a URL.
-    date_created = models.DateTimeField(auto_now_add=True)
+    # date_created = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
     published_date = models.DateField()
 
@@ -35,8 +35,6 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title + " by " + self.author
-
-
 
 
 # Genres
