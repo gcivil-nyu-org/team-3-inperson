@@ -5,6 +5,9 @@ python:
 install:
   - pip install -r requirements.txt
 
+before_script:
+  - python manage.py migrate
+
 script:
   - black ./
   - flake8 ./
@@ -22,4 +25,6 @@ deploy:
   env: "tp-dev"
   bucket_name: $AWS_BUCKET_NAME
   on:
-    branch: main
+    repo: gcivil-nyu-org/team-3-inperson
+    branch: develop
+  skip_cleanup: 'true'
