@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-&smq%2()o5s8ha9dqq1^qlym)f87)w2wtxdf32t+!5fn60mbt&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com', 'tp-prod.eba-ztedmrkr.us-east-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com',
+                 'tp-prod.eba-ztedmrkr.us-east-1.elasticbeanstalk.com']
 
 # Application definition
 
@@ -78,17 +79,25 @@ WSGI_APPLICATION = 'TurnPageRoot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+if 'RDS_DB_NAME' in os.environ:  # RDS database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
+    }
+else:
+    # SQLITE DATABASE:
+    DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
-
-
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
