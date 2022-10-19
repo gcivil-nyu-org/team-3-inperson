@@ -4,182 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="small updates">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/.ebextensions/django.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/.idea/TurnPageRoot.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/templates/bookSwiping/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/tests/test_views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/manage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/pytest.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/autocomplete.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/base.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/changelists.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/dark_mode.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/dashboard.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/fonts.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/forms.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/nav_sidebar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/responsive.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/responsive_rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/vendor/select2/LICENSE-SELECT2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/vendor/select2/select2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/vendor/select2/select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/css/widgets.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/fonts/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/fonts/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/fonts/Roboto-Bold-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/fonts/Roboto-Light-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/fonts/Roboto-Regular-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/calendar-icons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/gis/move_vertex_off.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/gis/move_vertex_on.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/icon-addlink.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/icon-alert.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/icon-calendar.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/icon-changelink.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/icon-clock.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/icon-deletelink.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/icon-no.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/icon-unknown-alt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/icon-unknown.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/icon-viewlink.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/icon-yes.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/inline-delete.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/search.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/selector-icons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/sorting-icons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/tooltag-add.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/img/tooltag-arrowright.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/SelectBox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/SelectFilter2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/actions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/admin/DateTimeShortcuts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/admin/RelatedObjectLookups.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/autocomplete.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/calendar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/cancel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/change_form.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/collapse.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/core.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/filters.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/inlines.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/jquery.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/nav_sidebar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/popup_response.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/prepopulate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/prepopulate_init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/urlify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/jquery/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/jquery/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/jquery/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/LICENSE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/af.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/ar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/az.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/bg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/bn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/bs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/ca.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/cs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/da.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/de.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/dsb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/el.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/es.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/et.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/eu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/fa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/fi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/fr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/gl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/he.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/hi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/hr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/hsb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/hu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/hy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/id.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/is.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/it.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/ja.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/ka.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/km.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/ko.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/lt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/lv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/mk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/ms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/nb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/ne.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/nl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/pl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/ps.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/pt-BR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/pt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/ro.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/ru.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/sk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/sl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/sq.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/sr-Cyrl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/sr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/sv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/th.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/tk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/tr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/uk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/vi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/zh-CN.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/i18n/zh-TW.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/select2.full.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/select2/select2.full.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/xregexp/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/xregexp/xregexp.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/admin/js/vendor/xregexp/xregexp.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/images/favicon1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/images/no_more_books.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/js/book_covers/american-psycho-670x1024.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/js/book_covers/gatsby-original2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/js/book_covers/harrypotter.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/js/book_covers/image.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/js/book_covers/jurrasic.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/static/js/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TurnPageRoot/templates/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/team-3-inperson.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/team-3-inperson.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="small updates" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -188,7 +13,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -268,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665155039504</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="merged">
+      <created>1666207139078</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1666207139078</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +122,7 @@
     <MESSAGE value="instructions" />
     <MESSAGE value="bootstrap icons added" />
     <MESSAGE value="small updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="small updates" />
+    <MESSAGE value="merged" />
+    <option name="LAST_COMMIT_MESSAGE" value="merged" />
   </component>
 </project>
