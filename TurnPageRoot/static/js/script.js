@@ -1,5 +1,4 @@
-console.log("https://github.com/gcivil-nyu-org/team-3-inperson")
-
+console.log("Javascript Connected");
 let startingPosition;
 let currentPosition;
 let swipedRight = false;
