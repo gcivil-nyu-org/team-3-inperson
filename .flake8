@@ -1,0 +1,6 @@
+[flake8]
+per-file-ignores =
+    TurnPageRoot/*: E501
+exclude = .git,__pycache__, TurnPageRoot/bookSwiping/migrations
+max-complexity = 10
+max-line-length= 150
