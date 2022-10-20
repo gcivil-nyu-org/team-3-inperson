@@ -80,19 +80,6 @@ WSGI_APPLICATION = 'TurnPageRoot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'awseb-e-txfddvnqxh-stack-awsebrdsdatabase-puzrirlwyikn.cnmsrtab5lbk.us-east-1.rds.amazonaws.com',
-        'PORT': '5432'
-    }
-}
-
-'''
 if 'RDS_DB_NAME' in os.environ:  # RDS database
     DATABASES = {
         'default': {
@@ -111,11 +98,11 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DB_NAME'),
-            'USER': os.environ.get('USER'),
-            'PASSWORD': os.environ.get('PASSWORD'),
-            'HOST': os.environ.get('HOSTNAME'),
-            'PORT': os.environ.get('PORT')
+            'NAME': env('DB_NAME'),
+            'USER': env('USER'),
+            'PASSWORD': env('PASSWORD'),
+            'HOST': env('HOSTNAME'),
+            'PORT': env('PORT')
         }
     }
 
