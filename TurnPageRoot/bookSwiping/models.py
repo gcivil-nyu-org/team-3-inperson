@@ -12,7 +12,8 @@ class Language(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=1024)
     subtitle = models.CharField(
-        max_length=1024)  # Is usually blank but we can chose to display this on the more info page when it is not.
+        max_length=1024
+    )  # Is usually blank but we can chose to display this on the more info page when it is not.
 
     # A book can have more than one author... I think we should just take the first one instead of storing a list.
     author = models.CharField(max_length=256)
