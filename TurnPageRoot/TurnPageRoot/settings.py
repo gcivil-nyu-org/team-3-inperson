@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import django
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -92,14 +93,16 @@ if 'RDS_DB_NAME' in os.environ:  # RDS database
     }
 else:
     # Connect to the same RDS instance but the credentials are local:
+    env = environ.Env()
+    environ.Env.read_env()
     DATABASES = {
         'default': {
-            'NAME': os.environ.get('DB_NAME'),
-            'USER': os.environ.get('USERNAME'),
-            'PASSWORD': os.environ.get('PASSWORD'),
-            'HOST': os.environ.get('HOSTNAME'),
-            'PORT': os.environ.get('PORT'),
-
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('DB_NAME'),
+            'USER': env('USER'),
+            'PASSWORD': env('PASSWORD'),
+            'HOST': env('HOSTNAME'),
+            'PORT': env('PORT')
         }
     }
 
