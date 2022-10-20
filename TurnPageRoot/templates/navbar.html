@@ -1,3 +1,4 @@
+{% load user %}
 <div class="">
   <div class="banner border-bottom border-black-50 border-2 justify-content-center d-lg-none py-2">
     <h1 class="text-dark text-center m-0">TurnPage</h1>
@@ -11,7 +12,8 @@
               <a>My Books</a>
           </div>
           <div class="nav-item nav-link text-dark navbar-text float-end">
-              <a>My Profile</a>
+              {% if user.authenticated %}
+              <a href="{% url 'login' %}">Login</a>
           </div>
       </div>
   </nav>
