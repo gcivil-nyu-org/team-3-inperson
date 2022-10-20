@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookSwiping',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +61,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'bookSwiping/templates'),
+            os.path.join(BASE_DIR, 'profiles/templates'),
 
         ],
         'APP_DIRS': True,

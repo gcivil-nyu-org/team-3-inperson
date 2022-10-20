@@ -17,11 +17,11 @@ class HomeView(ListView):
 
 
 
-class LoginView(TemplateView):
-    template_name = 'bookSwiping/login.html'
-    extra_context = {}
-
-
-class SignupView(TemplateView):
-    template_name = 'bookSwiping/signup.html'
-    extra_context = {}
+# class LoginView(TemplateView):
+#     template_name = 'bookSwiping/login.html'
+#     extra_context = {}
+#
+#
+# class SignupView(TemplateView):
+#     template_name = 'bookSwiping/signup.html'
+#     extra_context = {}
