@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import django
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,6 +80,7 @@ WSGI_APPLICATION = 'TurnPageRoot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -104,6 +106,8 @@ if 'RDS_DB_NAME' in os.environ:  # RDS database
     }
 else:
     # Connect to the same RDS instance but the credentials are local:
+    env = environ.Env()
+    environ.Env.read_env()
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -114,7 +118,7 @@ else:
             'PORT': os.environ.get('PORT')
         }
     }
-'''
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
