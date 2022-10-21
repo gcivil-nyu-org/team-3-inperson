@@ -4,23 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="basic functionality working">
+    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="merged">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/migrations/0002_book_date_created_book_likes.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/migrations/0002_book_date_created_book_likes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/migrations/0003_remove_book_date_created.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/migrations/0003_remove_book_date_created.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/tests/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/tests/test_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/bookSwiping/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/profiles/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/profiles/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/profiles/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/profiles/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
