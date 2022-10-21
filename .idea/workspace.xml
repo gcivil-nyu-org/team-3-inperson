@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="fixed database name">
+    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="changing to sqlite to see if that works">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +130,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666366499659</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="getting rid of temp">
+      <created>1666366716882</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1666366716882</updated>
+    </task>
+    <task id="LOCAL-00011" summary="changing to sqlite to see if that works">
+      <created>1666367333121</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1666367333121</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,6 +170,8 @@
     <MESSAGE value="env changes" />
     <MESSAGE value="postgres on travis" />
     <MESSAGE value="fixed database name" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed database name" />
+    <MESSAGE value="getting rid of temp" />
+    <MESSAGE value="changing to sqlite to see if that works" />
+    <option name="LAST_COMMIT_MESSAGE" value="changing to sqlite to see if that works" />
   </component>
 </project>

@@ -5,7 +5,11 @@ python:
 install:
   - pip install -r requirements.txt
 
+services:
+  - postgresql
+
 before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
   - python TurnPageRoot/manage.py makemigrations
   - python TurnPageRoot/manage.py migrate
 
