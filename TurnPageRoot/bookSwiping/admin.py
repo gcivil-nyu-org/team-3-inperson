@@ -9,7 +9,6 @@ from .models import UserGenre
 from .models import Bookshelf
 
 admin.site.register(Book)
-admin.site.register(User)
 admin.site.register(Genre)
 admin.site.register(BookGenre)
 admin.site.register(UserGenre)
