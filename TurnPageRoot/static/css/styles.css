@@ -2,7 +2,7 @@
     --rotation: 10deg;
 }
 
-body{
+body {
     background-color: #f5f5f5;
     font-family: 'Montserrat', sans-serif;
 }
@@ -15,10 +15,13 @@ body{
     border-radius: 10px;
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, .8);
     cursor: pointer;
+}
+
+.top-of-stack {
     transition: .1s;
 }
 
-.book-cover-img:hover {
+.top-of-stack:hover {
     transform: translateY(-1rem);
 }
 
@@ -26,7 +29,7 @@ body{
     .book-cover-img {
         width: 70%;
     }
-  }
+}
 
 @media only screen and (max-width: 600px) {
     .book-cover-img {
@@ -34,7 +37,18 @@ body{
     }
 }
 
-.book-swiping-container{
+.deck {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.book {
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+
+.book-swiping-container {
+    display: flex;
     padding: 30px;
 }
 
@@ -42,15 +56,15 @@ body{
     font-size: 8vw;
 }
 
-#swipe-left-btn{
+#swipe-left-btn {
     color: darkred;
 }
 
-#swipe-right-btn{
+#swipe-right-btn {
     color: green;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
@@ -67,6 +81,75 @@ body{
 .nav-item a:link, .nav-item a:visited {
     text-decoration: none;
 }
+
 .nav-item a:hover {
     cursor: pointer;
+}
+
+/* LOGIN */
+.login-flex-container {
+    height: 100vh;
+}
+
+.login-container {
+    background-color: #484554;
+    box-shadow: 12px 12px 22px grey;
+    border-radius: 30px;
+    min-height: 50vh;
+}
+
+.login-logo {
+    background-color: #ffcbf0;
+    min-height: 50vh;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 0;
+}
+
+@media only screen and (max-width: 575px) {
+    .login-container {
+        margin: auto;
+        width: 80%;
+    }
+
+    .login-logo {
+        height: auto;
+        min-height: 0;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 30px;
+    }
+}
+
+.login-title {
+    color: white;
+}
+
+.login-input {
+    border-radius: 4px;
+    border: 1px solid lightgrey;
+    outline: none;
+    background-color: #484554;
+    color: #ffcbf0;
+}
+
+.login-input:focus {
+    outline: 2px solid #ffcbf0;
+}
+
+.login-input::placeholder {
+    color: lightgrey;
+}
+
+.login-btn {
+    border: 1px solid #ffcbf0;
+    border-radius: 4px;
+    outline: none;
+    height: 50px;
+    background-color: #ffcbf0;
+}
+
+.login-btn:hover {
+    background-color: #484554;
+    color: #ffcbf0;
 }

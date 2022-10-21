@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import django
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +28,8 @@ SECRET_KEY = 'django-insecure-&smq%2()o5s8ha9dqq1^qlym)f87)w2wtxdf32t+!5fn60mbt&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com', 'tp-prod.eba-ztedmrkr.us-east-1.elasticbeanstalk.com']
+
+ALLOWED_HOSTS = ['127.0.0.1', 'tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com', 'tp-prod.eba-ztedmrkr.us-east-1.elasticbeanstalk.com', 'awseb-e-txfddvnqxh-stack-awsebrdsdatabase-puzrirlwyikn.cnmsrtab5lbk.us-east-1.rds.amazonaws.com', 'awseb-e-mcpzm2fixu-stack-awsebrdsdatabase-rublqbtmtfua.cnmsrtab5lbk.us-east-1.rds.amazonaws.com']
 
 # Application definition
 
@@ -78,7 +80,6 @@ WSGI_APPLICATION = 'TurnPageRoot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
 if 'RDS_DB_NAME' in os.environ:  # RDS database
     DATABASES = {
         'default': {
@@ -90,29 +91,20 @@ if 'RDS_DB_NAME' in os.environ:  # RDS database
             'PORT': os.environ['RDS_PORT'],
         }
     }
-else:  # local database
-    #  add your own database settings to .env file in the same directory as this file
+else:
+    # Connect to the same RDS instance but the credentials are local:
+    env = environ.Env()
+    environ.Env.read_env()
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DB_NAME'),
-            'USER': os.environ.get('DB_USER'),
-            'PASSWORD': os.environ.get('DB_PASSWORD'),
-            'HOST': 'localhost',
-            # Note that the default port is 5430 instead of 5432
-            # make your local database in this port instead if you run into issues
-            'PORT': os.environ.get('DB_PORT', '5430'),
+            'NAME': env('DB_NAME'),
+            'USER': env('USER'),
+            'PASSWORD': env('PASSWORD'),
+            'HOST': env('HOSTNAME'),
+            'PORT': env('PORT')
         }
     }
-
-# SQLITE DATABASE:
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

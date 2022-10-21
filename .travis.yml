@@ -1,0 +1,30 @@
+language: python
+python:
+  - "3.8"
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - python TurnPageRoot/manage.py migrate
+
+script:
+  - black ./
+  - flake8 ./
+  - coverage run TurnPageRoot/manage.py test
+
+after_success:
+  coveralls
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  region: "us-east-1"
+  app: "TurnPageDev"
+  env: "tp-dev"
+  bucket_name: $AWS_BUCKET_NAME
+  on:
+    repo: gcivil-nyu-org/team-3-inperson
+    branch: develop
+  skip_cleanup: 'true'
