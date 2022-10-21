@@ -11,8 +11,8 @@ class HomeView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['top_book'] = Book.objects.get(pk=1)
-        context['on_deck'] = Book.objects.get(pk=2)
+        context['top_book'] = self.model.objects.order_by('?')[0]
+        context['on_deck'] = self.model.objects.order_by('?')[1]
         return context
 
 
