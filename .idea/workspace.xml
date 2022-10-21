@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="removed workspace files">
-      <change beforePath="$PROJECT_DIR$/.ebextensions/django.config" beforeDir="false" afterPath="$PROJECT_DIR$/.ebextensions/django.config" afterDir="false" />
+    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="no container commands">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TurnPageRoot/static/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/static/js/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +66,7 @@
       <workItem from="1665148325825" duration="5860000" />
       <workItem from="1665155065417" duration="77000" />
       <workItem from="1666211024272" duration="253000" />
-      <workItem from="1666377510247" duration="583000" />
+      <workItem from="1666377510247" duration="1083000" />
     </task>
     <task id="LOCAL-00001" summary="boilerplate setup">
       <created>1665150211698</created>
@@ -116,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666373349791</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="no container commands">
+      <created>1666378101526</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1666378101526</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,6 +148,7 @@
     <MESSAGE value="small updates" />
     <MESSAGE value="merged" />
     <MESSAGE value="removed workspace files" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed workspace files" />
+    <MESSAGE value="no container commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="no container commands" />
   </component>
 </project>
