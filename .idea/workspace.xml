@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="postgres on travis">
+    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="fixed database name">
       <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666366092544</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fixed database name">
+      <created>1666366499659</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1666366499659</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +153,7 @@
     <MESSAGE value="merged" />
     <MESSAGE value="env changes" />
     <MESSAGE value="postgres on travis" />
-    <option name="LAST_COMMIT_MESSAGE" value="postgres on travis" />
+    <MESSAGE value="fixed database name" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed database name" />
   </component>
 </project>
