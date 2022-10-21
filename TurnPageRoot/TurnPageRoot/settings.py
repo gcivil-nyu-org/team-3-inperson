@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import django
 import os
-import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,8 +28,7 @@ SECRET_KEY = 'django-insecure-&smq%2()o5s8ha9dqq1^qlym)f87)w2wtxdf32t+!5fn60mbt&
 DEBUG = True
 
 
-# ALLOWED_HOSTS = ['127.0.0.1', 'tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com', 'tp-prod.eba-ztedmrkr.us-east-1.elasticbeanstalk.com', 'awseb-e-txfddvnqxh-stack-awsebrdsdatabase-puzrirlwyikn.cnmsrtab5lbk.us-east-1.rds.amazonaws.com', 'awseb-e-mcpzm2fixu-stack-awsebrdsdatabase-rublqbtmtfua.cnmsrtab5lbk.us-east-1.rds.amazonaws.com']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', 'tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com', 'tp-prod.eba-ztedmrkr.us-east-1.elasticbeanstalk.com']
 
 # Application definition
 
@@ -93,19 +91,7 @@ if 'RDS_DB_NAME' in os.environ:  # RDS database
         }
     }
 else:
-    # Connect to the same RDS instance but the credentials are local:
-    # env = environ.Env()
-    # environ.Env.read_env()
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': env('DB_NAME'),
-    #         'USER': env('DB_USER'),
-    #         'PASSWORD': env('PASSWORD'),
-    #         'HOST': env('HOSTNAME'),
-    #         'PORT': env('PORT')
-    #     }
-    # }
+    # SQLITE DATABASE:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

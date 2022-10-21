@@ -6,7 +6,6 @@ install:
   - pip install -r requirements.txt
 
 before_script:
-  - python TurnPageRoot/manage.py makemigrations
   - python TurnPageRoot/manage.py migrate
 
 script:
