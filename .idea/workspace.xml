@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="changing to sqlite to see if that works">
+    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="local travis build">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666367333121</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="local travis build">
+      <created>1666368273473</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1666368273474</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +178,7 @@
     <MESSAGE value="fixed database name" />
     <MESSAGE value="getting rid of temp" />
     <MESSAGE value="changing to sqlite to see if that works" />
-    <option name="LAST_COMMIT_MESSAGE" value="changing to sqlite to see if that works" />
+    <MESSAGE value="local travis build" />
+    <option name="LAST_COMMIT_MESSAGE" value="local travis build" />
   </component>
 </project>
