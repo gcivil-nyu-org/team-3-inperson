@@ -14,6 +14,7 @@ class HomeView(ListView):
         context = super().get_context_data(**kwargs)
         items = list(self.model.objects.all())
         # change to how many random items you want
+        # replace 2 with 15 at some point
         random_items = random.sample(items, 2)
 
         context['top_book'] = random_items[0]
