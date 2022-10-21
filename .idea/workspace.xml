@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="trying to fix css">
+      <change beforePath="$PROJECT_DIR$/.ebextensions/django.config" beforeDir="false" afterPath="$PROJECT_DIR$/.ebextensions/django.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" afterDir="false" />
     </list>
@@ -65,7 +66,7 @@
       <workItem from="1665148325825" duration="5860000" />
       <workItem from="1665155065417" duration="77000" />
       <workItem from="1666211024272" duration="253000" />
-      <workItem from="1666377510247" duration="3557000" />
+      <workItem from="1666377510247" duration="3823000" />
     </task>
     <task id="LOCAL-00001" summary="boilerplate setup">
       <created>1665150211698</created>
@@ -179,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666380790451</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="trying to fix css">
+      <created>1666381081278</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1666381081278</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
