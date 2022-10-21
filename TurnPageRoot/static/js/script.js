@@ -1,4 +1,4 @@
-console.log("Javascript Connected");
+console.log("script.js loaded");
 let startingPosition;
 let currentPosition;
 let swipedRight = false;
