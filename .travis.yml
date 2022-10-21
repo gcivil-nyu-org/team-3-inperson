@@ -9,7 +9,7 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database postgres;' -U postgres
   - python TurnPageRoot/manage.py makemigrations
   - python TurnPageRoot/manage.py migrate
 
