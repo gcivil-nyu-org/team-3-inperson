@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="small updates">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_7_22,_9_46_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_7_22__9_46_AM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/team-3-inperson.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/team-3-inperson.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TurnPageRoot/static/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/static/js/script.js" afterDir="false" />
+    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="basic functionality working">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TurnPageRoot/TurnPageRoot/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="134-user-account-creation-and-link-to-login-page" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,6 +40,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -50,10 +49,16 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "com.jetbrains.django.DjangoModulesConfigurable",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/TurnPageRoot/profiles/templates/profiles" />
       <recent name="$PROJECT_DIR$/TurnPageRoot/static/images" />
     </key>
   </component>
@@ -68,6 +73,8 @@
       <workItem from="1665148325825" duration="5860000" />
       <workItem from="1665155065417" duration="77000" />
       <workItem from="1666211024272" duration="253000" />
+      <workItem from="1666270999100" duration="2011000" />
+      <workItem from="1666298829754" duration="4273000" />
     </task>
     <task id="LOCAL-00001" summary="boilerplate setup">
       <created>1665150211698</created>
@@ -111,7 +118,28 @@
       <option name="project" value="LOCAL" />
       <updated>1666207139078</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="gitignore">
+      <created>1666299005182</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1666299005182</updated>
+    </task>
+    <task id="LOCAL-00008" summary="tweaks to admin">
+      <created>1666299715619</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1666299715619</updated>
+    </task>
+    <task id="LOCAL-00009" summary="new app started">
+      <created>1666300119993</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1666300119993</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +162,9 @@
     <MESSAGE value="bootstrap icons added" />
     <MESSAGE value="small updates" />
     <MESSAGE value="merged" />
-    <option name="LAST_COMMIT_MESSAGE" value="merged" />
+    <MESSAGE value="gitignore" />
+    <MESSAGE value="tweaks to admin" />
+    <MESSAGE value="new app started" />
+    <option name="LAST_COMMIT_MESSAGE" value="new app started" />
   </component>
 </project>

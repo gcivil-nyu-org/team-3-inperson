@@ -14,6 +14,7 @@ from pathlib import Path
 import django
 import os
 import environ
+import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -99,7 +100,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': env('DB_NAME'),
-            'USER': env('USER'),
+            'USER': env('DB_USER'),
             'PASSWORD': env('PASSWORD'),
             'HOST': env('HOSTNAME'),
             'PORT': env('PORT')
