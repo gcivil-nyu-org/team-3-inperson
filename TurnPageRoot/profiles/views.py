@@ -34,3 +34,6 @@ class SignupView(CreateView):
 
 class MyBookshelf(LoginRequiredMixin, TemplateView):
     pass
+
+class UserProfile(LoginRequiredMixin, TemplateView):
+    template_name = "profiles/user_profile.html"

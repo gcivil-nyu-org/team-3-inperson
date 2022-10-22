@@ -14,7 +14,7 @@
               {% if user.is_authenticated %}
                  <a href="{% url 'login' %}">My Profile</a>
                 {% else %}
-                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'user_profile' %}">Login</a>
 
                 {% endif %}
 
