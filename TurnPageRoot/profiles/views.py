@@ -17,7 +17,7 @@ class CustomUserCreationForm(UserCreationForm):
     captcha = CaptchaField()
 
     class Meta(UserCreationForm.Meta):
-        fields = UserCreationForm.Meta.fields + ('first_name', 'last_name', 'email')
+        fields = UserCreationForm.Meta.fields + ("first_name", "last_name", "email")
 
 
 class SignupView(CreateView):
@@ -41,7 +41,7 @@ class UserProfile(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
+        context["user"] = self.request.user
         return context
 
 

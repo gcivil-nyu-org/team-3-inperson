@@ -8,5 +8,5 @@ urlpatterns = [
     path("user_profile", views.UserProfile.as_view(), name="user_profile"),
 ]
 urlpatterns += [
-    path('captcha/', include('captcha.urls')),
+    path("captcha/", include("captcha.urls")),
 ]

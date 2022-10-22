@@ -43,6 +43,7 @@ class Book(models.Model):
 class Genre(models.Model):
     genre = models.CharField(max_length=128)
 
+
 # Genres for each book. Many-to-Many
 class BookGenre(models.Model):
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
