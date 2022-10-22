@@ -19,13 +19,3 @@ class HomeView(ListView):
         context["top_book"] = random_items[0]
         context["on_deck"] = random_items[1]
         return context
-
-
-class LoginView(TemplateView):
-    template_name = "bookSwiping/login.html"
-    extra_context = {}
-
-
-class SignupView(TemplateView):
-    template_name = "bookSwiping/signup.html"
-    extra_context = {}
