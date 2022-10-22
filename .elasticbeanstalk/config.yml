@@ -2,6 +2,8 @@ branch-defaults:
   default:
     environment: tp-dev
     group_suffix: null
+  develop:
+    environment: tp-dev
 global:
   application_name: TurnPageDev
   branch: null

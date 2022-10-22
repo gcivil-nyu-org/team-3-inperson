@@ -139,4 +139,5 @@ GitHub.sublime-settings
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
-.idea
+```
+TurnPageRoot/bookSwiping/management/commands/.DS_Store
