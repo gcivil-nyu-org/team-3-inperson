@@ -1,24 +1,25 @@
 <div class="">
-  <div class="banner border-bottom border-black-50 border-2 justify-content-center d-lg-none py-2">
-    <h1 class="text-dark text-center m-0">TurnPage</h1>
-  </div>
-  <nav class="navbar border-bottom border-black-50 border-2">
-      <div class="container justify-content-around">
-          <div class="nav-brand nav-item nav-link text-dark navbar-text d-none d-lg-block">
-              <a><h1 class="text-center m-0">TurnPage</h1></a>
-          </div>
-          <div class="nav-item nav-link text-dark navbar-text">
-              <a>My Books</a>
-          </div>
-          <div class="nav-item nav-link text-dark navbar-text float-end">
-              {% if user.is_authenticated %}
-                 <a href="{% url 'login' %}">My Profile</a>
+    <div class="banner border-bottom border-black-50 border-2 justify-content-center d-lg-none py-2">
+        <h1 class="text-dark text-center m-0">TurnPage</h1>
+    </div>
+    <nav class="navbar border-bottom border-black-50 border-2">
+        <div class="container justify-content-around">
+            <div class="nav-brand nav-item nav-link text-dark navbar-text d-none d-lg-block">
+                <a><h1 class="text-center m-0">TurnPage</h1></a>
+            </div>
+            <div class="nav-item nav-link text-dark navbar-text">
+                <a>My Books</a>
+            </div>
+            <div class="nav-item nav-link text-dark navbar-text float-end">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'user_profile' %}">My Profile</a>
+
                 {% else %}
-                <a href="{% url 'user_profile' %}">Login</a>
+                    <a href="{% url 'login' %}">Login</a>
 
                 {% endif %}
 
-          </div>
-      </div>
-  </nav>
+            </div>
+        </div>
+    </nav>
 </div>
