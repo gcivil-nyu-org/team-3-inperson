@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>My Profile</h1>
+    <h1>My Profile</h1>
+    <p>Hello, {{ user.first_name }}</p>
+    <a href="{% url 'logout' %}">
+        <button class="btn btn-primary">Logout</button>
+    </a>
 
 {% endblock %}
