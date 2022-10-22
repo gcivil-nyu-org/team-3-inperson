@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from captcha.fields import CaptchaField
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -13,8 +15,14 @@ class UserLoginView(LoginView):
     template_name = "profiles/login.html"
 
 
+class CustomUserCreationForm(UserCreationForm):
+    captcha = CaptchaField()
+    class Meta(UserCreationForm.Meta):
+        fields = UserCreationForm.Meta.fields + ('first_name', 'last_name', 'email')
+
+
 class SignupView(CreateView):
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     template_name = "profiles/signup.html"
     success_url = "/"
 
