@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from captcha.fields import CaptchaField
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
@@ -17,6 +15,7 @@ class UserLoginView(LoginView):
 
 class CustomUserCreationForm(UserCreationForm):
     captcha = CaptchaField()
+
     class Meta(UserCreationForm.Meta):
         fields = UserCreationForm.Meta.fields + ('first_name', 'last_name', 'email')
 
