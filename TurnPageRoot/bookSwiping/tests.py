@@ -1,8 +1,11 @@
-from django.test import TestCase, LiveServerTestCase
+from django.test import TestCase
+# , LiveServerTestCase
 import random
 from . import models
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+
+
+# from selenium import webdriver
+# from webdriver_manager.chrome import ChromeDriverManager
 
 
 class TestBookStack(TestCase):
@@ -13,11 +16,11 @@ class TestBookStack(TestCase):
         assert test_book is not None
 
     def test_random_stack(self):
-        book_stack = models.Book.objects.all();
+        book_stack = models.Book.objects.all()
         for i in range(0, 10):
-            temp = models.Book.objects.create(title=str("test_" + str(i)), published_date="2020-01-01",
-                                              author=str("test_" + str(i)), description="test", cover_img="test",
-                                              isbn10="10", isbn13="13")
+            models.Book.objects.create(title=str("test_" + str(i)), published_date="2020-01-01",
+                                       author=str("test_" + str(i)), description="test", cover_img="test",
+                                       isbn10="10", isbn13="13")
         items = list(book_stack)
         random_item = random.sample(items, 5)
         top_book = random_item[0]
@@ -26,7 +29,6 @@ class TestBookStack(TestCase):
         assert random_item[2] is not None
         assert random_item[3] is not None
         assert random_item[4] is not None
-
 
 # class HostTest(LiveServerTestCase):
 #     def test_home_page(self):
