@@ -17,9 +17,6 @@ const horizontalSwipeCutoffPoint = screen.width / 5;
 const downSwipeCutoffPoint = screen.height / 7;
 let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 100);
 
-// TESTS
-
-
 //FUNCTIONS
 function swipedLeftAnimation() {
     $('.draggable').animate({left: -1000}, 300)
@@ -42,6 +39,8 @@ function nextBook() {
     // this will have to switch the classes in the HTML so that the next book is draggable until the stack is empty
     $('#book' + counter).addClass('draggable');
     $('#book' + counter + '-img').addClass('top-of-stack');
+    $('#book' + counter - 1).removeClass('draggable').hide('fade', {percent: 0}, 1000);
+    $('#book' + counter - 1 + '-img').removeClass('top-of-stack').hide('fade', {percent: 0}, 1000);
     makeDraggable();
 }
 
