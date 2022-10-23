@@ -89,12 +89,15 @@ function makeDraggable(){
         if (currentPosition.left > horizontalSwipeCutoffPoint) {
             $('.top-of-stack').css('min-height', bookShrinkMinHeight);
             swipedRightAnimation();
+            nextBook();
         } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
             $('.top-of-stack').css('min-height', bookShrinkMinHeight);
             swipedLeftAnimation()
+            nextBook();
         } else if (currentPosition.top > downSwipeCutoffPoint) {
             $('.top-of-stack').css('min-height', bookShrinkMinHeight);
             swipedDownAnimation();
+            nextBook();
         }
 
     },
@@ -105,6 +108,7 @@ function makeDraggable(){
 });
 }
 
+makeDraggable();
 
 $('#swipe-right-btn').click(function () {
     swipedRightAnimation();
