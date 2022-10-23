@@ -21,17 +21,21 @@ let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 
 function swipedLeftAnimation() {
     $('.draggable').animate({left: -1000}, 300)
         .css({'transform': 'rotate(-20deg)'})
+        .css('opacity', .5)
         .hide("fade", {percent: 0}, 150);
 }
 
 function swipedRightAnimation() {
     $('.draggable').animate({left: 1000}, 300)
         .css({'transform': 'rotate(20deg)'})
+        .css('opacity', .5)
         .hide("fade", {percent: 0}, 150);
 }
 
 function swipedDownAnimation() {
-    $('.draggable').hide("scale", {percent: 0}, 150);
+    $('.draggable')
+    .css('opacity', .5)
+    .hide("scale", {percent: 0}, 150);
 }
 
 
