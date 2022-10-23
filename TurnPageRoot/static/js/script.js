@@ -5,14 +5,14 @@ let swipedRight = false;
 let swipedLeft = false;
 
 // VALUES
-const bookWidth = screen.width > 991 ? 50 : (screen.width > 600 ? 70 : 90);
+const bookMinHeight = screen.width > 550 ? '100%' : '60vw';
 
-const shrinkValue = bookWidth * .9;
+const bookShrinkMinHeight = screen.width > 550 ? '80%' : '40vw';
 const rotateValue = 30;
 
 const leftSwipeCutoffPoint = screen.width / 5;
 const rightSwipeCutoffPoint = screen.width / (5 / 4);
-const horizontalSwipeCutoffPoint = screen.width / 5;
+const horizontalSwipeCutoffPoint = screen.width / 4;
 const downSwipeCutoffPoint = screen.height / 7;
 let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 100);
 
@@ -47,7 +47,7 @@ $('.draggable').draggable({
 
         // BOOK ROTATES TOWARDS POSITION
         $('.top-of-stack').css('transform', 'rotate(' + currentPosition.left / rotateValue + 'deg)')
-            .css('width', shrinkValue + '%')
+            .css('min-height', bookShrinkMinHeight)
             .css('opacity', 1 - Math.abs(currentPosition.left / 700))
 
         ;
@@ -61,10 +61,8 @@ $('.draggable').draggable({
 
 
         } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
-            // console.log("swipe left");
             $('.draggable').draggable("option", "revert", false);
         } else if (currentPosition.top > downSwipeCutoffPoint) {
-            // console.log("swipe down");
             $('.draggable').draggable("option", "revert", false);
         }
 
@@ -72,20 +70,20 @@ $('.draggable').draggable({
     stop: function (e, ui) {
         // RESET ROTATION
         $('.top-of-stack').css('transform', 'rotate(0deg)')
-            .css('width', bookWidth + '%')
+            .css('min-height', bookMinHeight)
             .css('opacity', 100)
         ;
 
 
         // LISTENERS FOR SWIPING ACTION
         if (currentPosition.left > horizontalSwipeCutoffPoint) {
-            $('.top-of-stack').css('width', shrinkValue + '%');
+            $('.top-of-stack').css('min-height', bookShrinkMinHeight);
             swipedRightAnimation();
         } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
-            $('.top-of-stack').css('width', shrinkValue + '%');
+            $('.top-of-stack').css('min-height', bookShrinkMinHeight);
             swipedLeftAnimation()
         } else if (currentPosition.top > downSwipeCutoffPoint) {
-            $('.top-of-stack').css('width', shrinkValue + '%');
+            $('.top-of-stack').css('min-height', bookShrinkMinHeight);
             swipedDownAnimation();
         }
 
