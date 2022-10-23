@@ -116,14 +116,17 @@ makeDraggable();
 
 $('#swipe-right-btn').click(function () {
     swipedRightAnimation();
+    nextBook();
 });
 
 $('#swipe-left-btn').click(function () {
     swipedLeftAnimation();
+    nextBook();
 });
 
 
 $('#bookshelf-btn').click(function () {
     $('.draggable').animate({top: bookshelfMoveValue + 'px'}, 200)
     swipedDownAnimation();
+    nextBook();
 });
