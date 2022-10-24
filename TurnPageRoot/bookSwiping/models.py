@@ -43,17 +43,25 @@ class Book(models.Model):
 class Genre(models.Model):
     genre = models.CharField(max_length=128, unique=True)
 
+    def __str__(self):
+        return self.genre
+
 
 # Genres for each book. Many-to-Many
 class BookGenre(models.Model):
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
     genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.book_id + " - " + self.genre_id
 
 # User's followed genres. Many to Many
 class UserGenre(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user_id + " - " + self.genre_id
 
 
 # Shelf, alternatively could be called UserBooks
@@ -61,3 +69,9 @@ class Bookshelf(models.Model):
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     read_status = models.BooleanField()  # FALSE = want to read, TRUE = read
+
+    def __str__(self):
+        if self.read_status == True:
+            return self.user_id + " - " + self.book_id + " - READ"
+        else:
+            return self.user_id + " - " + self.book_id + " - UNREAD"
