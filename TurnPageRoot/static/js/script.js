@@ -35,12 +35,14 @@ function swipedDownAnimation() {
 }
 
 function nextBook() {
+    //swiped book
+    $('#book' + counter).removeClass('draggable').hide('fade', {percent: 0}, 1000);
+    $('#book' + counter + '-img').removeClass('top-of-stack').hide('fade', {percent: 0}, 1000);
+    //moves the classes to the next book
     counter++;
-    // this will have to switch the classes in the HTML so that the next book is draggable until the stack is empty
     $('#book' + counter).addClass('draggable');
     $('#book' + counter + '-img').addClass('top-of-stack');
-    $('#book' + (counter - 1)).removeClass('draggable').hide('fade', {percent: 0}, 1000);
-    $('#book' + (counter - 1) + '-img').removeClass('top-of-stack').hide('fade', {percent: 0}, 1000);
+    //this is required to activate the dragging mechanism again
     makeDraggable();
 }
 
