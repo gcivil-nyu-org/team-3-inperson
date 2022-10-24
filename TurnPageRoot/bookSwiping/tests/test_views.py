@@ -5,7 +5,6 @@ from django.urls import reverse
 
 
 class TestViews(TestCase):
-
     def setUp(self):
         self.client = Client()
         self.home_url = reverse('home')
