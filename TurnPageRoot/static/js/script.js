@@ -13,7 +13,7 @@ const rotateValue = 30;
 
 const leftSwipeCutoffPoint = screen.width / 5;
 const rightSwipeCutoffPoint = screen.width / (5 / 4);
-const horizontalSwipeCutoffPoint = screen.width / 4;
+const horizontalSwipeCutoffPoint = screen.width / 5;
 const downSwipeCutoffPoint = screen.height / 7;
 let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 100);
 
