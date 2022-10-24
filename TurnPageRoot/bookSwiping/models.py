@@ -41,7 +41,7 @@ class Book(models.Model):
 
 # Genres
 class Genre(models.Model):
-    genre = models.CharField(max_length=128)
+    genre = models.CharField(max_length=128, unique=True)
 
 
 # Genres for each book. Many-to-Many
