@@ -35,7 +35,7 @@ function swipedRightAnimation() {
 function swipedDownAnimation() {
     $('.draggable')
     .css('opacity', .5)
-    .hide("scale", {percent: 0}, 150);
+    .hide("fade", {percent: 0}, 150);
 }
 
 
@@ -52,8 +52,7 @@ $('.draggable').draggable({
         // BOOK ROTATES TOWARDS POSITION
         $('.top-of-stack').css('transform', 'rotate(' + currentPosition.left / rotateValue + 'deg)')
             .css('min-height', bookShrinkMinHeight)
-            .css('opacity', 1 - Math.abs(currentPosition.left / 700))
-
+            .css('opacity', 1 - Math.max(Math.abs(currentPosition.left / 1000), Math.abs(currentPosition.top / 1000)))
         ;
 
         //WHEN SWIPING, MAKE SURE IT DOESN'T SNAP BACK
