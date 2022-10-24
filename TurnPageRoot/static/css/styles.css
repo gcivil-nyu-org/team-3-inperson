@@ -2,71 +2,107 @@
     --rotation: 10deg;
 }
 
-body{
+body {
     background-color: #f5f5f5;
     font-family: 'Montserrat', sans-serif;
 }
 
 /* BOOKS */
 
+.main-content-container {
+    height: 88vh;
+}
+@media only screen and (max-width: 991px) {
+    .main-content-container {
+        height: 80vh;
+    }
+}
+
+.book-swiping-container {
+    display: flex;
+    padding: 30px;
+    height: 80%; /* 75% of .main-content-container */
+}
+
+.book-col {
+    height: 100%;
+}
+
+.deck {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100%; /* 100% of .book-col */
+}
+
+.book {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    height: 100%; /* 100% of .deck */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .book-cover-img {
-    width: 50%;
     object-fit: cover;
+    height: 0;
+    min-height: 100%;
+    max-width: 100%;
     border-radius: 10px;
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, .8);
     cursor: pointer;
+}
+
+@media only screen and (max-width: 550px) {
+    .book-cover-img {
+        min-height: 60vw;
+    }
+}
+
+.top-of-stack {
     transition: .1s;
 }
 
-.book-cover-img:hover {
+.top-of-stack:hover {
     transform: translateY(-1rem);
-}
-
-@media only screen and (max-width: 991px) {
-    .book-cover-img {
-        width: 70%;
-    }
-  }
-
-@media only screen and (max-width: 600px) {
-    .book-cover-img {
-        width: 90%;
-    }
-}
-
-.book-swiping-container{
-    padding: 30px;
 }
 
 .arrows {
     font-size: 8vw;
 }
 
-#swipe-left-btn{
+#swipe-left-btn {
     color: darkred;
 }
 
-#swipe-right-btn{
+#swipe-right-btn {
     color: green;
 }
 
-.hidden{
+.bookshelf-btn-container {
+    height: 20%;
+}
+
+.hidden {
     display: none;
 }
 
 
 /* NAV BAR */
-.banner {
+.banner, .navbar {
     background-color: #ffcbf0;
+    height: 12vh;
 }
-
-.navbar {
-    background-color: #ffcbf0;
+@media only screen and (max-width: 991px) {
+    .banner, .navbar {
+        height: 10vh;
+    }
 }
 
 .nav-item a:link, .nav-item a:visited {
     text-decoration: none;
 }
+
 .nav-item a:hover {
     cursor: pointer;
 }
@@ -75,6 +111,7 @@ body{
 .login-flex-container {
     height: 100vh;
 }
+
 .login-container {
     background-color: #484554;
     box-shadow: 12px 12px 22px grey;
@@ -83,12 +120,13 @@ body{
 }
 
 .login-logo {
-    background-color: #ffcbf0; 
+    background-color: #ffcbf0;
     min-height: 50vh;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     border-top-right-radius: 0;
 }
+
 @media only screen and (max-width: 575px) {
     .login-container {
         margin: auto;
@@ -115,9 +153,11 @@ body{
     background-color: #484554;
     color: #ffcbf0;
 }
+
 .login-input:focus {
     outline: 2px solid #ffcbf0;
 }
+
 .login-input::placeholder {
     color: lightgrey;
 }
@@ -129,6 +169,7 @@ body{
     height: 50px;
     background-color: #ffcbf0;
 }
+
 .login-btn:hover {
     background-color: #484554;
     color: #ffcbf0;
