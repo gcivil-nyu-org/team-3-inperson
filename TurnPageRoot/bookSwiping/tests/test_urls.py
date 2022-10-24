@@ -8,11 +8,3 @@ class TestUrls(SimpleTestCase):
     def test_home_url_resolves(self):
         url = reverse('home')
         self.assertEquals(resolve(url).func.view_class, HomeView)
-
-    def test_login_url_resolves(self):
-        url = reverse('login')
-        self.assertEquals(resolve(url).func.view_class, LoginView)
-
-    def test_signup_url_resolves(self):
-        url = reverse('signup')
-        self.assertEquals(resolve(url).func.view_class, SignupView)
