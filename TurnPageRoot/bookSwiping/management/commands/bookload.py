@@ -21,7 +21,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         c = open(options["book_csv"][0], "r", encoding="utf8")
         checks = ["title", "authors", "publishedDate", "description", "industryIdentifiers", "categories"]
-        books = list(csv.reader(c))
+        booksCsv = csv.reader(c)
+        books = list(booksCsv)
         for book in books:
             for i in range(2):
                 book[i] = book[i].replace(" ", "%20")
@@ -38,7 +39,7 @@ class Command(BaseCommand):
                 for item in checks:
                     try:
                         data["items"][i]["volumeInfo"][item]
-                    except:
+                    except dataMissing:
                         success = False
                         break
                 if success:
@@ -64,13 +65,13 @@ class Command(BaseCommand):
             # date: if it isn't the right format, default to 01/01 of the given Year
             try:
                 date = datetime.strptime(res["publishedDate"], '%Y-%m-%d')
-            except:
+            except dateNotYMD:
                 try:
                     date = datetime.strptime(res["publishedDate"], '%Y-%m')
-                except:
+                except dateNotYM:
                     try:
                         date = datetime.strptime(res["publishedDate"], '%Y')
-                    except:
+                    except date.NotY:
                         date = None
 
             b = Book(
@@ -90,10 +91,8 @@ class Command(BaseCommand):
             if options['dbload']:
                 try:
                     save_book = Book.objects.get(title=b.title, author=b.author)
-                    found = True
-                except:
+                except BookNotFound:
                     save_book = b
-                    found = False
                 save_book.save()
                 print(save_book)
                 print("saved")
@@ -102,13 +101,13 @@ class Command(BaseCommand):
                     g = Genre(genre=category)
                     try:
                         g.save()
-                    except:
+                    except genreAlreadyExists:
                         err_genres.append(category)
                     finally:
                         bg = BookGenre(book_id=save_book, genre_id=Genre.objects.get(genre=category))
                         try:
                             bg.save()
-                        except:
+                        except bookGenreExists:
                             pass
                     if len(err_genres) != 0:
                         print("The following genres already exist in the database and were not added: ")
