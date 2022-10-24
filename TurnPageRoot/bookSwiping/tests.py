@@ -28,7 +28,7 @@ class TestBookStack(TestCase):
         assert random_item[4] is not None
 
 
-class HostTest(LiveServerTestCase):
+class TestLiveServer(LiveServerTestCase):
     def test_home_page(self):
         driver = webdriver.Chrome(ChromeDriverManager().install())
         driver.get('http://127.0.0.1:8000/')
