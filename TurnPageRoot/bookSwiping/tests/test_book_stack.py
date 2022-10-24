@@ -53,6 +53,7 @@ class TestLiveServer(LiveServerTestCase):
         response = views.HomeView.as_view()(request)
         self.assertIsInstance(response.context_data, dict)
         self.assertEqual(response.context_data.__sizeof__(), response.context_data.__sizeof__())
+        self.assertEqual(response.context_data['book01'], response.context_data['book01'])
 
 
 
