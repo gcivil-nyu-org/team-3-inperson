@@ -71,7 +71,7 @@ class Bookshelf(models.Model):
     read_status = models.BooleanField()  # FALSE = want to read, TRUE = read
 
     def __str__(self):
-        if self.read_status == True:
+        if self.read_status:
             return self.user_id + " - " + self.book_id + " - READ"
         else:
             return self.user_id + " - " + self.book_id + " - UNREAD"
