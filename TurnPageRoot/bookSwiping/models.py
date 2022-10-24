@@ -53,7 +53,10 @@ class BookGenre(models.Model):
     genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.book_id + " - " + self.genre_id
+        return self.book_id.title + " - " + self.genre_id.genre
+
+    class Meta:
+        unique_together = ('book_id', 'genre_id')
 
 # User's followed genres. Many to Many
 class UserGenre(models.Model):
@@ -61,7 +64,10 @@ class UserGenre(models.Model):
     genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user_id + " - " + self.genre_id
+        return self.user_id.username + " - " + self.genre_id.genre
+
+    class Meta:
+        unique_together = ('user_id', 'genre_id')
 
 
 # Shelf, alternatively could be called UserBooks
@@ -72,6 +78,9 @@ class Bookshelf(models.Model):
 
     def __str__(self):
         if self.read_status:
-            return self.user_id + " - " + self.book_id + " - READ"
+            return self.user_id.username + " - " + self.book_id.title + " - READ"
         else:
-            return self.user_id + " - " + self.book_id + " - UNREAD"
+            return self.user_id.username + " - " + self.book_id.title + " - UNREAD"
+
+    class Meta:
+        unique_together = ('book_id', 'user_id')
