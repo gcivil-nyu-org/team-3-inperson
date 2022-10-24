@@ -1,10 +1,15 @@
 :root {
     --rotation: 10deg;
+    --primary-color: #B7A5B8;
+    --primary-color-dark: #514152;
+    --primary-color-vivid: #C29FC5;
+    --secondary-color: #EAF1FB;
+    --secondary-color-dark: #5E84B2;
 }
 
 body {
-    background-color: #f5f5f5;
-    font-family: 'Montserrat', sans-serif;
+    background-color: var(--secondary-color);
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* BOOKS */
@@ -90,7 +95,7 @@ body {
 
 /* NAV BAR */
 .banner, .navbar {
-    background-color: #ffcbf0;
+    background-color: var(--primary-color);
     height: 12vh;
 }
 @media only screen and (max-width: 991px) {
@@ -113,14 +118,14 @@ body {
 }
 
 .login-container {
-    background-color: #484554;
+    background-color: var(--primary-color-dark);
     box-shadow: 12px 12px 22px grey;
     border-radius: 30px;
     min-height: 50vh;
 }
 
 .login-logo {
-    background-color: #ffcbf0;
+    background-color: var(--primary-color);
     min-height: 50vh;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -150,12 +155,12 @@ body {
     border-radius: 4px;
     border: 1px solid lightgrey;
     outline: none;
-    background-color: #484554;
-    color: #ffcbf0;
+    background-color: var(--primary-color-dark);
+    color: var(--primary-color)
 }
 
 .login-input:focus {
-    outline: 2px solid #ffcbf0;
+    outline: 2px solid var(--primary-color);
 }
 
 .login-input::placeholder {
@@ -163,14 +168,14 @@ body {
 }
 
 .login-btn {
-    border: 1px solid #ffcbf0;
+    border: 1px solid var(--primary-color);
     border-radius: 4px;
     outline: none;
     height: 50px;
-    background-color: #ffcbf0;
+    background-color: var(--primary-color);
 }
 
 .login-btn:hover {
-    background-color: #484554;
-    color: #ffcbf0;
+    background-color: var(--primary-color-dark);
+    color: var(--primary-color);
 }
