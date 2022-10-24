@@ -7,12 +7,11 @@ from django.urls import reverse
 class TestViews(TestCase):
     def setUp(self):
         self.client = Client()
-        self.home_url = reverse('home')
-        self.login_url = reverse('login')
-        self.signup_url = reverse('signup')
+        self.home_url = reverse("home")
+        self.login_url = reverse("login")
+        self.signup_url = reverse("signup")
         self.factory = RequestFactory()
-        self.user = User.objects.create_user(
-            username='jacob', email='jacob@dhg.com', password='top_secret')
+        # self.user = User.objects.create_user(username="jacob", email="jacob@dhg.com", password="top_secret")
 
     # TODO these are the ones that are failing
     # def test_project_list(self):

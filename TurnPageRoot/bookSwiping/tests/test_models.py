@@ -7,9 +7,9 @@ class TestModels(TestCase):
     object_list = []
 
     def setUp(self):
-        self.user = User.objects.create_user(username='jacob', email='jacob@…', password='top_secret')
+        self.user = User.objects.create_user(
+            username="jacob", email="jacob@…", password="top_secret"
+        )
 
     def test_user(self):
-        self.assertEqual(self.user.username, 'jacob')
-
-
+        self.assertEqual(self.user.username, "jacob")

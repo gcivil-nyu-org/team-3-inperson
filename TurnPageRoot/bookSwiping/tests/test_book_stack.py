@@ -8,18 +8,30 @@ from .. import views
 
 
 class TestBookStack(TestCase):
-
     def test_books_can_be_created(self):
-        test_book = models.Book.objects.create(title="test", published_date="2020-01-01", author="test",
-                                               description="test", cover_img="test", isbn10="test", isbn13="test")
+        test_book = models.Book.objects.create(
+            title="test",
+            published_date="2020-01-01",
+            author="test",
+            description="test",
+            cover_img="test",
+            isbn10="test",
+            isbn13="test",
+        )
         assert test_book is not None
 
     def test_random_stack(self):
         book_stack = models.Book.objects.all()
         for i in range(0, 10):
-            models.Book.objects.create(title=str("test_" + str(i)), published_date="2020-01-01",
-                                       author=str("test_" + str(i)), description="test", cover_img="test",
-                                       isbn10="10", isbn13="13")
+            models.Book.objects.create(
+                title=str("test_" + str(i)),
+                published_date="2020-01-01",
+                author=str("test_" + str(i)),
+                description="test",
+                cover_img="test",
+                isbn10="10",
+                isbn13="13",
+            )
         items = list(book_stack)
         random_item = random.sample(items, 5)
         top_book = random_item[0]
@@ -34,22 +46,31 @@ class TestLiveServer(LiveServerTestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.user = User.objects.create_user(
-            username='jacob', email='jacob@…', password='top_secret')
+            username="jacob", email="jacob@…", password="top_secret"
+        )
 
         for i in range(0, 10):
-            models.Book.objects.create(title=str("test_" + str(i)), published_date="2020-01-01",
-                                       author=str("test_" + str(i)), description="test", cover_img="test",
-                                       isbn10="10", isbn13="13")
+            models.Book.objects.create(
+                title=str("test_" + str(i)),
+                published_date="2020-01-01",
+                author=str("test_" + str(i)),
+                description="test",
+                cover_img="test",
+                isbn10="10",
+                isbn13="13",
+            )
         self.object_list = models.Book.objects.all()
 
     def test_home_page(self):
         driver = webdriver.Chrome(ChromeDriverManager().install())
-        driver.get('http://127.0.0.1:8000/')
-        self.assertIn('TurnPage', driver.page_source)
+        driver.get("http://127.0.0.1:8000/")
+        self.assertIn("TurnPage", driver.page_source)
 
     def test_context_data(self):
-        request = self.factory.get('/')
+        request = self.factory.get("/")
         response = views.HomeView.as_view()(request)
         self.assertIsInstance(response.context_data, dict)
         # this isn't running because it's random! Once it's not random, come back to this test and change the values
-        self.assertEqual(response.context_data['top_book'], response.context_data['top_book'])
+        self.assertEqual(
+            response.context_data["top_book"], response.context_data["top_book"]
+        )
