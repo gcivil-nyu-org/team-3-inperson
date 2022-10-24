@@ -179,3 +179,14 @@ body {
     background-color: var(--primary-color-dark);
     color: var(--primary-color);
 }
+
+
+footer {
+  background: var(--primary-color);
+  text-align: center;
+  padding-top: 0.8rem;
+
+}
+.social a {
+  padding: 0 .5em;
+}
