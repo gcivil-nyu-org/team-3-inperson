@@ -1,11 +1,8 @@
-from django.test import TestCase
-# , LiveServerTestCase
+from django.test import TestCase, LiveServerTestCase
 import random
 from . import models
-
-
-# from selenium import webdriver
-# from webdriver_manager.chrome import ChromeDriverManager
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 class TestBookStack(TestCase):
@@ -30,8 +27,9 @@ class TestBookStack(TestCase):
         assert random_item[3] is not None
         assert random_item[4] is not None
 
-# class HostTest(LiveServerTestCase):
-#     def test_home_page(self):
-#         driver = webdriver.Chrome(ChromeDriverManager().install())
-#         driver.get('http://127.0.0.1:8000/')
-#         self.assertIn('TurnPage', driver.page_source)
+
+class HostTest(LiveServerTestCase):
+    def test_home_page(self):
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.get('http://127.0.0.1:8000/')
+        self.assertIn('TurnPage', driver.page_source)
