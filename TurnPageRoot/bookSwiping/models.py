@@ -26,7 +26,7 @@ class Book(models.Model):
     cover_img = models.URLField(max_length=1024)  # book cover provided as a URL.
     # date_created = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
-    published_date = models.DateField()
+    published_date = models.DateField(null=True, default=None)
 
     # We won't use ISBN as our ID because there are 2 ISBNs: 10 and 13... and the data might not be complete on some Books
     # We will store the ISBNs bcause these will be useful for fetching data from other services, especially if we end up building the library check.
