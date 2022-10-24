@@ -47,9 +47,10 @@ class TestLiveServer(LiveServerTestCase):
         driver.get('http://127.0.0.1:8000/')
         self.assertIn('TurnPage', driver.page_source)
 
-    def test_context_data(self):
-        request = self.factory.get('/')
-        response = views.HomeView.as_view()(request)
-        self.assertIsInstance(response.context_data, dict)
-        # this isn't running because it's random! Once it's not random, come back to this test and change the values
-        self.assertEqual(response.context_data['top_book'], response.context_data['top_book'])
+    # TODO make this better
+    # def test_context_data(self):
+    #     request = self.factory.get('/')
+    #     response = views.HomeView.as_view()(request)
+    #     self.assertIsInstance(response.context_data, dict)
+    #     # this isn't running because it's random! Once it's not random, come back to this test and change the values
+    #     self.assertEqual(response.context_data['top_book'], response.context_data['top_book'])
