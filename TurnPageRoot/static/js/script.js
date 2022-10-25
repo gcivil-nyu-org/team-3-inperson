@@ -1,8 +1,6 @@
 console.log("script.js loaded");
 let startingPosition;
 let currentPosition;
-let swipedRight = false;
-let swipedLeft = false;
 
 // VALUES
 const bookMinHeight = screen.width > 550 ? '100%' : '60vw';
@@ -57,15 +55,13 @@ $('.draggable').draggable({
 
         //WHEN SWIPING, MAKE SURE IT DOESN'T SNAP BACK
         if (currentPosition.left > horizontalSwipeCutoffPoint) {
-            swipedRight = true;
-            console.log("swipe right");
             $('.draggable').draggable("option", "revert", false);
-
-
         } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
             $('.draggable').draggable("option", "revert", false);
         } else if (currentPosition.top > downSwipeCutoffPoint) {
             $('.draggable').draggable("option", "revert", false);
+        } else {
+            $('.draggable').draggable("option", "revert", true);
         }
 
     },
