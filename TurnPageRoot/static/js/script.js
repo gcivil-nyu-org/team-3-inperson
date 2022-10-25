@@ -33,9 +33,9 @@ function swipedRightAnimation() {
 }
 
 function swipedDownAnimation() {
-    $('.draggable')
-    .css('opacity', .5)
-    .hide("fade", {percent: 0}, 150);
+    $('.draggable').animate({top: 1000, height: 0}, 300)
+        .css('opacity', .5)
+        .hide("fade", {percent: 0}, 150);
 }
 
 
@@ -56,7 +56,6 @@ $('.draggable').draggable({
         ;
 
         //WHEN SWIPING, MAKE SURE IT DOESN'T SNAP BACK
-        // console.log(screen.width, currentPosition.left)
         if (currentPosition.left > horizontalSwipeCutoffPoint) {
             swipedRight = true;
             console.log("swipe right");
