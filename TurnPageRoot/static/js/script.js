@@ -1,6 +1,9 @@
 console.log("script.js loaded");
 let startingPosition;
 let currentPosition;
+let swipedRight = false;
+let swipedLeft = false;
+let counter = 1;
 
 // VALUES
 const bookMinHeight = screen.width > 550 ? '100%' : '60vw';
@@ -10,10 +13,9 @@ const rotateValue = 30;
 
 const leftSwipeCutoffPoint = screen.width / 5;
 const rightSwipeCutoffPoint = screen.width / (5 / 4);
-const horizontalSwipeCutoffPoint = screen.width / 4;
+const horizontalSwipeCutoffPoint = screen.width / 5;
 const downSwipeCutoffPoint = screen.height / 7;
 let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 100);
-
 
 //FUNCTIONS
 function swipedLeftAnimation() {
@@ -36,8 +38,21 @@ function swipedDownAnimation() {
         .hide("fade", {percent: 0}, 150);
 }
 
+function nextBook() {
+    //swiped book
+    $('#book' + counter).removeClass('draggable').hide('fade', {percent: 0}, 1000);
+    $('#book' + counter + '-img').removeClass('top-of-stack').hide('fade', {percent: 0}, 1000);
+    //moves the classes to the next book
+    counter++;
+    $('#book' + counter).addClass('draggable');
+    $('#book' + counter + '-img').addClass('top-of-stack');
+    //this is required to activate the dragging mechanism again
+    makeDraggable();
+}
 
-$('.draggable').draggable({
+function makeDraggable(){
+    $('.draggable').draggable({
+    scroll: false,
     data: {
         startingPosition: startingPosition,
         currentPosition: currentPosition,
@@ -77,12 +92,15 @@ $('.draggable').draggable({
         if (currentPosition.left > horizontalSwipeCutoffPoint) {
             $('.top-of-stack').css('min-height', bookShrinkMinHeight);
             swipedRightAnimation();
+            nextBook();
         } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
             $('.top-of-stack').css('min-height', bookShrinkMinHeight);
             swipedLeftAnimation()
+            nextBook();
         } else if (currentPosition.top > downSwipeCutoffPoint) {
             $('.top-of-stack').css('min-height', bookShrinkMinHeight);
             swipedDownAnimation();
+            nextBook();
         }
 
     },
@@ -91,18 +109,25 @@ $('.draggable').draggable({
 
     revertDuration: 50,
 });
+}
+
+makeDraggable();
 
 
+//BUTTONS
 $('#swipe-right-btn').click(function () {
     swipedRightAnimation();
+    nextBook();
 });
 
 $('#swipe-left-btn').click(function () {
     swipedLeftAnimation();
+    nextBook();
 });
 
 
 $('#bookshelf-btn').click(function () {
-    $('.draggable').animate({top:bookshelfMoveValue + 'px'}, 200)
+    $('.draggable').animate({top: bookshelfMoveValue + 'px'}, 200)
     swipedDownAnimation();
+    nextBook();
 });

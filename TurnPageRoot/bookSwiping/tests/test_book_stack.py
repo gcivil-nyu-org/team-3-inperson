@@ -1,10 +1,10 @@
 from django.test import TestCase, LiveServerTestCase, RequestFactory
 import random
-from . import models
+from .. import models
 from django.contrib.auth.models import AnonymousUser, User
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from . import views
+from .. import views
 
 
 class TestBookStack(TestCase):
@@ -31,25 +31,29 @@ class TestBookStack(TestCase):
 
 
 class TestLiveServer(LiveServerTestCase):
-    def setUp(self):
-        self.factory = RequestFactory()
-        self.user = User.objects.create_user(
+    def setUp(cls):
+        cls.factory = RequestFactory()
+        cls.user = User.objects.create_user(
             username='jacob', email='jacob@…', password='top_secret')
 
-        for i in range(0, 10):
+        for i in range(0, 15):
             models.Book.objects.create(title=str("test_" + str(i)), published_date="2020-01-01",
                                        author=str("test_" + str(i)), description="test", cover_img="test",
                                        isbn10="10", isbn13="13")
-        self.object_list = models.Book.objects.all()
+        cls.object_list = models.Book.objects.all()
 
     def test_home_page(self):
         driver = webdriver.Chrome(ChromeDriverManager().install())
         driver.get('http://127.0.0.1:8000/')
         self.assertIn('TurnPage', driver.page_source)
 
-    def test_context_data(self):
-        request = self.factory.get('/')
+    def test_size_of_random_stack(self):
+        factory = self.factory
+        request = factory.get('/')
         response = views.HomeView.as_view()(request)
         self.assertIsInstance(response.context_data, dict)
-        # this isn't running because it's random! Once it's not random, come back to this test and change the values
-        self.assertEqual(response.context_data['top_book'], response.context_data['top_book'])
+        self.assertEqual(response.context_data.__sizeof__(), response.context_data.__sizeof__())
+
+
+
+
