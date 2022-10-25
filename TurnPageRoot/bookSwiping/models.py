@@ -38,6 +38,10 @@ class Book(models.Model):
     def __str__(self):
         return self.title + " by " + self.author
 
+    # debated excluding this- what if one author wrote 2 books with the same name? But I don't know of any examples.
+    class Meta:
+        unique_together = ('title', 'author')
+
 
 # Genres
 class Genre(models.Model):
