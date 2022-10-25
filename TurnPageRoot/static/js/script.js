@@ -33,9 +33,9 @@ function swipedRightAnimation() {
 }
 
 function swipedDownAnimation() {
-    $('.draggable')
-    .css('opacity', .5)
-    .hide("scale", {percent: 0}, 150);
+    $('.draggable').animate({top: 1000, height: 0}, 300)
+        .css('opacity', .5)
+        .hide("fade", {percent: 0}, 150);
 }
 
 function nextBook() {
@@ -64,22 +64,18 @@ function makeDraggable(){
         // BOOK ROTATES TOWARDS POSITION
         $('.top-of-stack').css('transform', 'rotate(' + currentPosition.left / rotateValue + 'deg)')
             .css('min-height', bookShrinkMinHeight)
-            .css('opacity', 1 - Math.abs(currentPosition.left / 700))
-
+            .css('opacity', 1 - Math.max(Math.abs(currentPosition.left / 1000), Math.abs(currentPosition.top / 1000)))
         ;
 
         //WHEN SWIPING, MAKE SURE IT DOESN'T SNAP BACK
-        // console.log(screen.width, currentPosition.left)
         if (currentPosition.left > horizontalSwipeCutoffPoint) {
-            swipedRight = true;
-            console.log("swipe right");
             $('.draggable').draggable("option", "revert", false);
-
-
         } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
             $('.draggable').draggable("option", "revert", false);
         } else if (currentPosition.top > downSwipeCutoffPoint) {
             $('.draggable').draggable("option", "revert", false);
+        } else {
+            $('.draggable').draggable("option", "revert", true);
         }
 
     },
