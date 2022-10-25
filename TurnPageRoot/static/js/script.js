@@ -52,6 +52,7 @@ function nextBook() {
 
 function makeDraggable(){
     $('.draggable').draggable({
+    scroll: false,
     data: {
         startingPosition: startingPosition,
         currentPosition: currentPosition,
