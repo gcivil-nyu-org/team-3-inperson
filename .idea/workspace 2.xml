@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="added container commands again">
-      <change beforePath="$PROJECT_DIR$/requirements 2.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="e10ed917-6337-413a-b38c-015e3c6c4951" name="Changes" comment="rollback" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -41,7 +42,8 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.django.DjangoModulesConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.django.DjangoModulesConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -59,6 +61,7 @@
       <updated>1665148324650</updated>
       <workItem from="1665148325825" duration="5860000" />
       <workItem from="1665155065417" duration="77000" />
+      <workItem from="1666211024272" duration="253000" />
     </task>
     <task id="LOCAL-00001" summary="boilerplate setup">
       <created>1665150211698</created>
@@ -95,7 +98,21 @@
       <option name="project" value="LOCAL" />
       <updated>1665155039504</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="merged">
+      <created>1666207139078</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1666207139078</updated>
+    </task>
+    <task id="LOCAL-00007" summary="rollback">
+      <created>1666372694721</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1666372694721</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +134,8 @@
     <MESSAGE value="instructions" />
     <MESSAGE value="bootstrap icons added" />
     <MESSAGE value="small updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="small updates" />
+    <MESSAGE value="merged" />
+    <MESSAGE value="rollback" />
+    <option name="LAST_COMMIT_MESSAGE" value="rollback" />
   </component>
 </project>
