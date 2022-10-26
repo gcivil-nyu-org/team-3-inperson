@@ -1,11 +1,11 @@
 branch-defaults:
   default:
-    environment: tp-dev
+    environment: Turnpageprod-env
     group_suffix: null
   develop:
-    environment: tp-dev
+    environment: Turnpageprod-env
 global:
-  application_name: TurnPageDev
+  application_name: turnpage-prod
   branch: null
   default_ec2_keyname: tp-eb2
   default_platform: Python 3.8 running on 64bit Amazon Linux 2
