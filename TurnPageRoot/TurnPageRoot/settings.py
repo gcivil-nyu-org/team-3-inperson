@@ -33,8 +33,6 @@ ALLOWED_HOSTS = [
     "tp-prod.eba-ztedmrkr.us-east-1.elasticbeanstalk.com",
 ]
 
-# TEST!
-
 # Application definition
 
 INSTALLED_APPS = [
