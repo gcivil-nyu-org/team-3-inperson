@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 # Create your tests here.
 class Test_is_user_auth(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(username="test", password="test")
 

@@ -10,7 +10,6 @@ import unidecode
 
 
 class Command(BaseCommand):
-
     def formatBook(self, book):
         badchars = ["(", ")", "'", '"', "'"]
         target = "https://www.googleapis.com/books/v1/volumes?q="
