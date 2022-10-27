@@ -2,11 +2,18 @@ language: python
 python:
   - "3.8"
 
-install:
-  - pip install -r requirements.txt
+addons:
+  apt:
+    sources:
+      - google-chrome
+      packages:
+        -google-chrome-stable
 
 services:
   - xvfb
+
+install:
+  - pip install -r requirements.txt
 
 before_script:
   - python TurnPageRoot/manage.py migrate
