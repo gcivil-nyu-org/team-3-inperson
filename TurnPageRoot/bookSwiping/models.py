@@ -53,8 +53,8 @@ class Genre(models.Model):
 
 # Genres for each book. Many-to-Many
 class BookGenre(models.Model):
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
-    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.book_id.title + " - " + self.genre_id.genre
@@ -64,8 +64,9 @@ class BookGenre(models.Model):
 
 # User's followed genres. Many to Many
 class UserGenre(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    likes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user_id.username + " - " + self.genre_id.genre
@@ -76,9 +77,21 @@ class UserGenre(models.Model):
 
 # Shelf, alternatively could be called UserBooks
 class Bookshelf(models.Model):
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    read_status = models.BooleanField()  # FALSE = want to read, TRUE = read
+    READ = "R"
+    UNREAD = "U"
+    TRASH = "T"
+    READ_CHOICES = [
+        (READ, "Read"),
+        (UNREAD, "Unread"),
+        (TRASH, "Trash"),
+    ]
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    read_status = models.CharField(
+        max_length=24,
+        choices=READ_CHOICES,
+        default=TRASH
+    )
 
     def __str__(self):
         if self.read_status:
