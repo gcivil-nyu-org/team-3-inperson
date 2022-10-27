@@ -7,7 +7,9 @@ install:
 
 before_script:
   - python TurnPageRoot/manage.py migrate
-  
+  - sh -e /etc/init.d/xvfb start
+  - export DISPLAY=99:0
+
 script:
   - black ./
   - flake8 ./

@@ -63,7 +63,7 @@ class TestLiveServer(LiveServerTestCase):
 
     def test_home_page(self):
         driver = webdriver.Chrome(ChromeDriverManager().install())
-        driver.implicitly_wait(50)
+        driver.implicitly_wait(10)
         driver.get(self.live_server_url)
         self.assertIn("TurnPage", driver.page_source)
 
