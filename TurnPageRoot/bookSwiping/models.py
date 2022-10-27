@@ -5,9 +5,8 @@ from django.contrib.auth.models import User
 # Books
 class Book(models.Model):
     title = models.CharField(max_length=1024)
-    subtitle = models.CharField(
-        max_length=1024
-    )  # Is usually blank but we can chose to display this on the more info page when it is not.
+    # Is usually blank but we can chose to display this on the more info page when it is not.
+    subtitle = models.CharField(max_length=1024, blank=True)
 
     # A book can have more than one author... I think we should just take the first one instead of storing a list.
     author = models.CharField(max_length=256)
@@ -50,10 +49,10 @@ class BookGenre(models.Model):
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.book_id.title + " - " + self.genre_id.genre
+        return self.book.title + " - " + self.genre.genre
 
     class Meta:
-        unique_together = ("book_id", "genre_id")
+        unique_together = ("book", "genre")
 
 
 # User's followed genres. Many to Many
@@ -63,10 +62,10 @@ class UserGenre(models.Model):
     likes = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user_id.username + " - " + self.genre_id.genre
+        return self.user.username + " - " + self.genre.genre
 
     class Meta:
-        unique_together = ("user_id", "genre_id")
+        unique_together = ("user", "genre")
 
 
 # Shelf, alternatively could be called UserBooks
@@ -85,12 +84,12 @@ class Bookshelf(models.Model):
 
     def __str__(self):
         if self.read_status:
-            return self.user_id.username + " - " + self.book_id.title + " - READ"
+            return self.user.username + " - " + self.book.title + " - READ"
         else:
-            return self.user_id.username + " - " + self.book_id.title + " - UNREAD"
+            return self.user.username + " - " + self.book.title + " - UNREAD"
 
     class Meta:
-        unique_together = ("book_id", "user_id")
+        unique_together = ("book", "user")
 
 
 # Language is commented out in all places it is called for the time being. I have included it where necessary if we decide to use it.
