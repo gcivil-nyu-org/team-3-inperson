@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "captcha",
     "bookSwiping",
     "profiles",
+    "utils",
 ]
 
 MIDDLEWARE = [
