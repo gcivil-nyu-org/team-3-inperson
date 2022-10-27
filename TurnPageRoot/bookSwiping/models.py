@@ -1,13 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Language is commented out in all places it is called for the time being. I have included it where necessary if we decide to use it.
-"""
-class Language(models.Model):
-    # 2 character ISO 639-1 language code. Contains 5 characters to accommodate cases like brazilian portugese, "pt-BR"
-    code = models.CharField(max_length=5, primary_key=True)
-"""
-
 
 # Books
 class Book(models.Model):
@@ -40,7 +33,7 @@ class Book(models.Model):
 
     # debated excluding this- what if one author wrote 2 books with the same name? But I don't know of any examples.
     class Meta:
-        unique_together = ('title', 'author')
+        unique_together = ("title", "author")
 
 
 # Genres
@@ -60,7 +53,8 @@ class BookGenre(models.Model):
         return self.book_id.title + " - " + self.genre_id.genre
 
     class Meta:
-        unique_together = ('book_id', 'genre_id')
+        unique_together = ("book_id", "genre_id")
+
 
 # User's followed genres. Many to Many
 class UserGenre(models.Model):
@@ -72,7 +66,7 @@ class UserGenre(models.Model):
         return self.user_id.username + " - " + self.genre_id.genre
 
     class Meta:
-        unique_together = ('user_id', 'genre_id')
+        unique_together = ("user_id", "genre_id")
 
 
 # Shelf, alternatively could be called UserBooks
@@ -87,11 +81,7 @@ class Bookshelf(models.Model):
     ]
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    read_status = models.CharField(
-        max_length=24,
-        choices=READ_CHOICES,
-        default=TRASH
-    )
+    read_status = models.CharField(max_length=24, choices=READ_CHOICES, default=TRASH)
 
     def __str__(self):
         if self.read_status:
@@ -100,4 +90,12 @@ class Bookshelf(models.Model):
             return self.user_id.username + " - " + self.book_id.title + " - UNREAD"
 
     class Meta:
-        unique_together = ('book_id', 'user_id')
+        unique_together = ("book_id", "user_id")
+
+
+# Language is commented out in all places it is called for the time being. I have included it where necessary if we decide to use it.
+"""
+class Language(models.Model):
+    # 2 character ISO 639-1 language code. Contains 5 characters to accommodate cases like brazilian portugese, "pt-BR"
+    code = models.CharField(max_length=5, primary_key=True)
+"""
