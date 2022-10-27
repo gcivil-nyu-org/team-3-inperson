@@ -63,7 +63,8 @@ class TestLiveServer(LiveServerTestCase):
 
     def test_home_page(self):
         driver = webdriver.Chrome(ChromeDriverManager().install())
-        driver.get("http://127.0.0.1:8000/")
+        driver.implicitly_wait(50)
+        driver.get(self.live_server_url)
         self.assertIn("TurnPage", driver.page_source)
 
     def test_size_of_random_stack(self):
