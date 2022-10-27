@@ -59,7 +59,7 @@ class BookGenre(models.Model):
 class UserGenre(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
-    likes = models.IntegerField(default=0)
+    likes = models.IntegerField(default=1)
 
     def __str__(self):
         return self.user.username + " - " + self.genre.genre
@@ -83,10 +83,9 @@ class Bookshelf(models.Model):
     read_status = models.CharField(max_length=24, choices=READ_CHOICES, default=TRASH)
 
     def __str__(self):
-        if self.read_status:
-            return self.user.username + " - " + self.book.title + " - READ"
-        else:
-            return self.user.username + " - " + self.book.title + " - UNREAD"
+        return (
+            self.user.username + " - " + self.book.title + " - " + self.book.read_status
+        )
 
     class Meta:
         unique_together = ("book", "user")
