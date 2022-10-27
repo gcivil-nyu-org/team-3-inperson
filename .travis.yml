@@ -7,6 +7,8 @@ install:
 
 before_script:
   - python TurnPageRoot/manage.py migrate
+  - python TurnPageRoot/manage.py runserver &
+  - sleep 3 # giving the server time to bind to sockets
 
 script:
   - black ./
