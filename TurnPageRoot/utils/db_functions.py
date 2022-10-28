@@ -1,3 +1,4 @@
+# from django.core.management.base import BaseCommand, CommandError
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
 from bookSwiping.models import Book, Genre, User, UserGenre, BookGenre, Bookshelf
