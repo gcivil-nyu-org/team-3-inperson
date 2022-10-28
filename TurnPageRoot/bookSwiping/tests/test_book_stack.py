@@ -1,9 +1,7 @@
 from django.test import TestCase, LiveServerTestCase, RequestFactory
 import random
 from .. import models
-from django.contrib.auth.models import AnonymousUser, User
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+from django.contrib.auth.models import User
 from .. import views
 
 
