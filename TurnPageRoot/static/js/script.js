@@ -38,12 +38,18 @@ function swipedDownAnimation() {
         .hide("fade", {percent: 0}, 150);
 }
 
-function flipCard(){
-   var card = document.getElementById('card');
-document.getElementById('flip').addEventListener('click', function() {
-    card.classList.toggle('flipped');
-}, false);
+function flipCard() {
+    var card = document.getElementById('card');
+    document.getElementById('flip').addEventListener('click', function () {
+        card.classList.toggle('flipped');
+    }, false);
 }
+
+function makeFlippable(){
+    $('.draggable').flip();
+}
+
+
 function nextBook() {
     //swiped book
     $('#book' + counter).removeClass('draggable').hide('fade', {percent: 0}, 1000);
@@ -54,6 +60,7 @@ function nextBook() {
     $('#book' + counter + '-img').addClass('top-of-stack');
     //this is required to activate the dragging mechanism again
     makeDraggable();
+    makeFlippable();
 }
 
 function makeDraggable() {
@@ -118,6 +125,7 @@ function makeDraggable() {
 }
 
 makeDraggable();
+makeFlippable();
 
 
 //BUTTONS
@@ -137,3 +145,4 @@ $('#bookshelf-btn').click(function () {
     swipedDownAnimation();
     nextBook();
 });
+
