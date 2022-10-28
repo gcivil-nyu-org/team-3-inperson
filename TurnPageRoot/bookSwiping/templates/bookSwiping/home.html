@@ -1,47 +1,135 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
+<style>
+   /*
+.container {
+  width: 200px;
+  height: 260px;
+  position: relative;
+  perspective: 800px;
+}
 
-    <div class="container-fluid main-content-container">
-        <!-- Swiping -->
-        <div class="row align-items-center justify-content-between book-swiping-container pt-5">
-            <div class="col-1 p-0">
-                <button type="button" class="material-symbols-outlined btn arrows text-center w-100 p-0"
-                        id="swipe-left-btn">heart_minus
-                </button>
+#card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+#card figure {
+  margin: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+#card .front {
+  background: transparent;
+}
+
+#card .back {
+  background: blue;
+  transform: rotateY( 180deg);
+}
+
+#card.flipped {
+  transform: rotateY( 180deg);
+}
+*/
+.container {
+
+  height: 100%;
+}
+
+#card {
+ 
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+#card figure {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+#card .front {
+  background: transparent;
+}
+
+#card .back {
+  background: #bca3c3;
+  transform: rotateY( 180deg);
+}
+
+#card.flipped {
+  transform: rotateY( 180deg);
+}
+</style>
+<div class="container-fluid main-content-container">
+   <!-- Swiping -->
+   <div class="row align-items-center justify-content-between book-swiping-container pt-5">
+      <div class="col-1 p-0">
+         <button type="button" class="material-symbols-outlined btn arrows text-center w-100 p-0"
+            id="swipe-left-btn">heart_minus
+         </button>
+      </div>
+      <div class="col book-col">
+         <div class="deck">
+            <!--<div class=" text-center book">
+               <img src="{{ on_deck.cover_img }}" class="book-cover-img"
+                  alt="">
+            </div>-->
+            <div class="draggable text-center book">
+               <section class="container">
+  <div id="card">
+    <figure class="front"><img src="{{ top_book.cover_img }}" class="book-cover-img top-of-stack"
+                  alt=""></figure>
+    <figure class="back">Book description</figure>
+  </div>
+</section>
+
+<!--<section id="options">
+  <p>
+    <button id="flip">Flip Card</button>
+  </p>
+</section>-->
+               <!--<img src="{{ top_book.cover_img }}" class="book-cover-img top-of-stack"
+                  alt="">-->
+
             </div>
-            <div class="col book-col">
-                <div class="deck">
+            
+         </div>
+      </div>
+      <div class="col-1 p-0">
+         <button type="button" class="material-symbols-outlined btn arrows text-center w-100 p-0"
+            id="swipe-right-btn">heart_plus
+         </button>
+      </div>
+   </div>
+   <div class="row bookshelf-btn-container"> 
+      <div class="col text-center">
+                <!--<p>
+                  <button id="flip">Flip Card</button>
+                   </p>-->
 
 
-                    <div class=" text-center book">
-                        <img src="{{ on_deck.cover_img }}" class="book-cover-img"
-                             alt="">
-                    </div>
-
-                    <div class="draggable text-center book">
-                        <img src="{{ top_book.cover_img }}" class="book-cover-img top-of-stack"
-                             alt="">
-                    </div>
-
-
-
-                </div>
-
-            </div>
-            <div class="col-1 p-0">
-                <button type="button" class="material-symbols-outlined btn arrows text-center w-100 p-0"
-                        id="swipe-right-btn">heart_plus
-                </button>
-            </div>
-        </div>
-        <div class="row bookshelf-btn-container">
-            <div class="col text-center">
-                <button type="button" class="material-symbols-outlined btn arrows" id="bookshelf-btn">menu_book</button>
-            </div>
-        </div>
-    </div>
-
-
+         <button type="button" class="material-symbols-outlined btn arrows flipCard" id="flip">menu_book</button>
+      </div>
+   </div>
+</div>
+<script>
+function flipCard(){
+   var card = document.getElementById('card');
+document.getElementById('flip').addEventListener('click', function() {
+    card.classList.toggle('flipped');
+}, false);
+}
+</script>
 {% endblock %}

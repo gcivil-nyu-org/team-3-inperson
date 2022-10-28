@@ -38,6 +38,12 @@ function swipedDownAnimation() {
     .hide("fade", {percent: 0}, 150);
 }
 
+function flipCard(){
+   var card = document.getElementById('card');
+document.getElementById('flip').addEventListener('click', function() {
+    card.classList.toggle('flipped');
+}, false);
+}
 
 $('.draggable').draggable({
     data: {
