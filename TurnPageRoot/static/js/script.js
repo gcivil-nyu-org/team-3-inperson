@@ -46,7 +46,8 @@ function flipCard() {
 }
 
 function makeFlippable(){
-    $('.draggable').flip();
+    $('.flippable').flip();
+    console.log("flippable");
 }
 
 
@@ -60,7 +61,7 @@ function nextBook() {
     $('#book' + counter + '-img').addClass('top-of-stack');
     //this is required to activate the dragging mechanism again
     makeDraggable();
-    makeFlippable();
+    // makeFlippable();
 }
 
 function makeDraggable() {

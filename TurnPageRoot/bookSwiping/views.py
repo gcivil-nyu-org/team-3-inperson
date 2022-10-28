@@ -14,6 +14,7 @@ class HomeView(ListView):
         items = list(self.model.objects.all())
         # change to how many random items you want
         random_items = random.sample(items, 15)
+        context['random_items'] = random_items
         # creates a list of books, random for now, from the database
         context["book01"] = random_items[0]
         context["book02"] = random_items[1]
