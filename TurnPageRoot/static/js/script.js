@@ -45,9 +45,12 @@ function flipCard() {
     }, false);
 }
 
-function makeFlippable(){
-    $('.flippable').flip();
-    console.log("flippable");
+function makeFlippable() {
+    $('.flippable').flip({
+        axis: 'y',
+        trigger: 'click',
+        speed: 250,
+    });
 }
 
 
@@ -61,7 +64,7 @@ function nextBook() {
     $('#book' + counter + '-img').addClass('top-of-stack');
     //this is required to activate the dragging mechanism again
     makeDraggable();
-    // makeFlippable();
+    makeFlippable();
 }
 
 function makeDraggable() {
@@ -73,9 +76,9 @@ function makeDraggable() {
         },
 
         drag: function (e, ui) {
+
             startingPosition = ui.originalPosition;
             currentPosition = ui.position;
-
             // BOOK ROTATES TOWARDS POSITION
             $('.top-of-stack').css('transform', 'rotate(' + currentPosition.left / rotateValue + 'deg)')
                 .css('min-height', bookShrinkMinHeight)
