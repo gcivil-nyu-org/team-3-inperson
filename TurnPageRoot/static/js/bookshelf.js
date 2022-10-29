@@ -1,2 +1,10 @@
 console.log('bookshelf.js loaded');
-$('.my-flipster').flipster();
+$('.my-flipster').flipster(
+    {
+        style: 'coverflow',
+        pauseOnHover: true,
+        touch: true,
+        buttons: true,
+        fadeIn: 600,
+    }
+);
