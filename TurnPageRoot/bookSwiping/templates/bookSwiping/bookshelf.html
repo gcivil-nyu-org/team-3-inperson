@@ -15,6 +15,19 @@
         <img src="{% static 'images/bookshelf-01.png' %}" alt="">
     </div>
 
+     <div class="bookshelf02">
+        <div class="my-flipster">
+            <ul>
+                {% for book in saved_books %}
+                    <li>
+                        <img src="{{ book.cover_img }}" class="bookshelf-img img" alt="{{ book.title }}"/>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <img src="{% static 'images/bookshelf-01.png' %}" alt="">
+    </div>
+
 
 
 

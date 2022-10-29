@@ -10,8 +10,10 @@ class BookshelfView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        random_items = random.sample(list(self.model.objects.all()),10)
+        random_items = random.sample(list(self.model.objects.all()), 10)
+        saved_books = random.sample(list(self.model.objects.all()), 10)
         context['books'] = random_items
+        context['saved_books'] = saved_books
         return context
 
 

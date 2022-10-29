@@ -6,5 +6,6 @@ $('.my-flipster').flipster(
         touch: true,
         buttons: true,
         fadeIn: 600,
+        scrollwheel: false,
     }
 );
