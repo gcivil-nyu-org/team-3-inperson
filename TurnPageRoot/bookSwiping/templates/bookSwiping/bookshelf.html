@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    hello
+    <div class="my-flipster">
+        <ul>
+            {% for book in books %}
+                <li>
+                    <img src="{{ book.cover_img }}" class="bookshelf-img img" alt="{{ book.title }}"/>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+
 
 {% endblock %}

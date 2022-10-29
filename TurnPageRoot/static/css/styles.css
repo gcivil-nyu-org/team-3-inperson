@@ -17,6 +17,7 @@ body {
 .main-content-container {
     height: 88vh;
 }
+
 @media only screen and (max-width: 991px) {
     .main-content-container {
         height: 80vh;
@@ -98,6 +99,7 @@ body {
     background-color: var(--primary-color);
     height: 12vh;
 }
+
 @media only screen and (max-width: 991px) {
     .banner, .navbar {
         height: 10vh;
@@ -182,11 +184,18 @@ body {
 
 
 footer {
-  background: var(--primary-color);
-  text-align: center;
-  padding-top: 0.8rem;
+    background: var(--primary-color);
+    text-align: center;
+    padding-top: 0.8rem;
 
 }
+
 .social a {
-  padding: 0 .5em;
+    padding: 0 .5em;
+}
+
+.bookshelf-img {
+    object-fit: cover;
+    width: 250px;
+    height: 350px;
 }
