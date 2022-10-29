@@ -7,8 +7,8 @@
             <div class="nav-brand nav-item nav-link text-dark navbar-text d-none d-lg-block">
                 <a><h1 class="text-center m-0">TurnPage</h1></a>
             </div>
-            <div class="nav-item nav-link text-dark navbar-text">
-                <a>My Books</a>
+         <div class="nav-item nav-link text-dark navbar-text">
+                <a href="{% url 'mybookshelf' %}">My Books</a>
             </div>
             <div class="nav-item nav-link text-dark navbar-text float-end">
                 {% if user.is_authenticated %}
