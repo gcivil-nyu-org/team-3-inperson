@@ -1,12 +1,14 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, TemplateView
 from .models import *
 import random
 
 
 # Create your views here.
-class BookshelfView(TemplateView):
+class BookshelfView(LoginRequiredMixin, TemplateView):
     model = Book
     template_name = 'bookSwiping/bookshelf.html'
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
