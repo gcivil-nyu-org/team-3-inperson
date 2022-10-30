@@ -190,3 +190,9 @@ footer {
 .social a {
   padding: 0 .5em;
 }
+
+.front, .back {
+    position: absolute;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}

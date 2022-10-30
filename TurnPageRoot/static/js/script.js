@@ -11,8 +11,8 @@ const bookMinHeight = screen.width > 550 ? '100%' : '60vw';
 const bookShrinkMinHeight = screen.width > 550 ? '80%' : '40vw';
 const rotateValue = 30;
 
-const leftSwipeCutoffPoint = screen.width / 5;
-const rightSwipeCutoffPoint = screen.width / (5 / 4);
+// const leftSwipeCutoffPoint = screen.width / 5;
+// const rightSwipeCutoffPoint = screen.width / (5 / 4);
 const horizontalSwipeCutoffPoint = screen.width / 5;
 const downSwipeCutoffPoint = screen.height / 7;
 let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 100);
@@ -51,6 +51,7 @@ function makeFlippable() {
         trigger: 'click',
         speed: 250,
     });
+
 }
 
 
@@ -60,7 +61,7 @@ function nextBook() {
     $('#book' + counter + '-img').removeClass('top-of-stack').hide('fade', {percent: 0}, 1000);
     //moves the classes to the next book
     counter++;
-    $('#book' + counter).addClass('draggable');
+    $('#book' + counter).addClass('draggable').addClass('flippable');
     $('#book' + counter + '-img').addClass('top-of-stack');
     //this is required to activate the dragging mechanism again
     makeDraggable();
@@ -73,6 +74,8 @@ function makeDraggable() {
         data: {
             startingPosition: startingPosition,
             currentPosition: currentPosition,
+        },
+        start: function (event, ui) {
         },
 
         drag: function (e, ui) {
@@ -104,6 +107,9 @@ function makeDraggable() {
                 .css('opacity', 100)
             ;
 
+            setTimeout(function () {
+                ui.helper.unbind("click.preventClick");
+            }, 300);
 
             // LISTENERS FOR SWIPING ACTION
             if (currentPosition.left > horizontalSwipeCutoffPoint) {
@@ -123,7 +129,6 @@ function makeDraggable() {
         },
         revert: true,
         cursor: "grabbing",
-
         revertDuration: 50,
     });
 }

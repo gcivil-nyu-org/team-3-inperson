@@ -77,15 +77,15 @@
 {#                             alt="">#}
 {#                    </div>#}
 
-                    <div class="flippable text-center book" id="book3">
-                        <div class="front">
-                            <img src="{{ book03.cover_img }}" class="book-cover-img" id="book3-img" alt="">
-                        </div>
-                        <div class="back">
-                            <img src="{{ book03.cover_img }}" class="book-cover-img" id="book3-img" alt="">
-                        </div>
-                    </div>
-
+{#                    <div class=" text-center book" id="book3">#}
+{#                        <div class="front">#}
+{#                            <img src="{{ book03.cover_img }}" class="book-cover-img" id="book3-img" alt="">#}
+{#                        </div>#}
+{#                        <div class="back">#}
+{#                            <img src="{{ book03.cover_img }}" class="book-cover-img" id="book3-img" alt="">#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
                     <div class="flippable text-center book" id="book2">
                         <div class="front">
                             <img src="{{ book02.cover_img }}" class="book-cover-img" id="book2-img" alt="">
@@ -95,11 +95,12 @@
                         </div>
                     </div>
 
-                    <div class="flippable draggable text-center book" id="book1">
-                        <div class="front">
+                    <div class=" flippable draggable text-center book" id="book1">
+{#                        <img src="{{ book01.cover_img }}" class="book-cover-img top-of-stack" id="book1-img" alt="">#}
+                        <div class="front ">
                             <img src="{{ book01.cover_img }}" class="book-cover-img top-of-stack" id="book1-img" alt="">
                         </div>
-                        <div class="back">
+                        <div class="back ">
                             <img src="{{ book01.cover_img }}" class="book-cover-img top-of-stack" id="book1-img" alt="">
                         </div>
 

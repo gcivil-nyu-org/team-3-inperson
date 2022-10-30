@@ -106,7 +106,7 @@ else:
         "default": {
             "ENGINE": "django.db.backends.postgresql",
             "NAME": env("DB_NAME"),
-            "USER": env("USER"),
+            "USER": env("DB_USER"),
             "PASSWORD": env("PASSWORD"),
             "HOST": env("HOSTNAME"),
             "PORT": env("PORT"),
