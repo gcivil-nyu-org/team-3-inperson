@@ -137,17 +137,19 @@ $('#bookshelf-btn').click(function () {
 let signupForm = document.getElementsByClassName('signup-form')[0]
 let signupFields = signupForm ? signupForm.getElementsByTagName('input') : false
 if (signupFields) {
-    for (let i = 1; i < 6; i++) {
+    for (let i = 1; i < 8; i++) {
         signupFields[i].classList.add('login-input')
         signupFields[i].classList.add('my-2')
         signupFields[i].classList.add('p-2')
         signupFields[i].classList.add('w-100')
     }
-    signupFields[1].placeholder = 'Username'
-    signupFields[2].placeholder = 'Email'
-    signupFields[3].placeholder = 'Password'
-    signupFields[4].placeholder = 'Confirm Password'
-    signupFields[5].placeholder = 'Captcha'
+    signupFields[1].placeholder = 'First Name'
+    signupFields[2].placeholder = 'Last Name'
+    signupFields[3].placeholder = 'Username'
+    signupFields[4].placeholder = 'Email'
+    signupFields[5].placeholder = 'Password'
+    signupFields[6].placeholder = 'Confirm Password'
+    signupFields[7].placeholder = 'Captcha'
 }
 
 let loginForm = document.getElementsByClassName('login-form')[0]

@@ -8,31 +8,10 @@
             <div class="row h-100">
                 <div class="col-sm-5 login-logo p-5 d-flex flex-column justify-content-center align-items-center">
                     <h1 class="text-center">TurnPage</h1>
-                    <div class="text-center">Judge a book by its lover</div>
+                    <div class="text-center"><i>Judge a book by its lover</i></div>
                 </div>
-
-
-                <!-- <div class="col-sm-7 login-form p-5 text-center">
-                    <form method="post">
-                        {% csrf_token %}
-                        {#                        TODO make nicer#}
-                        <div class="text-dark">
-                            {{ form.username.label_tag }}
-                            {{ form.username }}
-                        </div>
-                        <div class="text-dark">
-                            {{ form.password.label_tag }}
-                            {{ form.password }}
-                        </div>
-                        <input class='btn btn-primary' type='submit' name='Submit' value="Log In"/>
-                    </form>
-                    <div class="text-white">
-                        New user? <a href="{% url 'signup' %}">Register</a>
-                    </div>
-
-                </div> -->
                 <div class="col-sm-7 login-form-container signup-form-container text-center h-100">
-                    <div>Logo</div>
+                    <div class="text-dark">Login</div>
                     <form method="post" class="login-form w-100">
                         {% csrf_token %}
                         <div class="row form-row w-100 justify-content-center">
