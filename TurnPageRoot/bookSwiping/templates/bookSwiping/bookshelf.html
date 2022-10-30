@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="bookshelf01">
-        <div class="my-flipster">
+        <div class="my-bookshelf">
             <ul>
                 {% for book in books %}
                     <li>
@@ -12,11 +12,13 @@
                 {% endfor %}
             </ul>
         </div>
-        <img src="{% static 'images/bookshelf-01.png' %}" alt="">
+
+        <img src="{% static 'images/bookshelf-01.png' %}" class="bookshelf-vector" alt="">
+
     </div>
 
-     <div class="bookshelf02">
-        <div class="my-flipster">
+    <div class="bookshelf02">
+        <div class="my-bookshelf">
             <ul>
                 {% for book in saved_books %}
                     <li>

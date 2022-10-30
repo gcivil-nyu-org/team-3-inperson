@@ -1,5 +1,5 @@
 console.log('bookshelf.js loaded');
-$('.my-flipster').flipster(
+$('.my-bookshelf').flipster(
     {
         style: 'coverflow',
         pauseOnHover: true,
