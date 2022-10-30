@@ -1,3 +1,9 @@
+document.onreadystatechange = function () {
+    const state = document.readyState
+    if (state == 'complete') {
+        $('#loading').fadeOut();
+    }
+}
 console.log("script.js loaded");
 let startingPosition;
 let currentPosition;
