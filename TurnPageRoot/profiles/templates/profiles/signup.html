@@ -1,51 +1,69 @@
-{% extends 'base.html' %}
+{% extends 'registration-base.html' %}
 {% load static %}
 
 {% block content %}
 
     <div class="container-fluid d-flex align-items-center justify-content-center login-flex-container">
-        <div class="container login-container">
+        <div class="container login-container signup-container">
             <div class="row h-100">
-                <div class="col-sm-5 login-logo p-5 d-flex justify-content-center align-items-center">
+                <div class="col-sm-5 login-logo signup-logo p-5 d-flex flex-column justify-content-center align-items-center">
                     <h1 class="text-center">TurnPage</h1>
+                    <div class="text-center"><i>Judge a book by its lover</i></div>
                 </div>
-                <div class="col-sm-5 justify-content-center align-items-center text-white">
-
-                    <form method='POST' style='text-align: left; margin: 0 auto; width: 600px;'>{% csrf_token %}
-                        {{ form.as_p }}
-                        <input class='btn btn-primary' type='submit' name='Submit'/>
+                <div class="col-sm-7 justify-content-center align-items-center text-white login-form-container signup-form-container text-center h-100">
+                    <div class="text-dark">Signup</div>
+                    <form method='POST' class='signup-form w-100'>
+                        {% csrf_token %}
+                        <!-- {{ form.as_p }} -->
+                        <div class="row form-row w-100 justify-content-center">
+                            <div class="col-lg-7 w-75">
+                                {{ form.first_name }}
+                            </div>
+                        </div>
+                        <div class="row form-row w-100 justify-content-center">
+                            <div class="col-lg-7 w-75">
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                        <div class="row form-row w-100 justify-content-center">
+                            <div class="col-lg-7 w-75">
+                                {{ form.username }}
+                            </div>
+                        </div>
+                        <div class="row form-row w-100 justify-content-center">
+                            <div class="col-lg-7 w-75">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="row form-row w-100 justify-content-center">
+                            <div class="col-lg-7 w-75">
+                                {{ form.password1 }}
+                            </div>
+                        </div>
+                        <div class="row form-row w-100 justify-content-center">
+                            <div class="col-lg-7 w-75">
+                                {{ form.password2 }}
+                            </div>
+                        </div>
+                        <div class="row form-row w-100 justify-content-center">
+                            <div class="col-lg-7 w-75">
+                                <!-- <img src="/profiles/captcha/image/c18d22b40b50791ce4ae19b0b6889378a7bdba59/" alt="captcha" class="captcha"> -->
+                                {{ form.captcha_0 }}
+                                {{ form.captcha_1 }}
+                            </div>
+                        </div>
+                        <div class="row form-row w-100 justify-content-center">
+                            <div class="col-lg-7 w-75">
+                                <input class='btn login-btn w-100 my-2' type='submit' name='Submit' value='Sign up'/>
+                            </div>
+                        </div>
+                        <div class="row form-row w-100 justify-content-center">
+                            <div class="col-lg-7 w-75 text-dark">
+                                Returning user? <a href="{% url 'login' %}">Log in</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
-                {#                    <div class="col-sm-7 login-form p-5">#}
-                {#                        <h3 class="login-title mt-sm-5">Sign up</h3>#}
-                {#                        <form action="">#}
-                {#                            <div class="form-row">#}
-                {#                                <div class="col-lg-7">#}
-                {#                                    <input type="email" name="email" placeholder="Enter Email Address" class="login-input my-2 p-2 w-100">#}
-                {#                                </div>#}
-                {#                            </div>#}
-                {#                            <div class="form-row">#}
-                {#                                <div class="col-lg-7">#}
-                {#                                    <input type="text" name="username" placeholder="Enter Username" class="login-input my-2 p-2 w-100">#}
-                {#                                </div>#}
-                {#                            </div>#}
-                {#                            <div class="form-row">#}
-                {#                                <div class="col-lg-7">#}
-                {#                                    <input type="password" name="password" placeholder="Enter Password" class="login-input my-2 p-2 w-100">#}
-                {#                                </div>#}
-                {#                            </div>#}
-                {#                            <div class="form-row">#}
-                {#                                <div class="col-lg-7">#}
-                {#                                    <input type="password" name="retype-password" placeholder="Retype Password" class="login-input my-2 p-2 w-100">#}
-                {#                                </div>#}
-                {#                            </div>#}
-                {#                            <div class="form-row">#}
-                {#                                <div class="col-lg-7">#}
-                {#                                    <button type="button" class="btn login-btn w-100 my-2">Sign up</button>#}
-                {#                                </div>#}
-                {#                            </div>#}
-                {#                        </form>#}
-                {#                    </div>#}
             </div>
         </div>
     </div>
