@@ -14,7 +14,7 @@
                     <div class="text-dark">Signup</div>
                     <form method='POST' class='signup-form w-100'>
                         {% csrf_token %}
-                        <!-- {{ form.as_p }} -->
+{#                         {{ form.as_p }}#}
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
                                 {{ form.first_name }}
@@ -43,17 +43,19 @@
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
                                 {{ form.password2 }}
+                                {{ form.password2.errors }}
                             </div>
                         </div>
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
                                 <!-- <img src="/profiles/captcha/image/c18d22b40b50791ce4ae19b0b6889378a7bdba59/" alt="captcha" class="captcha"> -->
-                                {{ form.captcha_0 }}
-                                {{ form.captcha_1 }}
+                                {{ form.captcha }}
+                                {{ form.captcha.errors }}
                             </div>
                         </div>
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
+                                {{ form.error }}
                                 <input class='btn login-btn w-100 my-2' type='submit' name='Submit' value='Sign up'/>
                             </div>
                         </div>
