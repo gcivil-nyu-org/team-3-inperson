@@ -21,8 +21,7 @@ class TestBookshelf(TestCase):
                 isbn13="13",
             )
 
-
-
-
     def test_call_view_deny_anonymous(self):
-        pass
+        response = self.client.get("/bookshelf/")
+        self.assertRedirects(response, "/profiles/login?next=/bookshelf/", status_code=302,
+                             fetch_redirect_response=True)
