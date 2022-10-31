@@ -48,7 +48,7 @@ function flipCard() {
 function makeFlippable() {
     $('.flippable').flip({
         axis: 'y',
-        trigger: 'click',
+        trigger: 'manual',
         speed: 250,
     });
 
@@ -153,5 +153,10 @@ $('#bookshelf-btn').click(function () {
     $('.draggable').animate({top: bookshelfMoveValue + 'px'}, 200)
     swipedDownAnimation();
     nextBook();
+});
+
+$('#description-btn').click(function () {
+    $('.flippable').flip('toggle');
+    console.log('flipped');
 });
 
