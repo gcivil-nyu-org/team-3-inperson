@@ -1,6 +1,6 @@
 document.onreadystatechange = function () {
     const state = document.readyState
-    if (state == 'complete') {
+    if (state === 'complete') {
         $('#loading').fadeOut();
     }
 }
@@ -24,11 +24,13 @@ const downSwipeCutoffPoint = screen.height / 7;
 let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 100);
 
 //FUNCTIONS
+
 function swipedLeftAnimation() {
     $('.draggable').animate({left: -1000}, 300)
         .css({'transform': 'rotate(-20deg)'})
         .css('opacity', .5)
         .hide("fade", {percent: 0}, 150);
+    console.log("swiped left");
 }
 
 function swipedRightAnimation() {
@@ -56,65 +58,65 @@ function nextBook() {
     makeDraggable();
 }
 
-function makeDraggable(){
+function makeDraggable() {
     $('.draggable').draggable({
-    scroll: false,
-    data: {
-        startingPosition: startingPosition,
-        currentPosition: currentPosition,
-    },
+        scroll: false,
+        data: {
+            startingPosition: startingPosition,
+            currentPosition: currentPosition,
+        },
 
-    drag: function (e, ui) {
-        startingPosition = ui.originalPosition;
-        currentPosition = ui.position;
+        drag: function (e, ui) {
+            startingPosition = ui.originalPosition;
+            currentPosition = ui.position;
 
-        // BOOK ROTATES TOWARDS POSITION
-        $('.top-of-stack').css('transform', 'rotate(' + currentPosition.left / rotateValue + 'deg)')
-            .css('min-height', bookShrinkMinHeight)
-            .css('opacity', 1 - Math.max(Math.abs(currentPosition.left / 1000), Math.abs(currentPosition.top / 1000)))
-        ;
+            // BOOK ROTATES TOWARDS POSITION
+            $('.top-of-stack').css('transform', 'rotate(' + currentPosition.left / rotateValue + 'deg)')
+                .css('min-height', bookShrinkMinHeight)
+                .css('opacity', 1 - Math.max(Math.abs(currentPosition.left / 1000), Math.abs(currentPosition.top / 1000)))
+            ;
 
-        //WHEN SWIPING, MAKE SURE IT DOESN'T SNAP BACK
-        if (currentPosition.left > horizontalSwipeCutoffPoint) {
-            $('.draggable').draggable("option", "revert", false);
-        } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
-            $('.draggable').draggable("option", "revert", false);
-        } else if (currentPosition.top > downSwipeCutoffPoint) {
-            $('.draggable').draggable("option", "revert", false);
-        } else {
-            $('.draggable').draggable("option", "revert", true);
-        }
+            //WHEN SWIPING, MAKE SURE IT DOESN'T SNAP BACK
+            if (currentPosition.left > horizontalSwipeCutoffPoint) {
+                $('.draggable').draggable("option", "revert", false);
+            } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
+                $('.draggable').draggable("option", "revert", false);
+            } else if (currentPosition.top > downSwipeCutoffPoint) {
+                $('.draggable').draggable("option", "revert", false);
+            } else {
+                $('.draggable').draggable("option", "revert", true);
+            }
 
-    },
-    stop: function (e, ui) {
-        // RESET ROTATION
-        $('.top-of-stack').css('transform', 'rotate(0deg)')
-            .css('min-height', bookMinHeight)
-            .css('opacity', 100)
-        ;
+        },
+        stop: function (e, ui) {
+            // RESET ROTATION
+            $('.top-of-stack').css('transform', 'rotate(0deg)')
+                .css('min-height', bookMinHeight)
+                .css('opacity', 100)
+            ;
 
 
-        // LISTENERS FOR SWIPING ACTION
-        if (currentPosition.left > horizontalSwipeCutoffPoint) {
-            $('.top-of-stack').css('min-height', bookShrinkMinHeight);
-            swipedRightAnimation();
-            nextBook();
-        } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
-            $('.top-of-stack').css('min-height', bookShrinkMinHeight);
-            swipedLeftAnimation()
-            nextBook();
-        } else if (currentPosition.top > downSwipeCutoffPoint) {
-            $('.top-of-stack').css('min-height', bookShrinkMinHeight);
-            swipedDownAnimation();
-            nextBook();
-        }
+            // LISTENERS FOR SWIPING ACTION
+            if (currentPosition.left > horizontalSwipeCutoffPoint) {
+                $('.top-of-stack').css('min-height', bookShrinkMinHeight);
+                swipedRightAnimation();
+                nextBook();
+            } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
+                $('.top-of-stack').css('min-height', bookShrinkMinHeight);
+                swipedLeftAnimation()
+                nextBook();
+            } else if (currentPosition.top > downSwipeCutoffPoint) {
+                $('.top-of-stack').css('min-height', bookShrinkMinHeight);
+                swipedDownAnimation();
+                nextBook();
+            }
 
-    },
-    revert: true,
-    cursor: "grabbing",
+        },
+        revert: true,
+        cursor: "grabbing",
 
-    revertDuration: 50,
-});
+        revertDuration: 50,
+    });
 }
 
 makeDraggable();

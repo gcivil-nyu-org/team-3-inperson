@@ -102,15 +102,22 @@ else:
     # Connect to the same RDS instance but the credentials are local:
     env = environ.Env()
     environ.Env.read_env()
+    # DATABASES = {
+    #     "default": {
+    #         "ENGINE": "django.db.backends.postgresql",
+    #         "NAME": env("DB_NAME"),
+    #         "USER": env("DB_USER"),
+    #         "PASSWORD": env("PASSWORD"),
+    #         "HOST": env("HOSTNAME"),
+    #         "PORT": env("PORT"),
+    #     }
+    # }
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": env("DB_NAME"),
-            "USER": env("DB_USER"),
-            "PASSWORD": env("PASSWORD"),
-            "HOST": env("HOSTNAME"),
-            "PORT": env("PORT"),
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
+
     }
 
 # Password validation

@@ -1,4 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect
+from django.views.decorators.http import require_POST
 from django.views.generic import ListView, TemplateView
 from .models import *
 import random
@@ -9,7 +12,6 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
     model = Book
     template_name = 'bookSwiping/bookshelf.html'
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         random_items = random.sample(list(self.model.objects.all()), 10)
@@ -19,6 +21,24 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
         return context
 
 
+@login_required
+@require_POST
+def liked_book(request):
+    book_id = request.POST.get('id')
+    action = request.POST.get('action')
+    if book_id and action:
+        try:
+            book = Book.objects.get(id=book_id)
+            if action == 'like':
+                book.users_like.add(request.user)
+            else:
+                book.users_like.remove(request.user)
+            return JsonResponse({'status': 'ok'})
+        except Book.DoesNotExist:
+            pass
+    return JsonResponse({'status': 'error'})
+
+
 class HomeView(ListView):
     model = Book
     context_object_name = "books"
@@ -26,10 +46,12 @@ class HomeView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        all_books = self.model.objects.all()
         items = list(self.model.objects.all())
         # change to how many random items you want
         random_items = random.sample(items, 15)
         # creates a list of books, random for now, from the database
+        context["all_books"] = all_books
         context["book01"] = random_items[0]
         context["book02"] = random_items[1]
         context["book03"] = random_items[2]

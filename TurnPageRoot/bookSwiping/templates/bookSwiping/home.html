@@ -107,5 +107,19 @@
         </div>
     </div>
 
+    {% with object_list=all_books %}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jscookie@1.1.0/cookie.min.js"></script>
+
+    <script>
+        const csrfToken = Cookies.get('csrftoken');
+        document.addEventListener('DOMContentLoaded', function () {
+            // DOM loaded
+            {% block domready %}
+            {% endblock %}
+        });
+
+    </script>
 
 {% endblock %}

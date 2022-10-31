@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -27,6 +28,9 @@ class Book(models.Model):
 
     # language = models.ForeignKey(Language, on_delete=models.SET_NULL)
 
+    # tracking user likes
+    users_liked_list = models.ManyToManyField(User, related_name='books_liked', blank=True)
+
     def __str__(self):
         return self.title + " by " + self.author
 
@@ -34,6 +38,8 @@ class Book(models.Model):
     class Meta:
         unique_together = ("title", "author")
 
+    def get_users_liked(self):
+        return self.users_liked_list.all()
 
 # Genres
 class Genre(models.Model):
@@ -84,7 +90,7 @@ class Bookshelf(models.Model):
 
     def __str__(self):
         return (
-            self.user.username + " - " + self.book.title + " - " + self.book.read_status
+                self.user.username + " - " + self.book.title + " - " + self.read_status
         )
 
     class Meta:
