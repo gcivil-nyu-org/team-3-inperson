@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+            </div>
+            <div class="col-10 p-3">
+                <div id="bookshelf1">
+                    <div class="my-bookshelf">
+                        <ul>
+                            {% for book in books %}
+                                <li>
+                                    <img src="{{ book.cover_img }}" class="bookshelf-img img" alt="{{ book.title }}"/>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <img src="{% static 'images/bookshelf-01.png' %}" class="img-fluid" alt="">
+
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+            </div>
+            <div class="col-10 p-3">
+                <div id="bookshelf2">
+                    <div class="my-bookshelf">
+                        <ul>
+                            {% for book in saved_books %}
+                                <li>
+                                    <img src="{{ book.cover_img }}" class="bookshelf-img img" alt="{{ book.title }}"/>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <img src="{% static 'images/bookshelf-01.png' %}" class="img-fluid" alt="">
+
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}
