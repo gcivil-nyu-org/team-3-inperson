@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.test import TestCase, Client
+from django.test import TestCase
 from ..models import Book
 
 
@@ -25,3 +25,8 @@ class TestBookshelf(TestCase):
         response = self.client.get("/bookshelf/")
         self.assertRedirects(response, "/profiles/login?next=/bookshelf/", status_code=302,
                              fetch_redirect_response=True)
+
+    def test_call_view_allow_authenticated(self):
+        self.client.login(username="jacob", password="top_secret")
+        response = self.client.get("/bookshelf/")
+        self.assertEqual(response.status_code, 200)
