@@ -2,124 +2,158 @@
 {% load static %}
 
 {% block content %}
+    {% with users_like=all_books.users_liked_list.all %}
+        <div class="container-fluid main-content-container">
+            <!-- Swiping -->
+            <div class="row align-items-center justify-content-between book-swiping-container pt-5">
+                <div class="col-1 p-0">
+                    <button type="button" class="material-symbols-outlined btn arrows text-center w-100 p-0"
+                            id="swipe-left-btn">heart_minus
+                    </button>
+                </div>
+                <div class="col book-col">
+                    <div class="deck">
 
-    <div class="container-fluid main-content-container">
-        <!-- Swiping -->
-        <div class="row align-items-center justify-content-between book-swiping-container pt-5">
-            <div class="col-1 p-0">
-                <button type="button" class="material-symbols-outlined btn arrows text-center w-100 p-0"
-                        id="swipe-left-btn">heart_minus
-                </button>
-            </div>
-            <div class="col book-col">
-                <div class="deck">
+
+                        <div class=" text-center book" id="book15">
+                            <img src="{{ book15.cover_img }}" class="book-cover-img" id="book15-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book14">
+                            <img src="{{ book14.cover_img }}" class="book-cover-img" id="book14-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book13">
+                            <img src="{{ book13.cover_img }}" class="book-cover-img" id="book14-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book12">
+                            <img src="{{ book12.cover_img }}" class="book-cover-img" id="book12-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book11">
+                            <img src="{{ book11.cover_img }}" class="book-cover-img" id="book11-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book10">
+                            <img src="{{ book10.cover_img }}" class="book-cover-img" id="book10-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book9">
+                            <img src="{{ book09.cover_img }}" class="book-cover-img" id="book9-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book8">
+                            <img src="{{ book08.cover_img }}" class="book-cover-img" id="book8-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book7">
+                            <img src="{{ book07.cover_img }}" class="book-cover-img" id="book7-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book6">
+                            <img src="{{ book06.cover_img }}" class="book-cover-img" id="book6-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book5">
+                            <img src="{{ book05.cover_img }}" class="book-cover-img" id="book5-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book4">
+                            <img src="{{ book04.cover_img }}" class="book-cover-img" id="book4-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book3">
+                            <img src="{{ book03.cover_img }}" class="book-cover-img" id="book3-img"
+                                 alt="">
+                        </div>
+
+                        <div class=" text-center book" id="book2">
+                            <img src="{{ book02.cover_img }}" class="book-cover-img" id="book2-img"
+                                 alt="">
+                        </div>
+
+                        <div class="draggable text-center book" id="book1">
+                            <img src="{{ book01.cover_img }}" class="book-cover-img top-of-stack" id="book1-img"
+                                 alt="">
+                        </div>
 
 
-                    <div class=" text-center book" id="book15">
-                        <img src="{{ book15.cover_img }}" class="book-cover-img" id="book15-img"
-                             alt="">
                     </div>
-
-                    <div class=" text-center book" id="book14">
-                        <img src="{{ book14.cover_img }}" class="book-cover-img" id="book14-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book13">
-                        <img src="{{ book13.cover_img }}" class="book-cover-img" id="book14-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book12">
-                        <img src="{{ book12.cover_img }}" class="book-cover-img" id="book12-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book11">
-                        <img src="{{ book11.cover_img }}" class="book-cover-img" id="book11-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book10">
-                        <img src="{{ book10.cover_img }}" class="book-cover-img" id="book10-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book9">
-                        <img src="{{ book09.cover_img }}" class="book-cover-img" id="book9-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book8">
-                        <img src="{{ book08.cover_img }}" class="book-cover-img" id="book8-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book7">
-                        <img src="{{ book07.cover_img }}" class="book-cover-img" id="book7-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book6">
-                        <img src="{{ book06.cover_img }}" class="book-cover-img" id="book6-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book5">
-                        <img src="{{ book05.cover_img }}" class="book-cover-img" id="book5-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book4">
-                        <img src="{{ book04.cover_img }}" class="book-cover-img" id="book4-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book3">
-                        <img src="{{ book03.cover_img }}" class="book-cover-img" id="book3-img"
-                             alt="">
-                    </div>
-
-                    <div class=" text-center book" id="book2">
-                        <img src="{{ book02.cover_img }}" class="book-cover-img" id="book2-img"
-                             alt="">
-                    </div>
-
-                    <div class="draggable text-center book" id="book1">
-                        <img src="{{ book01.cover_img }}" class="book-cover-img top-of-stack" id="book1-img"
-                             alt="">
-                    </div>
-
 
                 </div>
-
+                <div class="col-1 p-0">
+                    <button type="button" class="material-symbols-outlined btn arrows text-center w-100 p-0"
+                            id="swipe-right-btn">heart_plus
+                    </button>
+                </div>
             </div>
-            <div class="col-1 p-0">
-                <button type="button" class="material-symbols-outlined btn arrows text-center w-100 p-0"
-                        id="swipe-right-btn">heart_plus
-                </button>
+            <div class="row bookshelf-btn-container">
+                <div class="col text-center">
+                    <button type="button" class="material-symbols-outlined btn arrows" id="bookshelf-btn">menu_book
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="row bookshelf-btn-container">
-            <div class="col text-center">
-                <button type="button" class="material-symbols-outlined btn arrows" id="bookshelf-btn">menu_book</button>
-            </div>
+        <div class="text-center">
+            <a href="#" data-id="{{ book01.id }}" data-action="{% if request.user in users_like %} un{% endif %}like"
+               class="like button">
+                {% if request.user in users_like %}
+                    Unlike
+                {% else %}
+                    Like
+                {% endif %}
+
+
+            </a>
         </div>
-    </div>
+    {% endwith %}
 
-    {% with object_list=all_books %}
+{% endblock %}
 
+{% block domready %}
+    const url = "{% url 'book_liked' %}";
+    var options = {
+        method: 'POST',
+        headers: {'X-CSRFToken': csrftoken},
+        mode: 'same-origin'
+    }
+    document.querySelector('a.like').addEventListener('click', function (e){
+        e.preventDefault();
+        let likeButton = this;
+        console.log("like button clicked...");
+      // add request body
+    var formData = new FormData();
+    formData.append('id', likeButton.dataset.id);
+    formData.append('action', likeButton.dataset.action);
+    options['body'] = formData;
 
-    <script src="https://cdn.jsdelivr.net/npm/jscookie@1.1.0/cookie.min.js"></script>
+    // send HTTP request
+    fetch(url, options)
+    .then(response => response.json())
+    .then(data => {
+      if (data['status'] === 'ok')
+      {
+        var previousAction = likeButton.dataset.action;
 
-    <script>
-        const csrfToken = Cookies.get('csrftoken');
-        document.addEventListener('DOMContentLoaded', function () {
-            // DOM loaded
-            {% block domready %}
-            {% endblock %}
-        });
-
-    </script>
+        // toggle button text and data-action
+        var action = previousAction === 'like' ? 'unlike' : 'like';
+        likeButton.dataset.action = action;
+        likeButton.innerHTML = action;
+      }
+    })
+  });
 
 {% endblock %}

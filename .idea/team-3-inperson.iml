@@ -24,6 +24,8 @@
     <orderEntry type="library" name="jquery-ui" level="application" />
     <orderEntry type="library" name="jqueryui-touch-punch" level="application" />
     <orderEntry type="library" name="sharer" level="application" />
+    <orderEntry type="library" name="jscookie" level="application" />
+    <orderEntry type="library" name="js.cookie" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

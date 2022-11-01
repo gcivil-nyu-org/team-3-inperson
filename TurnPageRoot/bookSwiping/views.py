@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect
+from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView, TemplateView
 from .models import *
@@ -23,16 +22,16 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
 
 @login_required
 @require_POST
-def liked_book(request):
+def book_like(request):
     book_id = request.POST.get('id')
     action = request.POST.get('action')
     if book_id and action:
         try:
             book = Book.objects.get(id=book_id)
             if action == 'like':
-                book.users_like.add(request.user)
+                book.users_liked_list.add(request.user)
             else:
-                book.users_like.remove(request.user)
+                book.users_liked_list.remove(request.user)
             return JsonResponse({'status': 'ok'})
         except Book.DoesNotExist:
             pass
