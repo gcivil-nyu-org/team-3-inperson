@@ -3,6 +3,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class TurnPageUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # add additional fields in here
+    # TODO am I duplicating data here?
+    liked_books = models.ManyToManyField('Book', related_name='users_liked_books', blank=True)
+
 # Books
 class Book(models.Model):
     title = models.CharField(max_length=1024)

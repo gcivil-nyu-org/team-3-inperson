@@ -123,37 +123,43 @@
 
 {% endblock %}
 
+{#TODO change to users.books_liked_list#}
 {% block domready %}
-    const url = "{% url 'book_liked' %}";
-    var options = {
-        method: 'POST',
-        headers: {'X-CSRFToken': csrftoken},
-        mode: 'same-origin'
-    }
-    document.querySelector('a.like').addEventListener('click', function (e){
-        e.preventDefault();
-        let likeButton = this;
-        console.log("like button clicked...");
-      // add request body
-        var formData = new FormData();
-        formData.append('id', likeButton.dataset.id);
-        formData.append('action', likeButton.dataset.action);
-        options['body'] = formData;
+    {% comment %}
+    !!! uncomment `<script> tag to enable syntax highlighting, comment out before committing !!!
+    {% endcomment %}
+{#    <script>#}
+        const url = "{% url 'book_liked' %}";
+        let options = {
+            method: 'POST',
+            headers: {'X-CSRFToken': csrftoken},
+            mode: 'same-origin'
+        }
 
-        // send HTTP request
-        fetch(url, options)
-        .then(response => response.json())
-        .then(data => {
-          if (data['status'] === 'ok')
-          {
-            var previousAction = likeButton.dataset.action;
+        function triggerAJAX(e){
+            e.preventDefault();
+            let likeButton = this;
+            console.log("AJAX triggered");
+            // add request body
+            let formData = new FormData();
+            formData.append('id', likeButton.dataset.id);
+            formData.append('action', likeButton.dataset.action);
+            options['body'] = formData;
 
-            // toggle button text and data-action
-            var action = previousAction === 'like' ? 'unlike' : 'like';
-            likeButton.dataset.action = action;
-            likeButton.innerHTML = action;
-          }
-    })
-  });
+            // send HTTP request
+            fetch(url, options)
+                .then(response => response.json())
+                .then(data => {
+                    if (data['status'] === 'ok') {
+                        let previousAction = likeButton.dataset.action;
 
+                        // toggle button text and data-action
+                        let action = previousAction === 'like' ? 'unlike' : 'like';
+                        likeButton.dataset.action = action;
+                        likeButton.innerHTML = action;
+                    }
+                })
+        }
+
+        document.querySelector('a.like').addEventListener('click', triggerAJAX);
 {% endblock %}

@@ -121,7 +121,6 @@ function makeDraggable() {
 
 makeDraggable();
 
-
 //BUTTONS
 $('#swipe-right-btn').click(function () {
     swipedRightAnimation();

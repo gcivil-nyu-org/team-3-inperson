@@ -23,6 +23,10 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
 @login_required
 @require_POST
 def book_like(request):
+    user = request.user
+    TurnPageUser.objects.get_or_create(user=user)
+    t_user = TurnPageUser.objects.get(user=user)
+
     book_id = request.POST.get('id')
     action = request.POST.get('action')
     if book_id and action:
@@ -30,6 +34,7 @@ def book_like(request):
             book = Book.objects.get(id=book_id)
             if action == 'like':
                 book.users_liked_list.add(request.user)
+                t_user.liked_books.add(request.POST.get('id'))
             else:
                 book.users_liked_list.remove(request.user)
             return JsonResponse({'status': 'ok'})
