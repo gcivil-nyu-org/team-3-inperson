@@ -2,6 +2,7 @@ document.onreadystatechange = function () {
     const state = document.readyState
     if (state == 'complete') {
         $('#loading').fadeOut();
+        $('#loading2').fadeOut();
     }
 }
 console.log("script.js loaded");
