@@ -1,20 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Language is commented out in all places it is called for the time being. I have included it where necessary if we decide to use it.
-"""
-class Language(models.Model):
-    # 2 character ISO 639-1 language code. Contains 5 characters to accommodate cases like brazilian portugese, "pt-BR"
-    code = models.CharField(max_length=5, primary_key=True)
-"""
-
 
 # Books
 class Book(models.Model):
     title = models.CharField(max_length=1024)
-    subtitle = models.CharField(
-        max_length=1024
-    )  # Is usually blank but we can chose to display this on the more info page when it is not.
+    # Is usually blank but we can chose to display this on the more info page when it is not.
+    subtitle = models.CharField(max_length=1024, blank=True)
 
     # A book can have more than one author... I think we should just take the first one instead of storing a list.
     author = models.CharField(max_length=256)
@@ -26,7 +18,7 @@ class Book(models.Model):
     cover_img = models.URLField(max_length=1024)  # book cover provided as a URL.
     # date_created = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
-    published_date = models.DateField()
+    published_date = models.DateField(null=True, default=None)
 
     # We won't use ISBN as our ID because there are 2 ISBNs: 10 and 13... and the data might not be complete on some Books
     # We will store the ISBNs bcause these will be useful for fetching data from other services, especially if we end up building the library check.
@@ -38,26 +30,70 @@ class Book(models.Model):
     def __str__(self):
         return self.title + " by " + self.author
 
+    # debated excluding this- what if one author wrote 2 books with the same name? But I don't know of any examples.
+    class Meta:
+        unique_together = ("title", "author")
+
 
 # Genres
 class Genre(models.Model):
-    genre = models.CharField(max_length=128)
+    genre = models.CharField(max_length=128, unique=True)
+
+    def __str__(self):
+        return self.genre
 
 
 # Genres for each book. Many-to-Many
 class BookGenre(models.Model):
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
-    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.book.title + " - " + self.genre.genre
+
+    class Meta:
+        unique_together = ("book", "genre")
 
 
 # User's followed genres. Many to Many
 class UserGenre(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    likes = models.IntegerField(default=1)
+
+    def __str__(self):
+        return self.user.username + " - " + self.genre.genre
+
+    class Meta:
+        unique_together = ("user", "genre")
 
 
 # Shelf, alternatively could be called UserBooks
 class Bookshelf(models.Model):
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    read_status = models.BooleanField()  # FALSE = want to read, TRUE = read
+    READ = "R"
+    UNREAD = "U"
+    TRASH = "T"
+    READ_CHOICES = [
+        (READ, "Read"),
+        (UNREAD, "Unread"),
+        (TRASH, "Trash"),
+    ]
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    read_status = models.CharField(max_length=24, choices=READ_CHOICES, default=TRASH)
+
+    def __str__(self):
+        return (
+            self.user.username + " - " + self.book.title + " - " + self.book.read_status
+        )
+
+    class Meta:
+        unique_together = ("book", "user")
+
+
+# Language is commented out in all places it is called for the time being. I have included it where necessary if we decide to use it.
+"""
+class Language(models.Model):
+    # 2 character ISO 639-1 language code. Contains 5 characters to accommodate cases like brazilian portugese, "pt-BR"
+    code = models.CharField(max_length=5, primary_key=True)
+"""

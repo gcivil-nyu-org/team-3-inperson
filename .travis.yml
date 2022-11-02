@@ -2,16 +2,29 @@ language: python
 python:
   - "3.8"
 
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+services:
+  - xvfb
+
 install:
   - pip install -r requirements.txt
 
 before_script:
   - python TurnPageRoot/manage.py migrate
+  - export DISPLAY=99:0
+  - sleep 3
 
 script:
   - black ./
   - flake8 ./
-  - coverage run TurnPageRoot/manage.py test
+  - coverage run TurnPageRoot/manage.py test bookSwiping.tests
+  - coverage run TurnPageRoot/manage.py test profiles
 
 after_success:
   coveralls
@@ -21,10 +34,11 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
   region: "us-east-1"
-  app: "turnpage-prod"
-  env: "Turnpageprod-env"
+  app: "TurnPage"
+  env: $EB_ENV
   bucket_name: $AWS_BUCKET_NAME
   on:
-    repo: gcivil-nyu-org/team-3-inperson
-    branch: main
+    repo: $REPO
+    branch: $BRANCH
+    condition: $BRANCH = develop || $BRANCH = main
   skip_cleanup: 'true'

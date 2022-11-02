@@ -17,11 +17,13 @@
       <sourceFolder url="file://$MODULE_DIR$/TurnPageRoot/bookSwiping/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/TurnPageRoot/static" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.10 (TurnPage)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery-ui" level="application" />
     <orderEntry type="library" name="jqueryui-touch-punch" level="application" />
+    <orderEntry type="library" name="sharer" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

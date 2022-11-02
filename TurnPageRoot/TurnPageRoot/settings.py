@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import django
+# import django
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,9 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com",
-    "tp-prod.eba-ztedmrkr.us-east-1.elasticbeanstalk.com",
-    "turnpage.us-east-1.elasticbeanstalk.com"
+    "turnpage-dev.us-east-1.elasticbeanstalk.com",
+    "turnpage.us-east-1.elasticbeanstalk.com",
 ]
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "captcha",
     "bookSwiping",
     "profiles",
+    "utils",
 ]
 
 MIDDLEWARE = [
@@ -97,11 +98,17 @@ if "RDS_DB_NAME" in os.environ:  # RDS database
         }
     }
 else:
-    # SQLITE DATABASE:
+    # Connect to the same RDS instance but the credentials are local:
+    env = environ.Env()
+    environ.Env.read_env()
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env("DB_NAME"),
+            "USER": env("DB_USER"),
+            "PASSWORD": env("PASSWORD"),
+            "HOST": env("HOSTNAME"),
+            "PORT": env("PORT"),
         }
     }
 
@@ -147,3 +154,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "login"
