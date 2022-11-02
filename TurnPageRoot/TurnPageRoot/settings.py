@@ -30,8 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com",
-    "tp-prod.eba-ztedmrkr.us-east-1.elasticbeanstalk.com",
+    "turnpage-dev.us-east-1.elasticbeanstalk.com",
     "turnpage.us-east-1.elasticbeanstalk.com",
 ]
 

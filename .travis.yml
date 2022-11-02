@@ -26,7 +26,6 @@ script:
   - coverage run TurnPageRoot/manage.py test bookSwiping.tests
   - coverage run TurnPageRoot/manage.py test profiles
 
-
 after_success:
   coveralls
 
@@ -35,10 +34,11 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
   region: "us-east-1"
-  app: "TurnPageDev"
-  env: "tp-dev"
+  app: "TurnPage"
+  env: $EB_ENV
   bucket_name: $AWS_BUCKET_NAME
   on:
-    repo: gcivil-nyu-org/team-3-inperson
-    branch: develop
+    repo: $REPO
+    branch: $BRANCH
+    condition: $BRANCH = develop || $BRANCH = main
   skip_cleanup: 'true'
