@@ -30,8 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "tp-dev.eba-jmv3wnbt.us-east-1.elasticbeanstalk.com",
-    "tp-prod.eba-ztedmrkr.us-east-1.elasticbeanstalk.com",
+    "turnpage-dev.us-east-1.elasticbeanstalk.com",
     "turnpage.us-east-1.elasticbeanstalk.com",
 ]
 
@@ -45,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "captcha",
+    "sass_processor",
     "bookSwiping",
     "profiles",
     "utils",
@@ -163,3 +163,11 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "login"
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+]
+
+# Django Sass
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
