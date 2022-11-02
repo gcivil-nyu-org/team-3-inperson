@@ -9,6 +9,7 @@ class TurnPageUser(models.Model):
     # TODO am I duplicating data here?
     liked_books = models.ManyToManyField('Book', related_name='users_liked_books', blank=True)
 
+
 # Books
 class Book(models.Model):
     title = models.CharField(max_length=1024)
@@ -46,6 +47,7 @@ class Book(models.Model):
 
     def get_users_liked(self):
         return self.users_liked_list.all()
+
 
 # Genres
 class Genre(models.Model):

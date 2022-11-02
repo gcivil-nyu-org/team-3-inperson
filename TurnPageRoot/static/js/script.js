@@ -4,6 +4,9 @@ document.onreadystatechange = function () {
         $('#loading').fadeOut();
     }
 }
+const csrftoken = Cookies.get('csrftoken');
+
+
 console.log("script.js loaded");
 let startingPosition;
 let currentPosition;
