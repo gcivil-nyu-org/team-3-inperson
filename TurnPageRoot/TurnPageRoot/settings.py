@@ -161,6 +161,15 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'sass_processor.finders.CssFinder',
 ]
-
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 # Django Sass
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'emailID'
+EMAIL_HOST_PASSWORD = 'password' #past the key or password app here
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'emailID'
