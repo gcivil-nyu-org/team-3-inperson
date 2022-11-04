@@ -35,10 +35,10 @@ let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 
 //FUNCTIONS
 document.addEventListener('DOMContentLoaded', function () {
 
-    function triggerAJAX(e) {
-        e.preventDefault();
+    function recordLikeInDatabase() {
+        // e.preventDefault();
         let likeButton = this;
-        console.log("AJAX triggered" + e);
+        console.log("AJAX triggered");
         // add request body
         let formData = new FormData();
         formData.append('id', likeButton.dataset.id);
@@ -51,21 +51,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    document.querySelector('#swipe-right-btn').addEventListener('click', triggerAJAX);
+    document.querySelector('#swipe-right-btn').addEventListener('click', recordLikeInDatabase);
 
     function swipedLeftAnimation() {
-        $('.draggable').animate({left: -1000}, 300)
+        $('.draggable').animate({left: -1000}, 300, recordLikeInDatabase)
             .css({'transform': 'rotate(-20deg)'})
             .css('opacity', .5)
-            .hide("fade", {percent: 0}, 150);
+            .hide("fade", {percent: 0}, 150)
         console.log("swiped left");
     }
 
-    function swipedRightAnimation(e) {
-        $('.draggable').animate({left: 1000}, 300)
+    function swipedRightAnimation() {
+        $('.draggable').animate({left: 1000}, 300, recordLikeInDatabase)
             .css({'transform': 'rotate(20deg)'})
             .css('opacity', .5)
             .hide("fade", {percent: 0}, 150)
+
         console.log("swiped right");
 
 
