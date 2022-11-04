@@ -22,6 +22,8 @@ def scanBooks(data, url):
     ]
     inum = 0
     success = False
+    if "items" not in data:
+        return 1 # no book found for query- skip it
     for i in range(len(data["items"])):
         success = True
         for item in checks:

@@ -6,6 +6,7 @@ from datetime import datetime
 from utils.db_functions import loadBook
 from utils.google_books_api import *
 import json
+import time
 import urllib.request
 import csv
 import unidecode
@@ -28,6 +29,8 @@ class Command(BaseCommand):
         for book in books:
             url = formatBook(book)
             data = json.loads(urllib.request.urlopen(url).read())
+            if "items" not in data:
+                continue
             inum = scanBooks(data, url)
             if inum == -1:
                 continue
@@ -65,10 +68,13 @@ class Command(BaseCommand):
                 isbn13=isbn_13,
             )
 
+            time.sleep(0.25) # hopefully this stops 503 errors
+
             if options["print"]:
                 print(b)
 
             if options["dbload"]:
                 loadBook(b, res.get("categories", []))
+            
 
         c.close()
