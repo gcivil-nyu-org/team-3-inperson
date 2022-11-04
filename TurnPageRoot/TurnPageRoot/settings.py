@@ -49,7 +49,11 @@ INSTALLED_APPS = [
     "bookSwiping",
     "profiles",
     "utils",
+    "django_crontab",
 ]
+
+# https://pypi.org/project/django-crontab/ for details
+CRONJOBS = []
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
