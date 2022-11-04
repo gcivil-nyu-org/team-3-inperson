@@ -5,6 +5,11 @@ document.onreadystatechange = function () {
     }
 }
 const csrftoken = Cookies.get('csrftoken');
+let options = {
+    method: 'POST',
+    headers: {'X-CSRFToken': csrftoken},
+    mode: 'same-origin'
+}
 
 
 console.log("script.js loaded");
@@ -28,6 +33,32 @@ let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 
 
 //FUNCTIONS
 
+
+function triggerAJAX(e) {
+        e.preventDefault();
+        let likeButton = this;
+        console.log("AJAX triggered");
+        // add request body
+        let formData = new FormData();
+        formData.append('id', likeButton.dataset.id);
+        formData.append('action', likeButton.dataset.action);
+        options['body'] = formData;
+
+        // send HTTP request
+        fetch('/liked/', options)
+            .then(response => response.json())
+            .then(data => {
+                if (data['status'] === 'ok') {
+                    let previousAction = likeButton.dataset.action;
+
+                    // toggle button text and data-action
+                    let action = previousAction === 'like' ? 'unlike' : 'like';
+                    likeButton.dataset.action = action;
+                    likeButton.innerHTML = action;
+                }
+            })
+    }
+
 function swipedLeftAnimation() {
     $('.draggable').animate({left: -1000}, 300)
         .css({'transform': 'rotate(-20deg)'})
@@ -41,6 +72,8 @@ function swipedRightAnimation() {
         .css({'transform': 'rotate(20deg)'})
         .css('opacity', .5)
         .hide("fade", {percent: 0}, 150);
+
+
 }
 
 function swipedDownAnimation() {
@@ -174,3 +207,26 @@ if (loginFields) {
     loginFields[1].placeholder = 'Username'
     loginFields[2].placeholder = 'Password'
 }
+
+
+// $(function () {
+//     $('#like-btn').on('click', function () {
+//         async function likedBook() {
+//             let response = await fetch('/like/', {
+//                 method: 'POST',
+//                 headers: {
+//                     method: 'POST',
+//                     'X-CSRFToken': csrftoken,
+//                     mode: 'same-origin',
+//                     'Content-Type': 'application/json',
+//                 }
+//             })
+//             let data = await response.json()
+//             console.log(await data)
+//         }
+//     })
+// })
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('a.like').addEventListener('click', triggerAJAX);
+});

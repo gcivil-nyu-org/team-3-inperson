@@ -107,15 +107,7 @@
 <script src="https://cdn.jsdelivr.net/sharer.js/latest/sharer.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 <script src="{% static 'js/jquery.flipster.min.js' %}"></script>
-<script src="{% static "js/script.js" %}"></script>
 <script src="{% static 'js/bookshelf.js' %}"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        // DOM loaded
-        {% block domready %}
-        {% endblock %}
-    })
-</script>
+<script src="{% static "js/script.js" %}"></script>
 </body>
 </html>

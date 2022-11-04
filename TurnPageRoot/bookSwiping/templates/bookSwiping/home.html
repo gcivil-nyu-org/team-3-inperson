@@ -118,47 +118,8 @@
 
 
             </a>
+{#        <button class="btn btn-success" id="like-btn" onclick="likedBook()">Liked</button>#}
         </div>
     {% endwith %}
 
-{% endblock %}
-
-{% block domready %}
-    {% comment %}
-    !!! uncomment `<script> tag to enable syntax highlighting, comment out before committing !!!
-    {% endcomment %}
-{#    <script>#}
-        const url = "{% url 'book_liked' %}";
-        let options = {
-            method: 'POST',
-            headers: {'X-CSRFToken': csrftoken},
-            mode: 'same-origin'
-        }
-
-        function triggerAJAX(e){
-            e.preventDefault();
-            let likeButton = this;
-            console.log("AJAX triggered");
-            // add request body
-            let formData = new FormData();
-            formData.append('id', likeButton.dataset.id);
-            formData.append('action', likeButton.dataset.action);
-            options['body'] = formData;
-
-            // send HTTP request
-            fetch(url, options)
-                .then(response => response.json())
-                .then(data => {
-                    if (data['status'] === 'ok') {
-                        let previousAction = likeButton.dataset.action;
-
-                        // toggle button text and data-action
-                        let action = previousAction === 'like' ? 'unlike' : 'like';
-                        likeButton.dataset.action = action;
-                        likeButton.innerHTML = action;
-                    }
-                })
-        }
-
-        document.querySelector('a.like').addEventListener('click', triggerAJAX);
 {% endblock %}

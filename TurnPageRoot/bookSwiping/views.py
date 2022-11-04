@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView, TemplateView
 from .models import *
+from utils.db_functions import *
 import random
 
 
@@ -32,11 +33,7 @@ def book_like(request):
     if book_id and action:
         try:
             book = Book.objects.get(id=book_id)
-            if action == 'like':
-                book.users_liked_list.add(request.user)
-                t_user.liked_books.add(request.POST.get('id'))
-            else:
-                book.users_liked_list.remove(request.user)
+            addToShelf(book, user, "R")
             return JsonResponse({'status': 'ok'})
         except Book.DoesNotExist:
             pass
