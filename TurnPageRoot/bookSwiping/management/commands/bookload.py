@@ -1,15 +1,11 @@
 from django.core.management.base import BaseCommand
-from django.db import IntegrityError
-from django.core.exceptions import ObjectDoesNotExist
-from bookSwiping.models import Book, Genre, BookGenre
-from datetime import datetime
+from bookSwiping.models import Book
 from utils.db_functions import loadBook
 from utils.google_books_api import *
 import json
 import time
 import urllib.request
 import csv
-import unidecode
 
 
 class Command(BaseCommand):
@@ -68,13 +64,12 @@ class Command(BaseCommand):
                 isbn13=isbn_13,
             )
 
-            time.sleep(0.25) # hopefully this stops 503 errors
+            time.sleep(0.25)  # hopefully this stops 503 errors
 
             if options["print"]:
                 print(b)
 
             if options["dbload"]:
                 loadBook(b, res.get("categories", []))
-            
 
         c.close()

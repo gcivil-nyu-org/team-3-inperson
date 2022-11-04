@@ -23,8 +23,12 @@ class TestBookshelf(TestCase):
 
     def test_call_view_deny_anonymous(self):
         response = self.client.get("/bookshelf/")
-        self.assertRedirects(response, "/profiles/login?next=/bookshelf/", status_code=302,
-                             fetch_redirect_response=True)
+        self.assertRedirects(
+            response,
+            "/profiles/login?next=/bookshelf/",
+            status_code=302,
+            fetch_redirect_response=True,
+        )
 
     def test_call_view_allow_authenticated(self):
         self.client.login(username="jacob", password="top_secret")

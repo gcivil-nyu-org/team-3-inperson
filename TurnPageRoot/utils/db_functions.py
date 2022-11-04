@@ -1,9 +1,8 @@
-from django.core.management.base import BaseCommand, CommandError
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
 from bookSwiping.models import Book, Genre, User, UserGenre, BookGenre, Bookshelf
 
-# May want to make these async?
+
 def addUserGenre(user: User, genre: Genre):
     # ug = UserGenre.objects.get(user=user, genre=genre)
     try:
@@ -25,7 +24,6 @@ def addUserGenresFromBook(book: Book, user: User):
     for bg in BookGenre.objects.filter(book=book):
         addUserGenre(user, bg.genre)
 
-    
 
 def deleteUserGenre(user: User, genre: Genre):
     ug = UserGenre.objects.get(user=user, genre=genre)
@@ -56,6 +54,7 @@ def deleteFromShelf(book: Book, user: User):
     book.likes = len(Bookshelf.objects.filter(book=book))
     book.save()
 
+
 def createBookGenres(categories, save_book):
     for category in categories:
         err_genres = []
@@ -73,8 +72,9 @@ def createBookGenres(categories, save_book):
                 bg.save()
             except IntegrityError:
                 pass
-            except TypeError: # this happens if the book exists, should also pass here
+            except TypeError:  # this happens if the book exists, should also pass here
                 pass
+
 
 def loadBook(b, categories):
     try:

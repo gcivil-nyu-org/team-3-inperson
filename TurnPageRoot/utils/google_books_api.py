@@ -3,13 +3,14 @@ from datetime import datetime
 
 
 def formatBook(book):
-        badchars = ["(", ")", "'", '"', "'"]
-        target = "https://www.googleapis.com/books/v1/volumes?q="
-        for i in range(2):
-            book[i] = book[i].replace(" ", "%20")
-            for char in badchars:
-                book[i] = book[i].replace(char, "")
-        return unidecode.unidecode(target + book[0] + "%20" + book[1])
+    badchars = ["(", ")", "'", '"', "'"]
+    target = "https://www.googleapis.com/books/v1/volumes?q="
+    for i in range(2):
+        book[i] = book[i].replace(" ", "%20")
+        for char in badchars:
+            book[i] = book[i].replace(char, "")
+    return unidecode.unidecode(target + book[0] + "%20" + book[1])
+
 
 def scanBooks(data, url):
     checks = [
@@ -23,7 +24,7 @@ def scanBooks(data, url):
     inum = 0
     success = False
     if "items" not in data:
-        return 1 # no book found for query- skip it
+        return 1  # no book found for query- skip it
     for i in range(len(data["items"])):
         success = True
         for item in checks:
@@ -40,6 +41,7 @@ def scanBooks(data, url):
         return -1
     else:
         return inum
+
 
 def setDate(res):
     try:

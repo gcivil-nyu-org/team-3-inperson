@@ -4,7 +4,6 @@ from django.db import migrations
 from django.contrib.postgres.operations import *
 
 
-
 class Migration(migrations.Migration):
 
     dependencies = [
