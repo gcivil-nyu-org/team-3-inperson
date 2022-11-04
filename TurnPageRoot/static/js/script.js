@@ -54,7 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('#swipe-right-btn').addEventListener('click', recordLikeInDatabase);
 
     function swipedLeftAnimation() {
-        $('.draggable').animate({left: -1000}, 300, recordLikeInDatabase)
+        // TODO what happens when they swipe left?
+        $('.draggable').animate({left: -1000}, 300)
             .css({'transform': 'rotate(-20deg)'})
             .css('opacity', .5)
             .hide("fade", {percent: 0}, 150)

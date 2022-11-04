@@ -24,19 +24,26 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
 @login_required
 @require_POST
 def book_like(request):
+    # get current user
     user = request.user
-    TurnPageUser.objects.get_or_create(user=user)
+    # the below commented-put line is if we want to extend the user class in the future
     # t_user = TurnPageUser.objects.get(user=user)
 
+    # get the book id from the request
     book_id = request.POST.get('id')
+    # get action, if specified in HTML
     action = request.POST.get('action')
-    if book_id and action:
+    if book_id or action:
         try:
+            # DB Functions go below
             book = Book.objects.get(id=book_id)
             addToShelf(book, user, "R")
+            # returns JSON response
             return JsonResponse({'status': 'ok'})
         except Book.DoesNotExist:
+            # if book doesn't exist, do nothing... we may want to log something to the console at some point.
             pass
+    # if fails
     return JsonResponse({'status': 'error'})
 
 
