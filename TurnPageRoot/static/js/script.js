@@ -50,6 +50,19 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
     }
 
+    // TODO add a view for this at '/addToBookshelf/'
+    function recordBookshelfInDatabase() {
+        let shelfButton = this;
+        console.log("AJAX triggered");
+        let formData = new FormData();
+        formData.append('id', shelfButton.dataset.id);
+        formData.append('action', shelfButton.dataset.action);
+        options['body'] = formData;
+
+        fetch('/addToBookshelf/', options)
+            .then(response => response.json())
+    }
+
 
     document.querySelector('#swipe-right-btn').addEventListener('click', recordLikeInDatabase);
 
