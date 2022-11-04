@@ -48,16 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // send HTTP request
         fetch('/liked/', options)
             .then(response => response.json())
-            .then(data => {
-                if (data['status'] === 'ok') {
-                    let previousAction = likeButton.dataset.action;
-
-                    // toggle button text and data-action
-                    let action = previousAction === 'like' ? 'unlike' : 'like';
-                    likeButton.dataset.action = action;
-                    likeButton.innerHTML = action;
-                }
-            })
     }
 
 

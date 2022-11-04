@@ -95,8 +95,10 @@
 
                 </div>
                 <div class="col-1 p-0">
-                    <a type="button" data-id="{{ book01.id }}" data-action="{% if request.user in users_like %}{% endif %}" class="material-symbols-outlined btn arrows text-center w-100 p-0"
-                            id="swipe-right-btn">heart_plus
+                    <a href="#" type="button" data-id="{{ book01.id }}"
+                       data-action="{% if request.user in users_like %} un{% endif %}like"
+                       class="material-symbols-outlined btn arrows text-center w-100 p-0"
+                       id="swipe-right-btn">heart_plus
                     </a>
                 </div>
             </div>
@@ -107,6 +109,7 @@
                 </div>
             </div>
         </div>
+
     {% endwith %}
 
 {% endblock %}
