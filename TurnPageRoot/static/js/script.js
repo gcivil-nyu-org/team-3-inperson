@@ -9,6 +9,7 @@ let options = {
     method: 'POST',
     headers: {'X-CSRFToken': csrftoken},
     mode: 'same-origin'
+
 }
 
 
@@ -32,12 +33,12 @@ const downSwipeCutoffPoint = screen.height / 7;
 let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 100);
 
 //FUNCTIONS
+document.addEventListener('DOMContentLoaded', function () {
 
-
-function triggerAJAX(e) {
+    function triggerAJAX(e) {
         e.preventDefault();
         let likeButton = this;
-        console.log("AJAX triggered");
+        console.log("AJAX triggered" + e);
         // add request body
         let formData = new FormData();
         formData.append('id', likeButton.dataset.id);
@@ -59,174 +60,157 @@ function triggerAJAX(e) {
             })
     }
 
-function swipedLeftAnimation() {
-    $('.draggable').animate({left: -1000}, 300)
-        .css({'transform': 'rotate(-20deg)'})
-        .css('opacity', .5)
-        .hide("fade", {percent: 0}, 150);
-    console.log("swiped left");
-}
 
-function swipedRightAnimation() {
-    $('.draggable').animate({left: 1000}, 300)
-        .css({'transform': 'rotate(20deg)'})
-        .css('opacity', .5)
-        .hide("fade", {percent: 0}, 150);
+    document.querySelector('#swipe-right-btn').addEventListener('click', triggerAJAX);
+
+    function swipedLeftAnimation() {
+        $('.draggable').animate({left: -1000}, 300)
+            .css({'transform': 'rotate(-20deg)'})
+            .css('opacity', .5)
+            .hide("fade", {percent: 0}, 150);
+        console.log("swiped left");
+    }
+
+    function swipedRightAnimation(e) {
+        $('.draggable').animate({left: 1000}, 300)
+            .css({'transform': 'rotate(20deg)'})
+            .css('opacity', .5)
+            .hide("fade", {percent: 0}, 150)
+        console.log("swiped right");
 
 
-}
+    }
 
-function swipedDownAnimation() {
-    $('.draggable').animate({top: 1000, height: 0}, 300)
-        .css('opacity', .5)
-        .hide("fade", {percent: 0}, 150);
-}
+    function swipedDownAnimation() {
+        $('.draggable').animate({top: 1000, height: 0}, 300)
+            .css('opacity', .5)
+            .hide("fade", {percent: 0}, 150);
+    }
 
-function nextBook() {
-    //swiped book
-    $('#book' + counter).removeClass('draggable').hide('fade', {percent: 0}, 1000);
-    $('#book' + counter + '-img').removeClass('top-of-stack').hide('fade', {percent: 0}, 1000);
-    //moves the classes to the next book
-    counter++;
-    $('#book' + counter).addClass('draggable');
-    $('#book' + counter + '-img').addClass('top-of-stack');
-    //this is required to activate the dragging mechanism again
+    function nextBook() {
+        //swiped book
+        $('#book' + counter).removeClass('draggable').hide('fade', {percent: 0}, 1000);
+        $('#book' + counter + '-img').removeClass('top-of-stack').hide('fade', {percent: 0}, 1000);
+        //moves the classes to the next book
+        counter++;
+        $('#book' + counter).addClass('draggable');
+        $('#book' + counter + '-img').addClass('top-of-stack');
+        //this is required to activate the dragging mechanism again
+        makeDraggable();
+    }
+
+    function makeDraggable() {
+        $('.draggable').draggable({
+            scroll: false,
+            data: {
+                startingPosition: startingPosition,
+                currentPosition: currentPosition,
+            },
+
+            drag: function (e, ui) {
+                startingPosition = ui.originalPosition;
+                currentPosition = ui.position;
+
+                // BOOK ROTATES TOWARDS POSITION
+                $('.top-of-stack').css('transform', 'rotate(' + currentPosition.left / rotateValue + 'deg)')
+                    .css('min-height', bookShrinkMinHeight)
+                    .css('opacity', 1 - Math.max(Math.abs(currentPosition.left / 1000), Math.abs(currentPosition.top / 1000)))
+                ;
+
+                //WHEN SWIPING, MAKE SURE IT DOESN'T SNAP BACK
+                if (currentPosition.left > horizontalSwipeCutoffPoint) {
+                    $('.draggable').draggable("option", "revert", false);
+                } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
+                    $('.draggable').draggable("option", "revert", false);
+                } else if (currentPosition.top > downSwipeCutoffPoint) {
+                    $('.draggable').draggable("option", "revert", false);
+                } else {
+                    $('.draggable').draggable("option", "revert", true);
+                }
+
+            },
+            stop: function (e, ui) {
+                // RESET ROTATION
+                $('.top-of-stack').css('transform', 'rotate(0deg)')
+                    .css('min-height', bookMinHeight)
+                    .css('opacity', 100)
+                ;
+
+
+                // LISTENERS FOR SWIPING ACTION
+                if (currentPosition.left > horizontalSwipeCutoffPoint) {
+                    $('.top-of-stack').css('min-height', bookShrinkMinHeight);
+                    swipedRightAnimation();
+                    nextBook();
+                } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
+                    $('.top-of-stack').css('min-height', bookShrinkMinHeight);
+                    swipedLeftAnimation()
+                    nextBook();
+                } else if (currentPosition.top > downSwipeCutoffPoint) {
+                    $('.top-of-stack').css('min-height', bookShrinkMinHeight);
+                    swipedDownAnimation();
+                    nextBook();
+                }
+
+            },
+            revert: true,
+            cursor: "grabbing",
+
+            revertDuration: 50,
+        });
+    }
+
     makeDraggable();
-}
-
-function makeDraggable() {
-    $('.draggable').draggable({
-        scroll: false,
-        data: {
-            startingPosition: startingPosition,
-            currentPosition: currentPosition,
-        },
-
-        drag: function (e, ui) {
-            startingPosition = ui.originalPosition;
-            currentPosition = ui.position;
-
-            // BOOK ROTATES TOWARDS POSITION
-            $('.top-of-stack').css('transform', 'rotate(' + currentPosition.left / rotateValue + 'deg)')
-                .css('min-height', bookShrinkMinHeight)
-                .css('opacity', 1 - Math.max(Math.abs(currentPosition.left / 1000), Math.abs(currentPosition.top / 1000)))
-            ;
-
-            //WHEN SWIPING, MAKE SURE IT DOESN'T SNAP BACK
-            if (currentPosition.left > horizontalSwipeCutoffPoint) {
-                $('.draggable').draggable("option", "revert", false);
-            } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
-                $('.draggable').draggable("option", "revert", false);
-            } else if (currentPosition.top > downSwipeCutoffPoint) {
-                $('.draggable').draggable("option", "revert", false);
-            } else {
-                $('.draggable').draggable("option", "revert", true);
-            }
-
-        },
-        stop: function (e, ui) {
-            // RESET ROTATION
-            $('.top-of-stack').css('transform', 'rotate(0deg)')
-                .css('min-height', bookMinHeight)
-                .css('opacity', 100)
-            ;
-
-
-            // LISTENERS FOR SWIPING ACTION
-            if (currentPosition.left > horizontalSwipeCutoffPoint) {
-                $('.top-of-stack').css('min-height', bookShrinkMinHeight);
-                swipedRightAnimation();
-                nextBook();
-            } else if (currentPosition.left < -1 * horizontalSwipeCutoffPoint) {
-                $('.top-of-stack').css('min-height', bookShrinkMinHeight);
-                swipedLeftAnimation()
-                nextBook();
-            } else if (currentPosition.top > downSwipeCutoffPoint) {
-                $('.top-of-stack').css('min-height', bookShrinkMinHeight);
-                swipedDownAnimation();
-                nextBook();
-            }
-
-        },
-        revert: true,
-        cursor: "grabbing",
-
-        revertDuration: 50,
-    });
-}
-
-makeDraggable();
 
 //BUTTONS
-$('#swipe-right-btn').click(function () {
-    swipedRightAnimation();
-    nextBook();
-});
-
-$('#swipe-left-btn').click(function () {
-    swipedLeftAnimation();
-    nextBook();
-});
+    $('#swipe-right-btn').click(function () {
+        swipedRightAnimation();
+        nextBook();
+    });
 
 
-$('#bookshelf-btn').click(function () {
-    $('.draggable').animate({top: bookshelfMoveValue + 'px'}, 200)
-    swipedDownAnimation();
-    nextBook();
-});
+    $('#swipe-left-btn').click(function () {
+        swipedLeftAnimation();
+        nextBook();
+    });
+
+
+    $('#bookshelf-btn').click(function () {
+        $('.draggable').animate({top: bookshelfMoveValue + 'px'}, 200)
+        swipedDownAnimation();
+        nextBook();
+    });
 
 // LOGIN
 
-let signupForm = document.getElementsByClassName('signup-form')[0]
-let signupFields = signupForm ? signupForm.getElementsByTagName('input') : false
-if (signupFields) {
-    for (let i = 1; i < 8; i++) {
-        signupFields[i].classList.add('login-input')
-        signupFields[i].classList.add('my-2')
-        signupFields[i].classList.add('p-2')
-        signupFields[i].classList.add('w-100')
+    let signupForm = document.getElementsByClassName('signup-form')[0]
+    let signupFields = signupForm ? signupForm.getElementsByTagName('input') : false
+    if (signupFields) {
+        for (let i = 1; i < 8; i++) {
+            signupFields[i].classList.add('login-input')
+            signupFields[i].classList.add('my-2')
+            signupFields[i].classList.add('p-2')
+            signupFields[i].classList.add('w-100')
+        }
+        signupFields[1].placeholder = 'First Name'
+        signupFields[2].placeholder = 'Last Name'
+        signupFields[3].placeholder = 'Username'
+        signupFields[4].placeholder = 'Email'
+        signupFields[5].placeholder = 'Password'
+        signupFields[6].placeholder = 'Confirm Password'
+        signupFields[7].placeholder = 'Captcha'
     }
-    signupFields[1].placeholder = 'First Name'
-    signupFields[2].placeholder = 'Last Name'
-    signupFields[3].placeholder = 'Username'
-    signupFields[4].placeholder = 'Email'
-    signupFields[5].placeholder = 'Password'
-    signupFields[6].placeholder = 'Confirm Password'
-    signupFields[7].placeholder = 'Captcha'
-}
 
-let loginForm = document.getElementsByClassName('login-form')[0]
-let loginFields = loginForm ? loginForm.getElementsByTagName('input') : false
-if (loginFields) {
-    for (let i = 1; i < 3; i++) {
-        loginFields[i].classList.add('login-input')
-        loginFields[i].classList.add('my-2')
-        loginFields[i].classList.add('p-2')
-        loginFields[i].classList.add('w-100')
+    let loginForm = document.getElementsByClassName('login-form')[0]
+    let loginFields = loginForm ? loginForm.getElementsByTagName('input') : false
+    if (loginFields) {
+        for (let i = 1; i < 3; i++) {
+            loginFields[i].classList.add('login-input')
+            loginFields[i].classList.add('my-2')
+            loginFields[i].classList.add('p-2')
+            loginFields[i].classList.add('w-100')
+        }
+        loginFields[1].placeholder = 'Username'
+        loginFields[2].placeholder = 'Password'
     }
-    loginFields[1].placeholder = 'Username'
-    loginFields[2].placeholder = 'Password'
-}
-
-
-// $(function () {
-//     $('#like-btn').on('click', function () {
-//         async function likedBook() {
-//             let response = await fetch('/like/', {
-//                 method: 'POST',
-//                 headers: {
-//                     method: 'POST',
-//                     'X-CSRFToken': csrftoken,
-//                     mode: 'same-origin',
-//                     'Content-Type': 'application/json',
-//                 }
-//             })
-//             let data = await response.json()
-//             console.log(await data)
-//         }
-//     })
-// })
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('a.like').addEventListener('click', triggerAJAX);
 });

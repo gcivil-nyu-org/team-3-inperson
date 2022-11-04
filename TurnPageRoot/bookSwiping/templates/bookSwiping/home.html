@@ -95,9 +95,9 @@
 
                 </div>
                 <div class="col-1 p-0">
-                    <button type="button" class="material-symbols-outlined btn arrows text-center w-100 p-0"
+                    <a type="button" data-id="{{ book01.id }}" data-action="{% if request.user in users_like %}{% endif %}" class="material-symbols-outlined btn arrows text-center w-100 p-0"
                             id="swipe-right-btn">heart_plus
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="row bookshelf-btn-container">
@@ -106,19 +106,6 @@
                     </button>
                 </div>
             </div>
-        </div>
-        <div class="text-center">
-            <a href="#" data-id="{{ book01.id }}" data-action="{% if request.user in users_like %} un{% endif %}like"
-               class="like button">
-                {% if request.user in users_like %}
-                    Unlike
-                {% else %}
-                    Like
-                {% endif %}
-
-
-            </a>
-{#        <button class="btn btn-success" id="like-btn" onclick="likedBook()">Liked</button>#}
         </div>
     {% endwith %}
 

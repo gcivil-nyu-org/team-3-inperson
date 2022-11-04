@@ -26,7 +26,7 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
 def book_like(request):
     user = request.user
     TurnPageUser.objects.get_or_create(user=user)
-    t_user = TurnPageUser.objects.get(user=user)
+    # t_user = TurnPageUser.objects.get(user=user)
 
     book_id = request.POST.get('id')
     action = request.POST.get('action')
