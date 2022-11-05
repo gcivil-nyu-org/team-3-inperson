@@ -90,7 +90,7 @@ class TestBookStack(TestCase):
         assert random_item[3] is not None
         assert random_item[4] is not None
 
-    def test_environment_set_in_context(self):
+    def test_books_in_context_for_HomeView(self):
         response = self.client.get(reverse('home'))
         self.assertIn('book01', response.context)
         self.assertIn('book02', response.context)
@@ -106,6 +106,24 @@ class TestBookStack(TestCase):
         self.assertIn('book12', response.context)
         self.assertIn('book13', response.context)
         self.assertIn('book14', response.context)
+
+    def test_book_in_context_view_is_in_database(self):
+        response = self.client.get(reverse('home'))
+        assert(response.context['book01'] in self.object_list)
+        assert(response.context['book02'] in self.object_list)
+        assert(response.context['book03'] in self.object_list)
+        assert(response.context['book04'] in self.object_list)
+        assert(response.context['book05'] in self.object_list)
+        assert(response.context['book06'] in self.object_list)
+        assert(response.context['book07'] in self.object_list)
+        assert(response.context['book08'] in self.object_list)
+        assert(response.context['book09'] in self.object_list)
+        assert(response.context['book10'] in self.object_list)
+        assert(response.context['book11'] in self.object_list)
+        assert(response.context['book12'] in self.object_list)
+        assert(response.context['book13'] in self.object_list)
+        assert(response.context['book14'] in self.object_list)
+
 
 
 class TestLiveServer(LiveServerTestCase):
