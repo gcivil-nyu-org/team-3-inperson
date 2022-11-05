@@ -1,14 +1,72 @@
-from django.test import TestCase, LiveServerTestCase, RequestFactory
+from django.test import TestCase, LiveServerTestCase, RequestFactory, Client
 import random
+import environ
+from django.urls import reverse
+# from selenium import webdriver
+# from selenium.webdriver.chrome.service import Service
+# from selenium.webdriver.common.by import By
+# from webdriver_manager.chrome import ChromeDriverManager
 from .. import models
 from django.contrib.auth.models import User
-# from django.contrib.auth.models import AnonymousUser
-# from selenium import webdriver
-# from webdriver_manager.chrome import ChromeDriverManager
 from .. import views
 
 
+class TestUserBookInteraction(LiveServerTestCase):
+    def setUp(self):
+        self.client = Client()
+        self.factory = RequestFactory()
+        self.user = User.objects.create_user(
+            username="test", email="jacob@…", password="12345"
+        )
+
+        for i in range(0, 15):
+            models.Book.objects.create(
+                title=str("test_" + str(i)),
+                published_date="2020-01-01",
+                author=str("test_" + str(i)),
+                description="test",
+                cover_img="test",
+                isbn10="10",
+                isbn13="13",
+            )
+        self.object_list = models.Book.objects.all()
+
+        self.env = environ.Env()
+        environ.Env.read_env()
+
+    # def test_user_like_book(self):
+    #     self.client.login(username="test", password="12345")
+    #     service = Service(executable_path=ChromeDriverManager().install())
+    #     driver = webdriver.Chrome(service=service)
+    #     # TODO how to make this work with travis?
+    #     driver.get('http://127.0.0.1:8000/')
+    #     button = driver.find_element(By.ID, "swipe-right-btn")
+    #     # trigger the `like` button on the book
+    #     button.click()
+    #     # make sure book is on user's bookshelf
+    #     print(models.Bookshelf.objects.all())
+
+
 class TestBookStack(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.factory = RequestFactory()
+        self.user = User.objects.create_user(
+            username="test", email="jacob@…", password="12345"
+        )
+
+        for i in range(0, 15):
+            models.Book.objects.create(
+                title=str("test_" + str(i)),
+                published_date="2020-01-01",
+                author=str("test_" + str(i)),
+                description="test",
+                cover_img="test",
+                isbn10="10" + str(i),
+                isbn13="13" + str(i),
+            )
+        self.object_list = models.Book.objects.all()
+
     def test_books_can_be_created(self):
         test_book = models.Book.objects.create(
             title="test",
@@ -22,17 +80,7 @@ class TestBookStack(TestCase):
         assert test_book is not None
 
     def test_random_stack(self):
-        book_stack = models.Book.objects.all()
-        for i in range(0, 10):
-            models.Book.objects.create(
-                title=str("test_" + str(i)),
-                published_date="2020-01-01",
-                author=str("test_" + str(i)),
-                description="test",
-                cover_img="test",
-                isbn10="10",
-                isbn13="13",
-            )
+        book_stack = self.object_list
         items = list(book_stack)
         random_item = random.sample(items, 5)
         top_book = random_item[0]
@@ -41,6 +89,23 @@ class TestBookStack(TestCase):
         assert random_item[2] is not None
         assert random_item[3] is not None
         assert random_item[4] is not None
+
+    def test_environment_set_in_context(self):
+        response = self.client.get(reverse('home'))
+        self.assertIn('book01', response.context)
+        self.assertIn('book02', response.context)
+        self.assertIn('book03', response.context)
+        self.assertIn('book04', response.context)
+        self.assertIn('book05', response.context)
+        self.assertIn('book06', response.context)
+        self.assertIn('book07', response.context)
+        self.assertIn('book08', response.context)
+        self.assertIn('book09', response.context)
+        self.assertIn('book10', response.context)
+        self.assertIn('book11', response.context)
+        self.assertIn('book12', response.context)
+        self.assertIn('book13', response.context)
+        self.assertIn('book14', response.context)
 
 
 class TestLiveServer(LiveServerTestCase):
