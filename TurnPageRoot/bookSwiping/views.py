@@ -7,15 +7,14 @@ import random
 # Create your views here.
 class BookshelfView(LoginRequiredMixin, TemplateView):
     model = Book
-    template_name = 'bookSwiping/bookshelf.html'
-
+    template_name = "bookSwiping/bookshelf.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         random_items = random.sample(list(self.model.objects.all()), 10)
         saved_books = random.sample(list(self.model.objects.all()), 10)
-        context['books'] = random_items
-        context['saved_books'] = saved_books
+        context["books"] = random_items
+        context["saved_books"] = saved_books
         return context
 
 

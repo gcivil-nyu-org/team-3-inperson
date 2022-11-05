@@ -35,39 +35,6 @@ class Book(models.Model):
         unique_together = ("title", "author")
 
 
-# Genres
-class Genre(models.Model):
-    genre = models.CharField(max_length=128, unique=True)
-
-    def __str__(self):
-        return self.genre
-
-
-# Genres for each book. Many-to-Many
-class BookGenre(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.book.title + " - " + self.genre.genre
-
-    class Meta:
-        unique_together = ("book", "genre")
-
-
-# User's followed genres. Many to Many
-class UserGenre(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
-    likes = models.IntegerField(default=1)
-
-    def __str__(self):
-        return self.user.username + " - " + self.genre.genre
-
-    class Meta:
-        unique_together = ("user", "genre")
-
-
 # Shelf, alternatively could be called UserBooks
 class Bookshelf(models.Model):
     READ = "R"

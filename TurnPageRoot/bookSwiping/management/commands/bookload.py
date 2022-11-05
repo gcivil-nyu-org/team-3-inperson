@@ -1,8 +1,7 @@
 from django.core.management.base import BaseCommand
-# from django.core.management.base import CommandError
 from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
-from bookSwiping.models import Book, Genre, BookGenre
+from bookSwiping.models import Book
 from datetime import datetime
 import json
 import urllib.request
@@ -27,7 +26,6 @@ class Command(BaseCommand):
             "publishedDate",
             "description",
             "industryIdentifiers",
-            "categories",
         ]
         inum = 0
         success = False
@@ -60,7 +58,7 @@ class Command(BaseCommand):
                 except ValueError:
                     return None
 
-    def loadBook(self, b, categories):
+    def loadBook(self, b):
         try:
             save_book = Book.objects.get(title=b.title, author=b.author)
         except ObjectDoesNotExist:
@@ -68,28 +66,6 @@ class Command(BaseCommand):
         save_book.save()
         print(save_book)
         print("saved")
-        for category in categories:
-            err_genres = []
-            g = Genre(genre=category)
-            try:
-                g.save()
-            except IntegrityError:
-                err_genres.append(category)
-            finally:
-                bg = BookGenre(
-                    book_id=save_book,
-                    genre_id=Genre.objects.get(genre=category),
-                )
-                try:
-                    bg.save()
-                except IntegrityError:
-                    pass
-            if len(err_genres) != 0:
-                print(
-                    "The following genres already exist in the database and were not added: "
-                )
-                print(err_genres)
-            print("\n")
 
     def add_arguments(self, parser):
         parser.add_argument("book_csv", nargs="+", type=str)
