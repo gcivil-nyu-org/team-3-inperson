@@ -31,11 +31,12 @@ SOUTHEAST_ASIAN = "SEA"
 WHITE_CAUCASIAN = "WC"
 OTHER = "O"
 ETHNICITY_CHOICES = [
-    (AM_IN_FN, "American Indian/First Nations"), # added First Nations to make the descriptor more inclusive
+    # added First Nations to make the descriptor more inclusive
+    (AM_IN_FN, "American Indian/First Nations"),  
     (AFRICAN_DESCENT, "Black/African Descent"),
-    (EAST_ASIAN, "East Asian")
+    (EAST_ASIAN, "East Asian"),
     (HISPANIC, "Hispanic/Latino"),
-    (MIDDLE_EASTERN, "Middle Eastern")
+    (MIDDLE_EASTERN, "Middle Eastern"),
     (PACIFIC_ISLANDER, "Pacific Islander"),
     (SOUTH_ASIAN, "South Asian"),
     (SOUTHEAST_ASIAN, "Southeast Asian"),
@@ -58,7 +59,7 @@ SPIRITUAL = "SP"
 OTHER = "O"
 RELIGION_CHOICES = [
     (AGNOSTIC, "Agnostic"),
-    (ATHEIST, "Atheist/None"), #added None to better describe the option
+    (ATHEIST, "Atheist/None"),  # added None to better describe the option
     (BUDDHIST, "Buddhist"),
     (CATHOLIC, "Catholic"),
     (CHRISTIAN, "Christian"),

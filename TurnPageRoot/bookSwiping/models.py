@@ -5,17 +5,24 @@ from multiselectfield import MultiSelectField
 
 
 class Profile(models.Model):
-    from modelChoices import GENDER_CHOICES, ETHNICITY_CHOICES, RELIGION_CHOICES 
+    from bookSwiping.modelChoices import (
+        GENDER_CHOICES,
+        ETHNICITY_CHOICES,
+        RELIGION_CHOICES,
+    )
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(max_length=24, choices=GENDER_CHOICES)
     location = PlainLocationField(
         based_fields=["city"], initial="40.790278, -73.959722"
     )
     birth_date = models.DateField(default=None)
-    ethnicity = MultiSelectField(choices=ETHNICITY_CHOICES)
-    religion = models.MultiSelectField(choices=RELIGION_CHOICES)  # need to build choice list for this.
-    lgbtq = models.BooleanField(default=False) # will help us cater books for LGBTQ+ audiences, its not a dating app so asking specifics here probably isn't useful
-
+    ethnicity = MultiSelectField(choices=ETHNICITY_CHOICES, max_length=1024)
+    religion = MultiSelectField(choices=RELIGION_CHOICES, max_length=1024)
+    
+    # will help us cater books for LGBTQ+ audiences, its not a dating app so asking specifics here probably isn't useful
+    lgbtq = models.BooleanField(default=False)  
+    
     # for all this info, we should have information popups on why we're asking for it!!! VERY IMPORTANT!!!
 
     def __str__(self):
@@ -72,7 +79,8 @@ class Book(models.Model):
 
 # Shelf, alternatively could be called UserBooks
 class Bookshelf(models.Model):
-    from modelChoices import READ_CHOICES
+    from bookSwiping.modelChoices import READ_CHOICES, TRASH
+
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     read_status = models.CharField(max_length=24, choices=READ_CHOICES, default=TRASH)

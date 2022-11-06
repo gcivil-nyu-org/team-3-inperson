@@ -44,11 +44,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "location_field.apps.DefaultConfig",
     "captcha",
     "sass_processor",
     "bookSwiping",
     "profiles",
     "utils",
+    "multiselectfield",
 ]
 
 MIDDLEWARE = [
@@ -165,3 +167,9 @@ STATICFILES_FINDERS = [
 
 # Django Sass
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "static")
+
+LOCATION_FIELD = {
+    'map.provider': 'openstreetmap', # may want to change to google but I believe that will require SSH setup first
+    'search.provider': 'google',
+    'provider.google.map.type': 'ROADMAP',
+}
