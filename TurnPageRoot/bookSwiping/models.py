@@ -19,10 +19,10 @@ class Profile(models.Model):
     birth_date = models.DateField(default=None)
     ethnicity = MultiSelectField(choices=ETHNICITY_CHOICES, max_length=1024)
     religion = MultiSelectField(choices=RELIGION_CHOICES, max_length=1024)
-    
+
     # will help us cater books for LGBTQ+ audiences, its not a dating app so asking specifics here probably isn't useful
-    lgbtq = models.BooleanField(default=False)  
-    
+    lgbtq = models.BooleanField(default=False)
+
     # for all this info, we should have information popups on why we're asking for it!!! VERY IMPORTANT!!!
 
     def __str__(self):

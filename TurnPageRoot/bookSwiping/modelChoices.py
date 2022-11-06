@@ -32,7 +32,7 @@ WHITE_CAUCASIAN = "WC"
 OTHER = "O"
 ETHNICITY_CHOICES = [
     # added First Nations to make the descriptor more inclusive
-    (AM_IN_FN, "American Indian/First Nations"),  
+    (AM_IN_FN, "American Indian/First Nations"),
     (AFRICAN_DESCENT, "Black/African Descent"),
     (EAST_ASIAN, "East Asian"),
     (HISPANIC, "Hispanic/Latino"),
