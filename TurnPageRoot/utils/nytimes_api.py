@@ -6,7 +6,7 @@ import environ
 import os
 
 
-class NYTAPI:
+class nytapi:
     url_base = "https://api.nytimes.com/svc/books/v3"
     default_date = "current"
     if "RDS_DB_NAME" in os.environ:
@@ -22,8 +22,9 @@ class NYTAPI:
 
     @classmethod
     def get_lists(self, date=default_date):
-        if date != self.default_date:
-            date = datetime.strptime(date, "%Y-%m-%d")
+        if date == self.default_date: # if default, we pull everything. Use the founding date of the NYT just for fun!
+            date = "1851-09-18"
+        date = datetime.strptime(date, "%Y-%m-%d")
         url = self.url_base + "names.json?api-key=" + self.api_key
         try:
             data = self.query_nyt(url)
@@ -49,4 +50,4 @@ class NYTAPI:
         except HTTPError:
             return 1
         else:
-            return data
+            return data["books"]

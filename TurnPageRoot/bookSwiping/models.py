@@ -24,6 +24,7 @@ class Book(models.Model):
     # We will store the ISBNs bcause these will be useful for fetching data from other services, especially if we end up building the library check.
     isbn10 = models.CharField(max_length=10, blank=True)
     isbn13 = models.CharField(max_length=13, blank=True)
+    amazon_url = models.CharField(max_length=1024, blank=True)
 
     # language = models.ForeignKey(Language, on_delete=models.SET_NULL)
 
