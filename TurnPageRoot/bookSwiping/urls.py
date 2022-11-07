@@ -7,5 +7,4 @@ urlpatterns = [
     # the below path is to trigger the `book_like` function in views.py
     path('liked/', views.book_like, name="book_liked"),
     path('addToBookshelf/', views.book_shelf, name="addToBookshelf"),
-    path("liked/", views.book_like, name="book_liked"),
 ]
