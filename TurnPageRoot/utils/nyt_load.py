@@ -1,12 +1,13 @@
 from utils.nytimes_api import *
 from utils.amazon_affiliate import convertToAff
+from utils.db_functions import loadBook
 from bookSwiping.models import Book
 
 
-def loadBooks(date="current"):
+def nytBookLoad(date="current"):
     booklists = nytapi.get_lists(date)
     for bl in booklists:
-        books = nytapi.get_books(bl, date)
+        books = nytapi.get_booklist(bl, date)
         for b in books["books"]:
             #doesn't have published date :/
             db_book = Book(
@@ -18,6 +19,7 @@ def loadBooks(date="current"):
                 isbn13=b["primary_isbn13"],
                 amazon_url=convertToAff(b["amazon_product_url"]),
             )
+            loadBook(db_book)
 
 
 """

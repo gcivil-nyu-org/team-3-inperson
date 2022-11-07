@@ -39,7 +39,7 @@ class nytapi:
             return data
 
     @classmethod
-    def get_books(
+    def get_booklist(
         self, list, date=default_date
     ):  # founding date of the NYT by default :)
         if date != self.default_date:
@@ -50,4 +50,4 @@ class nytapi:
         except HTTPError:
             return 1
         else:
-            return data["books"]
+            return data
