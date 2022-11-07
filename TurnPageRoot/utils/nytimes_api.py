@@ -1,5 +1,7 @@
 from datetime import datetime
 from urllib.error import HTTPError
+from bookSwiping.models import Book
+from utils.amazon_affiliate import convertToAff
 import urllib.request
 import json
 import environ
@@ -22,9 +24,8 @@ class nytapi:
 
     @classmethod
     def get_lists(self, date=default_date):
-        if (
-            date == self.default_date
-        ):  # if default, we pull everything. Use the founding date of the NYT just for fun!
+        # if default, we pull everything. Use the founding date of the NYT just for fun!
+        if date == self.default_date:
             date = "1851-09-18"
         date = datetime.strptime(date, "%Y-%m-%d")
         url = self.url_base + "names.json?api-key=" + self.api_key
@@ -53,3 +54,17 @@ class nytapi:
             return 1
         else:
             return data
+
+    def make_book(b):
+        book = Book(
+            title=b[
+                "title"
+            ].title(),  # title case conversion bc NYT stores this in ALL CAPS
+            author=b["author"],
+            description=b["description"],
+            cover_img=b["book_image"],  # this may not be high res enough
+            isbn10=b["primary_isbn10"],
+            isbn13=b["primary_isbn13"],
+            amazon_url=convertToAff(b["amazon_product_url"]),
+        )
+        return book

@@ -1,5 +1,4 @@
 from utils.nytimes_api import *
-from utils.amazon_affiliate import convertToAff
 from utils.db_functions import loadBook
 from bookSwiping.models import Book
 from datetime import date
