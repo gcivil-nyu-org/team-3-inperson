@@ -11,14 +11,14 @@ import random
 # Create your views here.
 class BookshelfView(LoginRequiredMixin, TemplateView):
     model = Book
-    template_name = 'bookSwiping/bookshelf.html'
+    template_name = "bookSwiping/bookshelf.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         random_items = random.sample(list(self.model.objects.all()), 10)
         saved_books = random.sample(list(self.model.objects.all()), 10)
-        context['books'] = random_items
-        context['saved_books'] = saved_books
+        context["books"] = random_items
+        context["saved_books"] = saved_books
         return context
 
 
@@ -31,9 +31,9 @@ def book_like(request):
     # t_user = TurnPageUser.objects.get(user=user)
 
     # get the book id from the request
-    book_id = request.POST.get('id')
+    book_id = request.POST.get("id")
     # get action, if specified in HTML
-    action = request.POST.get('action')
+    action = request.POST.get("action")
     if book_id or action:
         try:
             # DB Functions go below
@@ -41,12 +41,12 @@ def book_like(request):
             # book.users_liked_list.add(request.user)
             addToShelf(book, user, "R")
             # returns JSON response
-            return JsonResponse({'status': 'ok'})
+            return JsonResponse({"status": "ok"})
         except Book.DoesNotExist:
             # if book doesn't exist, do nothing... we may want to log something to the console at some point.
             pass
     # if fails
-    return JsonResponse({'status': 'error'})
+    return JsonResponse({"status": "error"})
 
 
 class HomeView(ListView):

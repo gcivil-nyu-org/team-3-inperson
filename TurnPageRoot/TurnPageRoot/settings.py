@@ -44,11 +44,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "location_field.apps.DefaultConfig",
     "captcha",
     "sass_processor",
     "bookSwiping",
     "profiles",
     "utils",
+    "multiselectfield",
 ]
 
 MIDDLEWARE = [
@@ -116,12 +118,12 @@ else:
 
 # FOR EXPERIMENTAL LOCAL DEVELOPMENT:
 
-    # DATABASES = {
-    #     "default": {
-    #         "ENGINE": "django.db.backends.sqlite3",
-    #         "NAME": BASE_DIR / "db.sqlite3",
-    #     }
-    # }
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -173,7 +175,14 @@ STATICFILES_FINDERS = [
 ]
 SILENCED_SYSTEM_CHECKS = ["captcha.recaptcha_test_key_error"]
 # Django Sass
-SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
+
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "static")
+
+LOCATION_FIELD = {
+    "map.provider": "openstreetmap",  # may want to change to google but I believe that will require SSH setup first
+    "search.provider": "google",
+    "provider.google.map.type": "ROADMAP",
+}
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
