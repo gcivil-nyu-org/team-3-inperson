@@ -32,6 +32,7 @@ class UserLoginView(LoginView):
 class CustomUserCreationForm(UserCreationForm):
     captcha = CaptchaField()
 
+
     class Meta(UserCreationForm.Meta):
         fields = UserCreationForm.Meta.fields + ("first_name", "last_name", "email")
 

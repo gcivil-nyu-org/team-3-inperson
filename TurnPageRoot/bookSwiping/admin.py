@@ -1,11 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Book
-from .models import Genre
-from .models import BookGenre
-from .models import UserGenre
-from .models import Bookshelf
+from .models import Book, Bookshelf, Genre, BookGenre, UserGenre, TurnPageUser
 
 
 @admin.register(Book)
@@ -20,4 +16,4 @@ admin.site.register(Genre)
 admin.site.register(BookGenre)
 admin.site.register(UserGenre)
 admin.site.register(Bookshelf)
-# admin.site.register(User)
+admin.site.register(TurnPageUser)

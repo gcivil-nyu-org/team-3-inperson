@@ -2,6 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class TurnPageUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # add additional fields in here
+    # TODO am I duplicating data here?
+    liked_books = models.ManyToManyField('Book', related_name='users_liked_books', blank=True)
+
+
 # Books
 class Book(models.Model):
     title = models.CharField(max_length=1024)
@@ -27,12 +34,18 @@ class Book(models.Model):
 
     # language = models.ForeignKey(Language, on_delete=models.SET_NULL)
 
+    # tracking user likes
+    users_liked_list = models.ManyToManyField(User, related_name='books_liked', blank=True)
+
     def __str__(self):
         return self.title + " by " + self.author
 
     # debated excluding this- what if one author wrote 2 books with the same name? But I don't know of any examples.
     class Meta:
         unique_together = ("title", "author")
+
+    def get_users_liked(self):
+        return self.users_liked_list.all()
 
 
 # Genres
@@ -84,7 +97,7 @@ class Bookshelf(models.Model):
 
     def __str__(self):
         return (
-            self.user.username + " - " + self.book.title + " - " + self.book.read_status
+                self.user.username + " - " + self.book.title + " - " + self.read_status
         )
 
     class Meta:
