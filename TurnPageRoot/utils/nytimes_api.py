@@ -37,7 +37,7 @@ class nytapi:
             for result in range(20):  # uses a range because we need to delete the index
                 if datetime.strptime(
                     data[result]["newest_published_date"], "%Y-%m-%d"
-                ) < datetime.strptime(date, "%Y-%m-%d"):
+                ) < date:
                     del data[result]
             return data
 
