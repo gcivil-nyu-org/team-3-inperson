@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from bookSwiping.models import Book
 from utils.db_functions import loadBook
-from utils.google_books_api import *
+from utils.google_books_api import gbapi
 import json
 import time
 import urllib.request
@@ -23,11 +23,11 @@ class Command(BaseCommand):
 
         books = csv.reader(c)
         for book in books:
-            url = formatBook(book)
+            url = gbapi.formatBook(book)
             data = json.loads(urllib.request.urlopen(url).read())
             if "items" not in data:
                 continue
-            inum = scanBooks(data, url)
+            inum = gbapi.scanBooks(data, url)
             if inum == -1:
                 continue
 
@@ -51,7 +51,7 @@ class Command(BaseCommand):
                 + "?fife=w1333-h2000&source=gbs_api"
             )
 
-            date = setDate(res)
+            date = gbapi.setDate(res)
 
             b = Book(
                 title=res["title"],
