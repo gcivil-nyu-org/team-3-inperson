@@ -38,6 +38,7 @@ def book_like(request):
         try:
             # DB Functions go below
             book = Book.objects.get(id=book_id)
+            # book.users_liked_list.add(request.user)
             addToShelf(book, user, "R")
             # returns JSON response
             return JsonResponse({'status': 'ok'})

@@ -9,6 +9,7 @@ from django.urls import reverse
 from .. import models
 from django.contrib.auth.models import User
 from .. import views
+# from django.middleware import csrf
 
 
 class TestUserBookInteraction(LiveServerTestCase):
@@ -36,15 +37,28 @@ class TestUserBookInteraction(LiveServerTestCase):
 
     # def test_user_like_book(self):
     #     self.client.login(username="test", password="12345")
-    #     service = Service(executable_path=ChromeDriverManager().install())
-    #     driver = webdriver.Chrome(service=service)
-    #     # TODO how to make this work with travis?
-    #     driver.get('http://127.0.0.1:8000/')
-    #     button = driver.find_element(By.ID, "swipe-right-btn")
+    #     data = {
+    #         "book_id": self.object_list[0].id,
+    #     }
+    #     response = self.client.post(reverse("book_liked"), data)
+    #
+    #
+    #     # service = Service(executable_path=ChromeDriverManager().install())
+    #     # driver = webdriver.Chrome(service=service)
+    #
+    #
+    #     # how to make this work with travis?
+    #     # driver.get('http://127.0.0.1:8000/')
+    #
+    #     # self.client.post(reverse('book_liked'), {'book_id': self.object_list[0].id}, content_type='application/json')
+    #
+    #
+    #     # button = driver.find_element(By.ID, "swipe-right-btn")
     #     # trigger the `like` button on the book
-    #     button.click()
+    #     # button.click()
     #     # make sure book is on user's bookshelf
-    #     print(models.Bookshelf.objects.all())
+    #     print(self.object_list.get(id=data["book_id"]).users_liked_list.all())
+    #     assert(response.status_code == 200)
 
 
 class TestBookStack(TestCase):
@@ -109,21 +123,28 @@ class TestBookStack(TestCase):
 
     def test_book_in_context_view_is_in_database(self):
         response = self.client.get(reverse('home'))
-        assert(response.context['book01'] in self.object_list)
-        assert(response.context['book02'] in self.object_list)
-        assert(response.context['book03'] in self.object_list)
-        assert(response.context['book04'] in self.object_list)
-        assert(response.context['book05'] in self.object_list)
-        assert(response.context['book06'] in self.object_list)
-        assert(response.context['book07'] in self.object_list)
-        assert(response.context['book08'] in self.object_list)
-        assert(response.context['book09'] in self.object_list)
-        assert(response.context['book10'] in self.object_list)
-        assert(response.context['book11'] in self.object_list)
-        assert(response.context['book12'] in self.object_list)
-        assert(response.context['book13'] in self.object_list)
-        assert(response.context['book14'] in self.object_list)
+        assert (response.context['book01'] in self.object_list)
+        assert (response.context['book02'] in self.object_list)
+        assert (response.context['book03'] in self.object_list)
+        assert (response.context['book04'] in self.object_list)
+        assert (response.context['book05'] in self.object_list)
+        assert (response.context['book06'] in self.object_list)
+        assert (response.context['book07'] in self.object_list)
+        assert (response.context['book08'] in self.object_list)
+        assert (response.context['book09'] in self.object_list)
+        assert (response.context['book10'] in self.object_list)
+        assert (response.context['book11'] in self.object_list)
+        assert (response.context['book12'] in self.object_list)
+        assert (response.context['book13'] in self.object_list)
+        assert (response.context['book14'] in self.object_list)
 
+    def test_book_like_view(self):
+        self.client.login(username="test", password="12345")
+        request = self.factory.get(reverse('book_liked'))
+        request.user = self.user
+
+        response = views.book_like(request)
+        assert response.status_code != 200
 
 
 class TestLiveServer(LiveServerTestCase):
