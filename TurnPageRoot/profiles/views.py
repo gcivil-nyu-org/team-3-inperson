@@ -10,12 +10,12 @@ from django.views import generic
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views.generic import View, UpdateView
-from profiles.forms import SignUpForm, ProfileForm
+from .forms import SignUpForm, ProfileForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-from profiles.tokens import account_activation_token
+from .tokens import account_activation_token
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
