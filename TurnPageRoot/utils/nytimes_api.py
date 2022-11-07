@@ -22,7 +22,9 @@ class nytapi:
 
     @classmethod
     def get_lists(self, date=default_date):
-        if date == self.default_date: # if default, we pull everything. Use the founding date of the NYT just for fun!
+        if (
+            date == self.default_date
+        ):  # if default, we pull everything. Use the founding date of the NYT just for fun!
             date = "1851-09-18"
         date = datetime.strptime(date, "%Y-%m-%d")
         url = self.url_base + "names.json?api-key=" + self.api_key
