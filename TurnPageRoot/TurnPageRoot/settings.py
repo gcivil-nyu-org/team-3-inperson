@@ -108,7 +108,7 @@ else:
             "ENGINE": "django.db.backends.postgresql",
             "NAME": env("DB_NAME"),
             "USER": env("DB_USER"),
-            "PASSWORD": env("DB_PASSWORD"),
+            "PASSWORD": env("PASSWORD"),
             "HOST": env("HOSTNAME"),
             "PORT": env("PORT"),
         }
@@ -170,7 +170,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = env("EMAIL")
-EMAIL_HOST_PASSWORD = env("PASSWORD")  # past the key or password app here
+EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")  # past the key or password app here
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = env("EMAIL")
