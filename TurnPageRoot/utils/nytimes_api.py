@@ -41,10 +41,9 @@ class nytapi:
                     del data[result]
             return data
 
+    # founding date of the NYT by default :)
     @classmethod
-    def get_booklist(
-        self, list, date=default_date
-    ):  # founding date of the NYT by default :)
+    def get_booklist(self, list, date=default_date):  
         if date != self.default_date:
             date = datetime.strptime(date, "%Y-%m-%d")
         url = self.url_base + date + "/" + list + ".json?api-key=" + self.api_key
@@ -55,7 +54,7 @@ class nytapi:
         else:
             return data
 
-    def make_book(b):
+    def make_book(self, b):
         book = Book(
             title=b[
                 "title"
@@ -68,3 +67,4 @@ class nytapi:
             amazon_url=convertToAff(b["amazon_product_url"]),
         )
         return book
+
