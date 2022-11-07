@@ -34,7 +34,7 @@ let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 
 
 //FUNCTIONS
 document.addEventListener('DOMContentLoaded', function () {
-
+    console.log("DOM loaded");
     function recordLikeInDatabase() {
         // e.preventDefault();
         let likeButton = this;
