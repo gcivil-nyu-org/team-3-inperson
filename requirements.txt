@@ -19,6 +19,8 @@ django-multiselectfield==0.1.12
 django-ranged-response==0.2.0
 django-sass-processor==1.2.2
 django-simple-captcha==0.5.17
+Django-Verify-Email==2.0.3
+djangorestframework==3.14.0
 docopt==0.6.2
 exceptiongroup==1.0.0rc9
 flake8==5.0.4
