@@ -12,11 +12,11 @@ class TestIsUserAuth(TestCase):
         assert self.user.is_authenticated
 
     def test_user_can_login(self):
-        login = self.client.login(username='test', password='test')
+        login = self.client.login(username="test", password="test")
         self.assertEquals(login, True)
 
     def test_user_cant_login_with_wrong_password(self):
-        login = self.client.login(username='test', password='hfhf')
+        login = self.client.login(username="test", password="hfhf")
         self.assertEquals(login, False)
 
     def test_user_cant_see_signup_page(self):
