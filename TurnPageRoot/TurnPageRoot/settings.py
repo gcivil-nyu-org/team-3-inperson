@@ -44,11 +44,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "location_field.apps.DefaultConfig",
     "captcha",
     "sass_processor",
     "bookSwiping",
     "profiles",
     "utils",
+    "multiselectfield",
 ]
 
 MIDDLEWARE = [
@@ -116,6 +118,7 @@ else:
 
 # FOR EXPERIMENTAL LOCAL DEVELOPMENT:
 
+
     # DATABASES = {
     #     "default": {
     #         "ENGINE": "django.db.backends.sqlite3",
@@ -174,7 +177,14 @@ STATICFILES_FINDERS = [
 ]
 SILENCED_SYSTEM_CHECKS = ["captcha.recaptcha_test_key_error"]
 # Django Sass
-SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
+
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "static")
+
+LOCATION_FIELD = {
+    "map.provider": "openstreetmap",  # may want to change to google but I believe that will require SSH setup first
+    "search.provider": "google",
+    "provider.google.map.type": "ROADMAP",
+}
 
 # Django Email Verification
 env = environ.Env()
