@@ -44,6 +44,17 @@ class Profile(models.Model):
             return today.year - self.birth_date.year
 
 
+class NYT_List(models.Model):
+    list_name = models.CharField(max_length=256)
+    display_name = models.CharField(max_length=256)
+    update_schedule = models.CharField(
+        max_length=8
+    )  # storing this for reference, we don't really need to use it
+
+    def __str__(self):
+        return self.display_name
+
+
 # Books
 class Book(models.Model):
     title = models.CharField(max_length=1024)
@@ -53,10 +64,6 @@ class Book(models.Model):
     # A book can have more than one author... I think we should just take the first one instead of storing a list.
     author = models.CharField(max_length=256)
     description = models.CharField(max_length=8192)
-
-    # We will be automatically generating image links from Google Books API results
-    # By pulling the book's ID and inputting here replacing <id>:
-    # https://books.google.com/books/publisher/content/images/frontcover/<id>?fife=w1333-h2000&source=gbs_api
     cover_img = models.URLField(max_length=1024)  # book cover provided as a URL.
     # date_created = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
@@ -66,6 +73,7 @@ class Book(models.Model):
     # We will store the ISBNs bcause these will be useful for fetching data from other services, especially if we end up building the library check.
     isbn10 = models.CharField(max_length=10, blank=True)
     isbn13 = models.CharField(max_length=13, blank=True)
+    nyt_lists = models.ManyToManyField(NYT_List)
 
     # language = models.ForeignKey(Language, on_delete=models.SET_NULL)
 
