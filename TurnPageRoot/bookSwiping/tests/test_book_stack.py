@@ -4,14 +4,14 @@ from .. import models
 from django.contrib.auth.models import User
 import environ
 from django.urls import reverse
+from .. import views
 
 # from selenium import webdriver
 # from selenium.webdriver.chrome.service import Service
 # from selenium.webdriver.common.by import By
 # from webdriver_manager.chrome import ChromeDriverManager
-from .. import models
-from django.contrib.auth.models import User
-from .. import views
+
+
 # from django.middleware import csrf
 
 
@@ -108,42 +108,42 @@ class TestBookStack(TestCase):
         assert random_item[4] is not None
 
     def test_books_in_context_for_HomeView(self):
-        response = self.client.get(reverse('home'))
-        self.assertIn('book01', response.context)
-        self.assertIn('book02', response.context)
-        self.assertIn('book03', response.context)
-        self.assertIn('book04', response.context)
-        self.assertIn('book05', response.context)
-        self.assertIn('book06', response.context)
-        self.assertIn('book07', response.context)
-        self.assertIn('book08', response.context)
-        self.assertIn('book09', response.context)
-        self.assertIn('book10', response.context)
-        self.assertIn('book11', response.context)
-        self.assertIn('book12', response.context)
-        self.assertIn('book13', response.context)
-        self.assertIn('book14', response.context)
+        response = self.client.get(reverse("home"))
+        self.assertIn("book01", response.context)
+        self.assertIn("book02", response.context)
+        self.assertIn("book03", response.context)
+        self.assertIn("book04", response.context)
+        self.assertIn("book05", response.context)
+        self.assertIn("book06", response.context)
+        self.assertIn("book07", response.context)
+        self.assertIn("book08", response.context)
+        self.assertIn("book09", response.context)
+        self.assertIn("book10", response.context)
+        self.assertIn("book11", response.context)
+        self.assertIn("book12", response.context)
+        self.assertIn("book13", response.context)
+        self.assertIn("book14", response.context)
 
     def test_book_in_context_view_is_in_database(self):
-        response = self.client.get(reverse('home'))
-        assert (response.context['book01'] in self.object_list)
-        assert (response.context['book02'] in self.object_list)
-        assert (response.context['book03'] in self.object_list)
-        assert (response.context['book04'] in self.object_list)
-        assert (response.context['book05'] in self.object_list)
-        assert (response.context['book06'] in self.object_list)
-        assert (response.context['book07'] in self.object_list)
-        assert (response.context['book08'] in self.object_list)
-        assert (response.context['book09'] in self.object_list)
-        assert (response.context['book10'] in self.object_list)
-        assert (response.context['book11'] in self.object_list)
-        assert (response.context['book12'] in self.object_list)
-        assert (response.context['book13'] in self.object_list)
-        assert (response.context['book14'] in self.object_list)
+        response = self.client.get(reverse("home"))
+        assert response.context["book01"] in self.object_list
+        assert response.context["book02"] in self.object_list
+        assert response.context["book03"] in self.object_list
+        assert response.context["book04"] in self.object_list
+        assert response.context["book05"] in self.object_list
+        assert response.context["book06"] in self.object_list
+        assert response.context["book07"] in self.object_list
+        assert response.context["book08"] in self.object_list
+        assert response.context["book09"] in self.object_list
+        assert response.context["book10"] in self.object_list
+        assert response.context["book11"] in self.object_list
+        assert response.context["book12"] in self.object_list
+        assert response.context["book13"] in self.object_list
+        assert response.context["book14"] in self.object_list
 
     def test_book_like_view(self):
         self.client.login(username="test", password="12345")
-        request = self.factory.get(reverse('book_liked'))
+        request = self.factory.get(reverse("book_liked"))
         request.user = self.user
 
         response = views.book_like(request)

@@ -4,7 +4,7 @@ from location_field.forms.plain import PlainLocationField
 from multiselectfield import MultiSelectField
 
 
-class Profile(models.Model):
+class UserDemographics(models.Model):
     from bookSwiping.modelChoices import (
         GENDER_CHOICES,
         ETHNICITY_CHOICES,
@@ -55,13 +55,6 @@ class NYT_List(models.Model):
         return self.display_name
 
 
-class TurnPageUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # add additional fields in here
-    # TODO am I duplicating data here?
-    liked_books = models.ManyToManyField('Book', related_name='users_liked_books', blank=True)
-
-
 # Books
 class Book(models.Model):
     title = models.CharField(max_length=1024)
@@ -85,7 +78,6 @@ class Book(models.Model):
     # language = models.ForeignKey(Language, on_delete=models.SET_NULL)
 
     # tracking user likes
-    users_liked_list = models.ManyToManyField(User, related_name='books_liked', blank=True)
 
     def __str__(self):
         return self.title + " by " + self.author
@@ -93,9 +85,6 @@ class Book(models.Model):
     # debated excluding this- what if one author wrote 2 books with the same name? But I don't know of any examples.
     class Meta:
         unique_together = ("title", "author")
-
-    def get_users_liked(self):
-        return self.users_liked_list.all()
 
 
 # Shelf, alternatively could be called UserBooks
@@ -107,9 +96,7 @@ class Bookshelf(models.Model):
     read_status = models.CharField(max_length=24, choices=READ_CHOICES, default=TRASH)
 
     def __str__(self):
-        return (
-                self.user.username + " - " + self.book.title + " - " + self.read_status
-        )
+        return self.user.username + " - " + self.book.title + " - " + self.read_status
 
     class Meta:
         unique_together = ("book", "user")

@@ -12,6 +12,6 @@ class BookAdmin(admin.ModelAdmin):
     date_hierarchy = "published_date"
 
 
-admin.site.register(Profile)
+admin.site.register(UserDemographics)
 admin.site.register(Bookshelf)
 admin.site.register(NYT_List)
