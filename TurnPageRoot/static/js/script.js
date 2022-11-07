@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     document.querySelector('#swipe-right-btn').addEventListener('click', recordLikeInDatabase);
+    document.querySelector('#bookshelf-btn').addEventListener('click', recordBookshelfInDatabase);
 
     function swipedLeftAnimation() {
         // TODO what happens when they swipe left?
@@ -87,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function swipedDownAnimation() {
-        $('.draggable').animate({top: 1000, height: 0}, 300)
+        $('.draggable').animate({top: 1000, height: 0}, 300, recordBookshelfInDatabase)
             .css('opacity', .5)
             .hide("fade", {percent: 0}, 150);
     }
