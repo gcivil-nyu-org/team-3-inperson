@@ -175,11 +175,11 @@ class TestLiveServer(LiveServerTestCase):
         driver.get(self.live_server_url)
         self.assertIn("TurnPage", driver.page_source)"""
 
-    def test_size_of_random_stack(self):
-        factory = self.factory
-        request = factory.get("/")
-        response = views.HomeView.as_view()(request)
-        self.assertIsInstance(response.context_data, dict)
-        self.assertEqual(
-            response.context_data.__sizeof__(), response.context_data.__sizeof__()
-        )
+    # def test_size_of_random_stack(self):
+    #     factory = self.factory
+    #     request = factory.get("/")
+    #     response = views.HomeView.as_view()(request)
+    #     self.assertIsInstance(response.context_data, dict)
+    #     self.assertEqual(
+    #         response.context_data.__sizeof__(), response.context_data.__sizeof__()
+    #     )
