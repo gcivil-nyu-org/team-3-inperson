@@ -10,13 +10,13 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name="book",
-            name="NYT_Lists",
-        ),
-        migrations.AddField(
-            model_name="book",
-            name="nyt_lists",
-            field=models.ManyToManyField(to="bookSwiping.nyt_list"),
-        ),
+        # migrations.RemoveField(
+        #     model_name="book",
+        #     name="NYT_Lists",
+        # ),
+        # migrations.AddField(
+        #     model_name="book",
+        #     name="nyt_lists",
+        #     field=models.ManyToManyField(to="bookSwiping.nyt_list"),
+        # ),
     ]
