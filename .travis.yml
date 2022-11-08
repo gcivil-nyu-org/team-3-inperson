@@ -23,7 +23,7 @@ before_script:
 script:
   - black ./
   - flake8 ./
-  - python coverage run manage.py test --noinput
+  - python coverage run TurnPageRoot/manage.py test --noinput
 
 after_success:
   coveralls
