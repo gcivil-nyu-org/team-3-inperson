@@ -23,9 +23,6 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
 
         context["bookshelf"] = bookshelf
 
-
-
-
         # random_items = random.sample(list(self.model.objects.all()), 10)
         saved_books = random.sample(list(self.model.objects.all()), 10)
         # context["books"] = random_items
