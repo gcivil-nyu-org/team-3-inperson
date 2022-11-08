@@ -15,9 +15,17 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        random_items = random.sample(list(self.model.objects.all()), 10)
+        user = self.request.user
+        bookshelf = []
+        bookshelf_objects = Bookshelf.objects.all().filter(user=user)
+        for book in bookshelf_objects:
+            bookshelf.append(book.book)
+
+        context["bookshelf"] = bookshelf
+
+        # random_items = random.sample(list(self.model.objects.all()), 10)
         saved_books = random.sample(list(self.model.objects.all()), 10)
-        context["books"] = random_items
+        # context["books"] = random_items
         context["saved_books"] = saved_books
         return context
 
