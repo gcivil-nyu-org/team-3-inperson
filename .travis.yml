@@ -26,11 +26,8 @@ script:
   - coverage run TurnPageRoot/manage.py test bookSwiping.tests
   - coverage run TurnPageRoot/manage.py test profiles
 
-after-script:
-  - coveralls
-
 after_success:
-  coveralls
+  - coveralls
 
 deploy:
   provider: elasticbeanstalk
