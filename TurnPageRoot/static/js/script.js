@@ -12,6 +12,37 @@ let options = {
 
 }
 
+// MODAL 
+$("#plus-btn-container").click(function () {
+    var sa = $(this).text();
+    $("#plus-btn").text("");
+    $(this).addClass("ball");
+    setTimeout(function () {
+      $("#modal").fadeIn();
+      $("#plus-btn-container").fadeOut();
+      setTimeout(function () {
+        $("#plus-btn-container").removeClass("ball");
+        $("#plus-btn").text(sa);
+      }, 500);
+    }, 700);
+  });
+  
+  $("#close").click(function () {
+    $("#modal").fadeOut();
+    $("#plus-btn").text("+")
+    $("#plus-btn-container").fadeIn();
+  });
+
+var modal = document.getElementById("modal");
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    $("#modal").fadeOut();
+    $("#plus-btn").text("+")
+    $("#plus-btn-container").fadeIn();
+  }
+}
+// END MODAL
 
 console.log("script.js loaded");
 let startingPosition;

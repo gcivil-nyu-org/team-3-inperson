@@ -107,8 +107,11 @@
                             <img src="{{ book01.cover_img }}" class="book-cover-img top-of-stack" id="book1-img"
                                  alt="">
                         </div>
-
-
+                         <div class="modal-btn-container">
+                              <div id="plus-btn-container">
+                                   <button class="expander" id="plus-btn">+</button>
+                              </div>
+                         </div>
                     </div>
 
                 </div>
@@ -126,6 +129,19 @@
                     </button>
                 </div>
             </div>
+        </div>
+
+        <div class="modal-content" id="modal">
+          <div class="modal-insides">
+               <div class="modal-book-header d-flex flex-row space-between">
+                    <h3 class="modal-book-title">{{book01.title}} by {{book01.author}}</h3>
+                    <button id="close">X</button>
+               </div>
+               <div class="modal-book-info">
+                    <div>{{book01.published_date}}</div>
+                    <div>{{book01.description}}</div>
+               </div>
+          </div>
         </div>
 
     {% endwith %}
