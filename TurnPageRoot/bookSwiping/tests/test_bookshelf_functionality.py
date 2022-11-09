@@ -9,7 +9,7 @@ class TestBookshelf(TestCase):
             username="jacob", email="jacob@…", password="top_secret"
         )
         cls.user.save()
-        cls.bookshelf_contents = Book.objects.all()
+
         for i in range(0, 15):
             Book.objects.create(
                 title=str("test_" + str(i)),
@@ -20,6 +20,7 @@ class TestBookshelf(TestCase):
                 isbn10="10",
                 isbn13="13",
             )
+        cls.bookshelf_contents = Book.objects.all()
 
     def test_call_view_deny_anonymous(self):
         response = self.client.get("/bookshelf/")
@@ -34,3 +35,13 @@ class TestBookshelf(TestCase):
         self.client.login(username="jacob", password="top_secret")
         response = self.client.get("/bookshelf/")
         self.assertEqual(response.status_code, 200)
+
+    def text_BookshelfView_context_data(self):
+        self.client.login(username="jacob", password="top_secret")
+        response = self.client.get("/bookshelf/")
+        self.assertIn(response.context["bookshelf"], self.bookshelf_contents)
+
+    def test_BookshelfView_template_used(self):
+        self.client.login(username="jacob", password="top_secret")
+        response = self.client.get("/bookshelf/")
+        self.assertTemplateUsed(response, "bookSwiping/bookshelf.html")
