@@ -11,15 +11,11 @@ class Command(BaseCommand):
         parser.add_argument(
             "--mass", action="store_true", help="load current lists"
         )
-        parser.add_argument(
-            "--list", action="store_true", help="only load one list"
-        )
-        parser.add_argument("list_name", nargs="+", type=str)
 
     def handle(self, *args, **options):
         if options["mass"]:
             nytMassLoad()
-        if options["list"]:
-            books = nytapi.get_booklist(options["list"][0])
-            loadBooklist(books)
+        else:
+            nytBookLoad()
+
 

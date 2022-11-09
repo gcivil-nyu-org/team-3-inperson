@@ -1,6 +1,6 @@
 from datetime import datetime
 from urllib.error import HTTPError
-from bookSwiping.models import Book
+from bookSwiping.models import Book, NYT_List
 from utils.amazon_affiliate import convertToAff
 import urllib.request
 import json
@@ -9,7 +9,7 @@ import os
 
 
 class nytapi:
-    url_base = "https://api.nytimes.com/svc/books/v3"
+    url_base = "https://api.nytimes.com/svc/books/v3/lists/"
     default_date = "current"
     if "RDS_DB_NAME" in os.environ:
         api_key = os.environ["NYT_API_KEY"]
@@ -41,12 +41,17 @@ class nytapi:
                     del data[result]
             return data
 
+    @classmethod
+    def get_db_lists(self):
+       return NYT_List.objects.all()
+
     # founding date of the NYT by default :)
     @classmethod
     def get_booklist(self, list, date=default_date):  
         if date != self.default_date:
             date = datetime.strptime(date, "%Y-%m-%d")
         url = self.url_base + date + "/" + list + ".json?api-key=" + self.api_key
+        print(url)
         try:
             data = self.query_nyt(url)
         except HTTPError:
@@ -54,6 +59,7 @@ class nytapi:
         else:
             return data
 
+    @classmethod
     def make_book(self, b):
         book = Book(
             title=b[

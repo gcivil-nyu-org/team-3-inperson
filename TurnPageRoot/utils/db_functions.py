@@ -1,6 +1,6 @@
-# from django.core.management.base import BaseCommand, CommandError
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
-from bookSwiping.models import Book, User, Bookshelf
+from bookSwiping.models import Book, User, Bookshelf, NYT_List
 
 
 # This can be used from the user profile. List all genres
@@ -31,31 +31,13 @@ def deleteFromShelf(book: Book, user: User):
     book.save()
 
 
-def createBookGenres(categories, save_book):
-    for category in categories:
-        err_genres = []
-        g = Genre(genre=category)
-        try:
-            g.save()
-        except IntegrityError:
-            err_genres.append(category)
-        finally:
-            bg = BookGenre(
-                book_id=save_book,
-                genre_id=Genre.objects.get(genre=category),
-            )
-            try:
-                bg.save()
-            except IntegrityError:
-                pass
-            except TypeError:  # this happens if the book exists, should also pass here
-                pass
-
-
-def loadBook(b, categories):
+def loadBook(b, list=""):
     try:
         save_book = Book.objects.get(title=b.title, author=b.author)
+        print(b.title + "already exists, updating")
     except ObjectDoesNotExist:
         save_book = b
     save_book.save()
-    createBookGenres(categories, save_book)
+    if list != "":
+        db_list = NYT_List.objects.get(list_name=list)
+        save_book.nyt_lists.add(db_list)
