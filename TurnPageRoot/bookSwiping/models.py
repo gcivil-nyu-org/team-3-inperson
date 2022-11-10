@@ -19,23 +19,24 @@ class UserDemographics(models.Model):
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    gender = models.CharField(max_length=24, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=24, choices=GENDER_CHOICES, null=True)
     location = PlainLocationField(
-        based_fields=["city"], initial="40.790278, -73.959722"
+        based_fields=["city"], initial="40.790278, -73.959722",
+        null=True
     )
     birth_date = models.DateField(default=None)
-    ethnicity = MultiSelectField(choices=ETHNICITY_CHOICES, max_length=1024)
-    religion = MultiSelectField(choices=RELIGION_CHOICES, max_length=1024)
+    ethnicity = MultiSelectField(choices=ETHNICITY_CHOICES, max_length=1024, null=True)
+    religion = MultiSelectField(choices=RELIGION_CHOICES, max_length=1024, null=True)
 
     # will help us cater books for LGBTQ+ audiences, its not a dating app so asking specifics here probably isn't useful
-    lgbtq = models.BooleanField(default=False)
+    lgbtq = models.BooleanField(default=False, null=True)
 
     genre = models.ManyToManyField(Genre)
 
     # for all this info, we should have information popups on why we're asking for it!!! VERY IMPORTANT!!!
 
     def __str__(self):
-        return self.user + "'s Profile"
+        return str(self.user) + "'s Profile"
 
     def age(self):
         import datetime
