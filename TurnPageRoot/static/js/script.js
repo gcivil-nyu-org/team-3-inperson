@@ -4,7 +4,13 @@ document.onreadystatechange = function () {
         $('#loading').fadeOut();
     }
 }
-const csrftoken = Cookies.get('csrftoken');
+let csrftoken = null;
+try {
+    csrftoken = Cookies.get('csrftoken');
+} catch (e) {
+    console.log(e);
+}
+
 let options = {
     method: 'POST',
     headers: {'X-CSRFToken': csrftoken},
@@ -35,6 +41,7 @@ let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 
 //FUNCTIONS
 document.addEventListener('DOMContentLoaded', function () {
     console.log("DOM loaded");
+
     function recordLikeInDatabase() {
         // e.preventDefault();
         let likeButton = this;
@@ -50,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
     }
 
-    // TODO add a view for this at '/addToBookshelf/'
     function recordBookshelfInDatabase() {
         let shelfButton = this;
         console.log("AJAX triggered");
@@ -63,8 +69,13 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
     }
 
+    try {
+        document.querySelector('#swipe-right-btn').addEventListener('click', recordLikeInDatabase);
+        document.querySelector('#bookshelf-btn').addEventListener('click', recordBookshelfInDatabase);
 
-    document.querySelector('#swipe-right-btn').addEventListener('click', recordLikeInDatabase);
+    } catch (e) {
+        console.log(e);
+    }
 
     function swipedLeftAnimation() {
         // TODO what happens when they swipe left?
@@ -87,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function swipedDownAnimation() {
-        $('.draggable').animate({top: 1000, height: 0}, 300)
+        $('.draggable').animate({top: 1000, height: 0}, 300, recordBookshelfInDatabase)
             .css('opacity', .5)
             .hide("fade", {percent: 0}, 150);
     }

@@ -15,11 +15,39 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        random_items = random.sample(list(self.model.objects.all()), 10)
+        user = self.request.user
+        bookshelf = []
+        bookshelf_objects = Bookshelf.objects.all().filter(user=user)
+        for book in bookshelf_objects:
+            bookshelf.append(book.book)
+
+        context["bookshelf"] = bookshelf
+
+        # random_items = random.sample(list(self.model.objects.all()), 10)
         saved_books = random.sample(list(self.model.objects.all()), 10)
-        context["books"] = random_items
+        # context["books"] = random_items
         context["saved_books"] = saved_books
         return context
+
+
+@login_required
+@require_POST
+def book_shelf(request):
+    user = request.user
+    book_id = request.POST.get('id')
+    action = request.POST.get('action')
+    if book_id or action:
+        try:
+            # DB Functions go below
+            book = Book.objects.get(id=book_id)
+            # book.users_liked_list.add(request.user)
+            addToShelf(book, user, "U")
+            # returns JSON response
+            return JsonResponse({'status': 'ok'})
+        except Book.DoesNotExist:
+            pass
+    # if fails
+    return JsonResponse({'status': 'error'})
 
 
 @login_required
