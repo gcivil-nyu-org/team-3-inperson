@@ -43,26 +43,6 @@ class nytapi:
         return json.loads(urllib.request.urlopen(url).read())["results"]
 
     @classmethod
-    def get_lists(self, date=default_date):
-        # if default, we pull everything. Use the founding date of the NYT just for fun!
-        if date == self.default_date:
-            date = "1851-09-18"
-        date = datetime.strptime(date, "%Y-%m-%d")
-        url = self.url_base + "names.json?api-key=" + self.api_key
-        try:
-            data = self.query_nyt(url)
-        except HTTPError:
-            return 1
-        else:
-            for result in range(20):  # uses a range because we need to delete the index
-                if (
-                    datetime.strptime(data[result]["newest_published_date"], "%Y-%m-%d")
-                    < date
-                ):
-                    del data[result]
-            return data
-
-    @classmethod
     def get_db_lists(self):
         return NYT_List.objects.all()
 
