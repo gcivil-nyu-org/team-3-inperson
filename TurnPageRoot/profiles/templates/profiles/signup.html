@@ -17,7 +17,7 @@
                         {% csrf_token %}
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
-                                {{ form.first_name }}
+                                {{ form.first_name|striptags }}
                             </div>
                         </div>
                         <div class="row form-row w-100 justify-content-center">
@@ -38,7 +38,7 @@
                             <div class="col-lg-7 w-75">
                                 {{ form.email }}
                                 <div class="text-danger">
-                                    {{ form.email.errors }}
+                                    {{ form.email.errors|striptags }}
                                 </div>
                             </div>
                         </div>
