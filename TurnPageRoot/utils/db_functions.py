@@ -1,6 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
 from bookSwiping.models import Book, User, Bookshelf, NYT_List
+import requests
 
 
 # This can be used from the user profile. List all genres
@@ -17,8 +18,19 @@ def addToShelf(book: Book, user: User, read: str):
         # but it can, especially while we still build functionality
         return 1
     else:
+        url_base = "https://8kwwql5a02.execute-api.us-east-1.amazonaws.com/dev/?"
+        if read == "R":
+            direc = "down"
+        elif read == "U":
+            direc = "right"
+        else:
+            direc = "left"
+        url = url_base + "bid=" + str(book.id) + "&uid=" + str(user.id) + "&direc=" + direc
+        print(url)
+        requests.get(url)
         book.likes = len(Bookshelf.objects.filter(book=book))
         book.save()
+
         return Bookshelf.objects.get(book=book, user=user)
 
 

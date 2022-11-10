@@ -6,26 +6,27 @@ from datetime import datetime
 
 class BookshelfTestCase(TestCase):
     def setUp(self):
-        title = "Test1"
+        titles = ["TestR", "TestU", "TestT"]
         username = "testuser"
         User.objects.create_user(
             username=username,
             email="testuser@example.com",
             password="not a real password",
         )
-        Book.objects.create(
-            title=title,
-            subtitle="",
-            author="Testman",
-            description="An epic tale about a man drinking coffee on a Tuesday afternoon. NY Times Worst Seller.",
-            cover_img="https://www.letseatcake.com/wp-content/uploads/2019/10/Nancy-Drew-Fake-Book-Covers-statue.jpg",
-            published_date=datetime.strptime("2020-01-01", "%Y-%m-%d"),
-            isbn10="0123456789",
-            isbn13="0123456789012",
-        )
+        for title in titles:
+            Book.objects.create(
+                title=title,
+                subtitle="",
+                author="Testman",
+                description="An epic tale about a man drinking coffee on a Tuesday afternoon. NY Times Worst Seller.",
+                cover_img="https://www.letseatcake.com/wp-content/uploads/2019/10/Nancy-Drew-Fake-Book-Covers-statue.jpg",
+                published_date=datetime.strptime("2020-01-01", "%Y-%m-%d"),
+                isbn10="0123456789",
+                isbn13="0123456789012",
+            )
 
-    def test_add_to_shelf(self):
-        book = Book.objects.get(title="Test1")
+    def test_add_like_to_shelf(self):
+        book = Book.objects.get(title="TestU")
         user = User.objects.get(username="testuser")
 
         bs = addToShelf(book, user, "U")
@@ -34,11 +35,31 @@ class BookshelfTestCase(TestCase):
         self.assertEqual(bs.user, user)
         self.assertEqual(book.likes, 1)
 
-    def test_existing_book_add_to_shelf(self):
-        book = Book.objects.get(title="Test1")
+    def test_add_read_to_shelf(self):
+        book = Book.objects.get(title="TestR")
         user = User.objects.get(username="testuser")
 
-        addToShelf(book, user, "U")
+        bs = addToShelf(book, user, "R")
+
+        self.assertEqual(bs.book, book)
+        self.assertEqual(bs.user, user)
+        self.assertEqual(book.likes, 1)
+
+    def test_add_to_trash(self):
+        book = Book.objects.get(title="TestT")
+        user = User.objects.get(username="testuser")
+
+        bs = addToShelf(book, user, "T")
+
+        self.assertEqual(bs.book, book)
+        self.assertEqual(bs.user, user)
+        self.assertEqual(book.likes, 1)
+
+    def test_existing_book_add_to_shelf(self):
+        book = Book.objects.get(title="TestR")
+        user = User.objects.get(username="testuser")
+
+        addToShelf(book, user, "R")
         dup = addToShelf(
             book, user, "R"
         )  # Using R because it shouldn't matter the read_status
@@ -49,7 +70,7 @@ class BookshelfTestCase(TestCase):
 
     def test_delete_from_shelf(self):
         user = User.objects.get(username="testuser")
-        book = Book.objects.get(title="Test1")
+        book = Book.objects.get(title="TestU")
 
         addToShelf(book, user, "U")
         deleteFromShelf(book, user)
