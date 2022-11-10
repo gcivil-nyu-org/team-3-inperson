@@ -34,7 +34,7 @@ def deleteFromShelf(book: Book, user: User):
 def loadBook(b, list=""):
     try:
         save_book = Book.objects.get(title=b.title, author=b.author)
-        print(b.title + "already exists, updating")
+        print(b.title + " already exists, updating")
     except ObjectDoesNotExist:
         save_book = b
     save_book.save()

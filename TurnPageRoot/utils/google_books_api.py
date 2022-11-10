@@ -1,8 +1,10 @@
 import unidecode
 from datetime import datetime
 
+
 class gbapi:
     target = "https://www.googleapis.com/books/v1/volumes?q="
+
     @classmethod
     def formatBook(self, book):
         badchars = ["(", ")", "'", '"', "'"]

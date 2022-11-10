@@ -56,9 +56,7 @@ INSTALLED_APPS = [
 ]
 
 # https://pypi.org/project/django-crontab/ for details
-CRONJOBS = [
-    ('15 19 * * 3', 'TurnPageRoot.cron.nyt_weekly_load')
-]
+CRONJOBS = [("15 19 * * 3", "TurnPageRoot.cron.nyt_weekly_load")]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
