@@ -29,9 +29,7 @@ class UserDemoTest(TestCase):
 
         today = datetime.date.today()
         u = User.objects.get(username="john")
-        print(u)
         ud = UserDemographics.objects.get(user=u)
-        print(ud)
         test_bday = datetime.datetime.strptime("1991-10-02", "%Y-%m-%d").date()
         if test_bday > today:
             test = today.year - test_bday.year - 1
