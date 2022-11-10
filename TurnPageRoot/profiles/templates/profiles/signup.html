@@ -7,7 +7,8 @@
         <div class="container login-container signup-container">
             <div class="row h-100">
                 <div class="col-sm-5 login-logo signup-logo p-5 d-flex flex-column justify-content-center align-items-center">
-                    <img src="../../../static/images/turnpage_logos/logo_white.png" alt="turnpage logo" class="reg-logo-word">
+                    <img src="../../../static/images/turnpage_logos/logo_white.png" alt="turnpage logo"
+                         class="reg-logo-word">
                     <div class="text-center"><i>Judge a Book By its Lover</i></div>
                 </div>
                 <div class="col-sm-7 justify-content-center align-items-center text-white login-form-container signup-form-container text-center h-100">
@@ -22,42 +23,55 @@
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
                                 {{ form.last_name }}
+                                {{ form.last_name.errors|striptags }}
                             </div>
                         </div>
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
                                 {{ form.username }}
-                                {{ form.username.errors }}
+                                <div class="text-danger">
+                                    {{ form.username.errors|striptags }}
+                                </div>
                             </div>
                         </div>
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
                                 {{ form.email }}
-                                {{ form.email.errors }}
+                                <div class="text-danger">
+                                    {{ form.email.errors }}
+                                </div>
                             </div>
                         </div>
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
                                 {{ form.password1 }}
-                                {{ form.password1.errors }}
+                                <div class="text-danger">
+                                    {{ form.password1.errors|striptags }}
+                                </div>
                             </div>
                         </div>
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
                                 {{ form.password2 }}
-                                {{ form.password2.errors }}
+                                <div class="text-danger">
+                                    {{ form.password2.errors|striptags }}
+                                </div>
                             </div>
                         </div>
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
                                 <!-- <img src="/profiles/captcha/image/c18d22b40b50791ce4ae19b0b6889378a7bdba59/" alt="captcha" class="captcha"> -->
                                 {{ form.captcha }}
-                                {{ form.captcha.errors }}
+                                <div class="text-danger">
+                                    {{ form.captcha.errors|striptags }}
+                                </div>
                             </div>
                         </div>
                         <div class="row form-row w-100 justify-content-center">
                             <div class="col-lg-7 w-75">
-                                {{ form.error }}
+                                <div class="text-danger">
+                                    {{ form.error|striptags }}
+                                </div>
                                 <input class='btn login-btn w-100 my-2' type='submit' name='Submit' value='Sign up'/>
                             </div>
                         </div>
