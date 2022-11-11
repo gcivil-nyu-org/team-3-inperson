@@ -85,6 +85,31 @@ def book_like(request):
     # if fails
     return JsonResponse({"status": "error"})
 
+@login_required
+@require_POST
+def book_dislike(request):
+    # get current user
+    user = request.user
+    # the below commented-put line is if we want to extend the user class in the future
+    # t_user = TurnPageUser.objects.get(user=user)
+
+    # get the book id from the request
+    book_id = request.POST.get("id")
+    # get action, if specified in HTML
+    action = request.POST.get("action")
+    if book_id or action:
+        try:
+            # DB Functions go below
+            book = Book.objects.get(id=book_id)
+            addToShelf(book, user, "T")
+            # returns JSON response
+            return JsonResponse({"status": "ok"})
+        except Book.DoesNotExist:
+            # if book doesn't exist, do nothing... we may want to log something to the console at some point.
+            pass
+    # if fails
+    return JsonResponse({"status": "error"})
+
 
 class HomeView(ListView):
     model = Book

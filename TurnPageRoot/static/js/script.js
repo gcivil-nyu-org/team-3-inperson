@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function recordBookshelfInDatabase() {
         let shelfButton = this;
-        console.log("AJAX triggered");
+        console.log("Like AJAX triggered");
         let formData = new FormData();
         formData.append('id', shelfButton.dataset.id);
         formData.append('action', shelfButton.dataset.action);
@@ -69,8 +69,21 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
     }
 
+    function recordDislikeInDatabase(){
+        let dislikeButton = this;
+        console.log("Dislike AJAX triggered");
+        let formData = new FormData();
+        formData.append('id', dislikeButton.dataset.id);
+        formData.append('action', dislikeButton.dataset.action);
+        options['body'] = formData;
+
+        fetch('/disliked/', options)
+            .then(response => response.json())
+    }
+
     try {
         document.querySelector('#swipe-right-btn').addEventListener('click', recordLikeInDatabase);
+        document.querySelector('#swipe-left-btn').addEventListener('click', recordDislikeInDatabase);
         document.querySelector('#bookshelf-btn').addEventListener('click', recordBookshelfInDatabase);
 
     } catch (e) {
@@ -78,8 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function swipedLeftAnimation() {
-        // TODO what happens when they swipe left?
-        $('.draggable').animate({left: -1000}, 300)
+        $('.draggable').animate({left: -1000}, 300, recordDislikeInDatabase)
             .css({'transform': 'rotate(-20deg)'})
             .css('opacity', .5)
             .hide("fade", {percent: 0}, 150)
