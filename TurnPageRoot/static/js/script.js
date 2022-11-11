@@ -229,4 +229,23 @@ document.addEventListener('DOMContentLoaded', function () {
         loginFields[1].placeholder = 'Username'
         loginFields[2].placeholder = 'Password'
     }
+
+    // ONBOARDING
+    let genresList = document.getElementsByClassName('genres-list')[0]
+    let genres = genresList.getElementsByClassName('genre')
+    let nextBtn = document.getElementsByClassName('next-btn')[0]
+    if (genres) {
+        for (let i = 0; i < genres.length; i++) {
+            genres[i].addEventListener("click", () => {
+                genres[i].classList.toggle('selected-genre')
+                let selectedGenresList = genresList.getElementsByClassName('selected-genre')
+                if (selectedGenresList.length >= 3) {
+                    nextBtn.classList.add('next-btn-active')
+                } else nextBtn.classList.remove('next-btn-active')
+            })
+        }
+    }
+
+
 });
+
