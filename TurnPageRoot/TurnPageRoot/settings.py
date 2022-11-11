@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     "bookSwiping",
     "profiles",
     "utils",
-    "multiselectfield",
     "django_extensions",
 ]
 
