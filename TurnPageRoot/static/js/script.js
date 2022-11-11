@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function recordBookshelfInDatabase() {
         let shelfButton = this;
-        console.log("Like AJAX triggered");
+        console.log("AJAX triggered");
         let formData = new FormData();
         formData.append('id', shelfButton.dataset.id);
         formData.append('action', shelfButton.dataset.action);
@@ -69,29 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
     }
 
-    function recordDislikeInDatabase(){
-        let dislikeButton = this;
-        console.log("Dislike AJAX triggered");
-        let formData = new FormData();
-        formData.append('id', dislikeButton.dataset.id);
-        formData.append('action', dislikeButton.dataset.action);
-        options['body'] = formData;
-
-        fetch('/disliked/', options)
-            .then(response => response.json())
-    }
-
-    try {
-        document.querySelector('#swipe-right-btn').addEventListener('click', recordLikeInDatabase);
-        document.querySelector('#swipe-left-btn').addEventListener('click', recordDislikeInDatabase);
-        document.querySelector('#bookshelf-btn').addEventListener('click', recordBookshelfInDatabase);
-
-    } catch (e) {
-        console.log(e);
-    }
-
     function swipedLeftAnimation() {
-        $('.draggable').animate({left: -1000}, 300, recordDislikeInDatabase)
+        // TODO what happens when they swipe left?
+        $('.draggable').animate({left: -1000}, 300)
             .css({'transform': 'rotate(-20deg)'})
             .css('opacity', .5)
             .hide("fade", {percent: 0}, 150)
@@ -243,9 +223,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ONBOARDING
-    let genresList = document.getElementsByClassName('genres-list')[0]
-    let genres = genresList.getElementsByClassName('genre')
-    let nextBtn = document.getElementsByClassName('next-btn')[0]
+    let genresList = null;
+    let genres = null;
+    let nextBtn = null;
+    try {
+         genresList = document.getElementsByClassName('genres-list')[0]
+         genres = genresList.getElementsByClassName('genre')
+         nextBtn = document.getElementsByClassName('next-btn')[0]
+    }
+    catch (e){
+        console.warn("Could not load onboarding elements.")
+    }
+
+
     if (genres) {
         for (let i = 0; i < genres.length; i++) {
             genres[i].addEventListener("click", () => {
