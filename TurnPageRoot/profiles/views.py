@@ -8,6 +8,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views import generic
 from django.contrib.auth.models import User
+from bookSwiping.models import Bookshelf
 from django.shortcuts import render, redirect
 from django.views.generic import View, UpdateView
 from .forms import SignUpForm, ProfileForm
@@ -85,6 +86,7 @@ class UserProfile(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["user"] = self.request.user
+        context["bookshelf"] = Bookshelf.objects.filter(user=self.request.user)
         return context
 
 

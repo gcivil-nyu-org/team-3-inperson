@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <h1 class="container text-center m-5">My Profile</h1>
-
+    <h1 class="container text-center m-5">Your Profile</h1>
 
     <div class="page-content container text-center" id="page-content">
         <div class="padding">
@@ -16,9 +15,9 @@
                                         <img src="{% static 'images/profile_pic.png' %}" class="img-radius"
                                              alt="User-Profile-Image">
                                     </div>
-                                    <h6 class="f-w-600">
+                                    <p class="user-name">
                                         {{ user.first_name }} {{ user.last_name }}
-                                    </h6>
+                                    </p>
                                     <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                 </div>
                             </div>
@@ -34,6 +33,7 @@
                                     <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Most Liked Genre</h6>
                                     <div class="row">
                                         <div class="col-sm text-muted">
+                                            {# TODO #}
                                             [Most liked genre here]
                                         </div>
                                     </div>

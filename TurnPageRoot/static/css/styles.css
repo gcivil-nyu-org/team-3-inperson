@@ -500,3 +500,8 @@ h6 {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+
+.user-name {
+    font-family: 'Open Sans', sans-serif;
+    /*font-size: 12px;*/
+}
