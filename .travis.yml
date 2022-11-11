@@ -23,7 +23,7 @@ before_script:
 script:
   - black ./
   - flake8 ./
-  - coverage run TurnPageRoot/manage.py test bookSwiping profiles utils
+  - coverage run TurnPageRoot/manage.py test bookSwiping profiles utils -y
 
 after_success:
   - coveralls
