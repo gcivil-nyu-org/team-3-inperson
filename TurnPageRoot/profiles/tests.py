@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from .forms import SignUpForm
 
 
 # Create your tests here.
@@ -28,3 +29,11 @@ class TestIsUserAuth(TestCase):
         self.client.login(username="test", password="test")
         response = self.client.get("login")
         assert response.status_code == 404
+
+    # def test_cant_login_with_username_that_is_taken(self):
+    #     form = SignUpForm
+    #     form.username = "test"
+    #     form.email = "test@test.com"
+    #     form.password1 = "test"
+    #     form.password2 = "test"
+    #     self.assertFormError(form, "username", "Username already exists")
