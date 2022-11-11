@@ -50,7 +50,7 @@ def book_shelf(request):
             # DB Functions go below
             book = Book.objects.get(id=book_id)
             # book.users_liked_list.add(request.user)
-            addToShelf(book, user, "U")
+            addToShelf(book, user, "R")
             # returns JSON response
             return JsonResponse({'status': 'ok'})
         except Book.DoesNotExist:
@@ -76,7 +76,7 @@ def book_like(request):
             # DB Functions go below
             book = Book.objects.get(id=book_id)
             # book.users_liked_list.add(request.user)
-            addToShelf(book, user, "R")
+            addToShelf(book, user, "U")
             # returns JSON response
             return JsonResponse({"status": "ok"})
         except Book.DoesNotExist:
