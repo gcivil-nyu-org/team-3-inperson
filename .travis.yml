@@ -27,6 +27,7 @@ script:
 
 after_success:
   - coveralls
+  - python TurnPageRoot/manage.py mysuperuser
 
 deploy:
   provider: elasticbeanstalk

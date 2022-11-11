@@ -9,6 +9,15 @@ import random
 
 
 # Create your views here.
+class OnboardingView(TemplateView):
+    template_name = "bookSwiping/onboarding.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        genre_list = ["Romance", "Sci-Fi", "Fantasy", "Mystery", "Young Adult", "Philosophy", "Religion", "History", "Biography"]
+        context["genre_list"] = genre_list
+        return context
+
 class BookshelfView(LoginRequiredMixin, TemplateView):
     model = Book
     template_name = "bookSwiping/bookshelf.html"
