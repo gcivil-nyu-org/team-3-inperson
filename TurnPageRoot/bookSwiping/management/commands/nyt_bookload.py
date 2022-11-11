@@ -11,7 +11,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if options["mass"]:
-            # nytMassLoad()
-            nytBookLoad()
+            booklists = nytapi.get_db_lists().exclude(
+                list_name="combined-print-and-e-book-fiction"
+            )
+            nytMassLoad(booklists, datetime.strptime("1700-01-01", "%Y-%m-%d").date())
         else:
             nytBookLoad()

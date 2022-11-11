@@ -50,8 +50,8 @@ class nytapi:
     @classmethod
     def get_booklist(self, list, date=default_date):
         if date != self.default_date:
-            date = datetime.strptime(date, "%Y-%m-%d")
-        url = self.url_base + date + "/" + list + ".json?api-key=" + self.api_key
+            date = datetime.strptime(date, "%Y-%m-%d").date()
+        url = self.url_base + str(date) + "/" + list + ".json?api-key=" + self.api_key
         try:
             data = self.query_nyt(url)
         except HTTPError:

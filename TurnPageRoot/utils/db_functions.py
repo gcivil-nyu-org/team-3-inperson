@@ -25,7 +25,15 @@ def addToShelf(book: Book, user: User, read: str):
             direc = "right"
         else:
             direc = "left"
-        url = url_base + "bid=" + str(book.id) + "&uid=" + str(user.id) + "&direc=" + direc
+        url = (
+            url_base
+            + "bid="
+            + str(book.id)
+            + "&uid="
+            + str(user.id)
+            + "&direc="
+            + direc
+        )
         print(url)
         requests.get(url)
         book.likes = len(Bookshelf.objects.filter(book=book))
@@ -49,6 +57,7 @@ def loadBook(b, list=""):
         print(b.title + " already exists, updating")
     except ObjectDoesNotExist:
         save_book = b
+        print(b.title + " added to the database")
     save_book.save()
     if list != "":
         db_list = NYT_List.objects.get(list_name=list)

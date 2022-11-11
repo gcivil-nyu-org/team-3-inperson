@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     "profiles",
     "utils",
     "multiselectfield",
-    "django_crontab",
     "django_extensions",
 ]
 
@@ -124,12 +123,12 @@ else:
 # FOR EXPERIMENTAL LOCAL DEVELOPMENT:
 
 
-    # DATABASES = {
-    #     "default": {
-    #         "ENGINE": "django.db.backends.sqlite3",
-    #         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    #     }
-    # }
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#     }
+# }
 
 
 # Password validation

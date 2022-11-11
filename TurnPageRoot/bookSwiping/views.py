@@ -34,8 +34,8 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
 @require_POST
 def book_shelf(request):
     user = request.user
-    book_id = request.POST.get('id')
-    action = request.POST.get('action')
+    book_id = request.POST.get("id")
+    action = request.POST.get("action")
     if book_id or action:
         try:
             # DB Functions go below
@@ -43,11 +43,11 @@ def book_shelf(request):
             # book.users_liked_list.add(request.user)
             addToShelf(book, user, "U")
             # returns JSON response
-            return JsonResponse({'status': 'ok'})
+            return JsonResponse({"status": "ok"})
         except Book.DoesNotExist:
             pass
     # if fails
-    return JsonResponse({'status': 'error'})
+    return JsonResponse({"status": "error"})
 
 
 @login_required
