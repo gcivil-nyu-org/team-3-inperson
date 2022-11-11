@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <title>TurnPage</title>
 </head>
+{% load django_browser_reload %}
 <body>
 
 <div id="loading">
@@ -120,5 +121,6 @@
 <script src="{% static 'js/jquery.flipster.min.js' %}"></script>
 <script src="{% static 'js/bookshelf.js' %}"></script>
 <script src="{% static "js/script.js" %}"></script>
+{% django_browser_reload_script %}
 </body>
 </html>
