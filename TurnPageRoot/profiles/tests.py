@@ -44,7 +44,6 @@ class TestIsUserAuth(TestCase):
             })
         self.assertFormError(form, "username", "A user with that username already exists.")
 
-
     # def test_cant_login_with_email_that_is_taken(self):
     #
     #     form = SignUpForm(
