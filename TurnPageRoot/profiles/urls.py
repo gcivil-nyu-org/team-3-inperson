@@ -42,6 +42,7 @@ urlpatterns = [
     path("password-change", ChangePasswordView.as_view(), name="password_change"),
     path("<int:pk>/", ProfileView.as_view(), name="profile"),
     path("delete_user/<int:pk>/", views.DeleteUser.as_view(), name="delete_user"),
+    path("success-email", views.UserEmailSucessView.as_view(), name="success_email"),
 ]
 urlpatterns += [
     path("captcha/", include("captcha.urls")),

@@ -18,10 +18,11 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib import messages
 from django.conf import settings
-from django.core.mail import send_mail
 from django.contrib.auth import login
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
+from django.core import mail
+from django.utils.html import strip_tags
 
 
 # Create your views here.
@@ -68,13 +69,18 @@ class SignupView(View):
             #            user.email_user(subject, message)
 
             email_from = settings.EMAIL_HOST_USER
-            send_mail(subject, message, email_from, recipient_list)
+
+            plain_message = strip_tags(message)
+
+            mail.send_mail(
+                subject, plain_message, email_from, recipient_list, html_message=message
+            )
 
             messages.success(
                 request, ("Please Confirm your email to complete registration.")
             )
 
-            return redirect("login")
+            return redirect("success_email")
 
         return render(request, self.template_name, {"form": form})
 
@@ -136,3 +142,7 @@ class DeleteUser(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):
     template_name = "profiles/delete_user.html"
     success_message = "User has been deleted"
     success_url = reverse_lazy("login")
+
+
+class UserEmailSucessView(View):
+    template_name = "profiles/success_email.html"
