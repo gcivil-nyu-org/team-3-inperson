@@ -69,9 +69,20 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
     }
 
+    function recordDislikeInDatabase() {
+        let dislikeButton = this;
+        console.log("AJAX triggered");
+        let formData = new FormData();
+        formData.append('id', dislikeButton.dataset.id);
+        formData.append('action', dislikeButton.dataset.action);
+        options['body'] = formData;
+
+        fetch('/disliked/', options)
+            .then(response => response.json())
+    }
+
     function swipedLeftAnimation() {
-        // TODO what happens when they swipe left?
-        $('.draggable').animate({left: -1000}, 300)
+        $('.draggable').animate({left: -1000}, 300, recordDislikeInDatabase)
             .css({'transform': 'rotate(-20deg)'})
             .css('opacity', .5)
             .hide("fade", {percent: 0}, 150)
