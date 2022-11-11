@@ -16,6 +16,7 @@ django-environ==0.9.0
 django-extensions==3.2.1
 django-libsass==0.9
 django-location-field==2.1.0
+django-multiselectfield==0.1.12
 django-ranged-response==0.2.0
 django-sass-processor==1.2.2
 django-simple-captcha==0.5.17

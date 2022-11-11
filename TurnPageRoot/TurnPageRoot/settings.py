@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "profiles",
     "utils",
     "django_extensions",
+    "multiselectfield",
 ]
 
 # https://pypi.org/project/django-crontab/ for details
