@@ -55,7 +55,7 @@ class SignupView(View):
             user.save()
 
             current_site = get_current_site(request)
-            subject = "Activate Your MySite Account"
+            subject = "Activate Your TurnPage Account"
             message = render_to_string(
                 "profiles/emails/account_activation_email.html",
                 {
@@ -72,9 +72,9 @@ class SignupView(View):
             send_mail(subject, message, email_from, recipient_list)
 
             messages.success(
-                request, ("Please Confirm your email to complete registration.")
+                request, "Please confirm your email to complete registration."
             )
-
+            # TODO change this to redirect to a "check your email" page
             return redirect("login")
 
         return render(request, self.template_name, {"form": form})
@@ -103,7 +103,7 @@ class ActivateAccount(View):
             user.profile.email_confirmed = True
             user.save()
             login(request, user)
-            messages.success(request, ("Your account have been confirmed."))
+            messages.success(request, "Your account have been confirmed.")
             return redirect("login")
         else:
             messages.warning(
