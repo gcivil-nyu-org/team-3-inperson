@@ -47,11 +47,16 @@ INSTALLED_APPS = [
     "location_field.apps.DefaultConfig",
     "captcha",
     "sass_processor",
+    'django_browser_reload',
     "bookSwiping",
     "profiles",
     "utils",
+    "django_extensions",
     "multiselectfield",
 ]
+
+# https://pypi.org/project/django-crontab/ for details
+CRONJOBS = [("15 19 * * 3", "TurnPageRoot.cron.nyt_weekly_load")]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -61,6 +66,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "TurnPageRoot.urls"
@@ -119,12 +125,12 @@ else:
 # FOR EXPERIMENTAL LOCAL DEVELOPMENT:
 
 
-    # DATABASES = {
-    #     "default": {
-    #         "ENGINE": "django.db.backends.sqlite3",
-    #         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    #     }
-    # }
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#     }
+# }
 
 
 # Password validation

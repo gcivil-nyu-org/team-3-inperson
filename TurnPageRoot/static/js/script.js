@@ -69,17 +69,20 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
     }
 
-    try {
-        document.querySelector('#swipe-right-btn').addEventListener('click', recordLikeInDatabase);
-        document.querySelector('#bookshelf-btn').addEventListener('click', recordBookshelfInDatabase);
+    function recordDislikeInDatabase() {
+        let dislikeButton = this;
+        console.log("AJAX triggered");
+        let formData = new FormData();
+        formData.append('id', dislikeButton.dataset.id);
+        formData.append('action', dislikeButton.dataset.action);
+        options['body'] = formData;
 
-    } catch (e) {
-        console.log(e);
+        fetch('/disliked/', options)
+            .then(response => response.json())
     }
 
     function swipedLeftAnimation() {
-        // TODO what happens when they swipe left?
-        $('.draggable').animate({left: -1000}, 300)
+        $('.draggable').animate({left: -1000}, 300, recordDislikeInDatabase)
             .css({'transform': 'rotate(-20deg)'})
             .css('opacity', .5)
             .hide("fade", {percent: 0}, 150)
@@ -229,4 +232,33 @@ document.addEventListener('DOMContentLoaded', function () {
         loginFields[1].placeholder = 'Username'
         loginFields[2].placeholder = 'Password'
     }
+
+    // ONBOARDING
+    let genresList = null;
+    let genres = null;
+    let nextBtn = null;
+    try {
+         genresList = document.getElementsByClassName('genres-list')[0]
+         genres = genresList.getElementsByClassName('genre')
+         nextBtn = document.getElementsByClassName('next-btn')[0]
+    }
+    catch (e){
+        console.warn("Could not load onboarding elements.")
+    }
+
+
+    if (genres) {
+        for (let i = 0; i < genres.length; i++) {
+            genres[i].addEventListener("click", () => {
+                genres[i].classList.toggle('selected-genre')
+                let selectedGenresList = genresList.getElementsByClassName('selected-genre')
+                if (selectedGenresList.length >= 3) {
+                    nextBtn.classList.add('next-btn-active')
+                } else nextBtn.classList.remove('next-btn-active')
+            })
+        }
+    }
+
+
 });
+

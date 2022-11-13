@@ -9,6 +9,15 @@ import random
 
 
 # Create your views here.
+class OnboardingView(TemplateView):
+    template_name = "bookSwiping/onboarding.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        genre_list = ["Romance", "Sci-Fi", "Fantasy", "Mystery", "Young Adult", "Philosophy", "Religion", "History", "Biography"]
+        context["genre_list"] = genre_list
+        return context
+
 class BookshelfView(LoginRequiredMixin, TemplateView):
     model = Book
     template_name = "bookSwiping/bookshelf.html"
@@ -34,20 +43,20 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
 @require_POST
 def book_shelf(request):
     user = request.user
-    book_id = request.POST.get('id')
-    action = request.POST.get('action')
+    book_id = request.POST.get("id")
+    action = request.POST.get("action")
     if book_id or action:
         try:
             # DB Functions go below
             book = Book.objects.get(id=book_id)
             # book.users_liked_list.add(request.user)
-            addToShelf(book, user, "U")
+            addToShelf(book, user, "R")
             # returns JSON response
-            return JsonResponse({'status': 'ok'})
+            return JsonResponse({"status": "ok"})
         except Book.DoesNotExist:
             pass
     # if fails
-    return JsonResponse({'status': 'error'})
+    return JsonResponse({"status": "error"})
 
 
 @login_required
@@ -67,7 +76,32 @@ def book_like(request):
             # DB Functions go below
             book = Book.objects.get(id=book_id)
             # book.users_liked_list.add(request.user)
-            addToShelf(book, user, "R")
+            addToShelf(book, user, "U")
+            # returns JSON response
+            return JsonResponse({"status": "ok"})
+        except Book.DoesNotExist:
+            # if book doesn't exist, do nothing... we may want to log something to the console at some point.
+            pass
+    # if fails
+    return JsonResponse({"status": "error"})
+
+@login_required
+@require_POST
+def book_dislike(request):
+    # get current user
+    user = request.user
+    # the below commented-put line is if we want to extend the user class in the future
+    # t_user = TurnPageUser.objects.get(user=user)
+
+    # get the book id from the request
+    book_id = request.POST.get("id")
+    # get action, if specified in HTML
+    action = request.POST.get("action")
+    if book_id or action:
+        try:
+            # DB Functions go below
+            book = Book.objects.get(id=book_id)
+            addToShelf(book, user, "T")
             # returns JSON response
             return JsonResponse({"status": "ok"})
         except Book.DoesNotExist:

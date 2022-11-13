@@ -18,7 +18,7 @@ body {
     height: 100vh;
     background: #fff;
     z-index: 9998;
-    transition: 2sec;
+    transition: 2 sec;
 }
 
 #loader {
@@ -34,17 +34,25 @@ body {
     border-top: 16px solid var(--primary-color-dark);
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
-  }
-  
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 .registration-body {
     background-color: var(--secondary-color);
@@ -54,6 +62,62 @@ body {
 h1 {
     font-weight: 700;
 }
+
+/* ONBOARDING */
+.genres-list {
+    list-style-type: none;
+}
+
+.genre {
+    background-color: var(--primary-color-dark);
+    background: linear-gradient(45deg, var(--primary-color-dark) 0%, var(--primary-color-vivid) 100%);
+    font-weight: 700;
+    border: 0;
+    color: white;
+}
+
+.genre:hover {
+    cursor: pointer;
+}
+
+.selected-genre {
+    background: white;
+    border: 2px solid var(--primary-color-dark);
+    color: var(--primary-color-dark);
+}
+
+.next-btn {
+    border-radius: 4px;
+    outline: none;
+    height: 50px;
+    border: 2px solid grey;
+    background: lightgrey;
+    transition: background .2s;
+    color: grey;
+    width: 80px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.next-btn:hover {
+    cursor: not-allowed;
+}
+
+.next-btn-active {
+    border: 2px solid var(--primary-color);
+    background-color: var(--secondary-color);
+    color: var(--primary-color-dark);
+    cursor: pointer;
+
+}
+
+.next-btn-active:hover {
+    background: var(--primary-color);
+    border: 2px solid var(--secondary-color);
+    cursor: pointer;
+}
+
 
 /* BOOKS */
 
@@ -300,6 +364,144 @@ footer {
     height: 350px;
 }
 
-.bookshelf-vector{
+.bookshelf-vector {
     width: 50%;
+}
+
+/* PROFILE PAGE */
+
+.user-card-full {
+    overflow: hidden;
+}
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    border: none;
+    margin-bottom: 30px;
+}
+
+.m-r-0 {
+    margin-right: 0px;
+}
+
+.m-l-0 {
+    margin-left: 0px;
+}
+
+.user-card-full .user-profile {
+    border-radius: 5px 0 0 5px;
+}
+
+.bg-c-lite-green {
+    background: -webkit-gradient(linear, left top, right top, from(var(--secondary-color)), to(var(--secondary-color-dark)));
+    background: linear-gradient(-45deg, var(--secondary-color-dark), var(--secondary-color));
+}
+
+.user-profile {
+    padding: 20px 0;
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+.m-b-25 {
+    margin-bottom: 25px;
+}
+
+.img-radius {
+    object-fit: cover;
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+
+}
+
+
+h6 {
+    font-size: 14px;
+}
+
+.card .card-block p {
+    line-height: 25px;
+}
+
+@media only screen and (min-width: 1400px) {
+    p {
+        font-size: 14px;
+    }
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.p-b-5 {
+    padding-bottom: 5px !important;
+}
+
+.card .card-block p {
+    line-height: 25px;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.text-muted {
+    color: #919aa3 !important;
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.f-w-600 {
+    font-weight: 600;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.m-t-40 {
+    margin-top: 20px;
+}
+
+.p-b-5 {
+    padding-bottom: 5px !important;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.m-t-40 {
+    margin-top: 20px;
+}
+
+.user-card-full .social-link li {
+    display: inline-block;
+}
+
+.user-card-full .social-link li a {
+    font-size: 20px;
+    margin: 0 10px 0 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.user-name {
+    font-family: 'Open Sans', sans-serif;
+    /*font-size: 12px;*/
 }

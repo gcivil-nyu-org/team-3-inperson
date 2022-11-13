@@ -1,13 +1,14 @@
+{% load static %}
 <div class="">
     <div class="banner border-bottom border-black-50 border-2 justify-content-center d-lg-none py-2" >
         <a href="{% url 'home' %}">
-    <img src="../static/images/turnpage_logos/logo_white.png" alt="turnpage logo" class="navbar-logo-img" style="z-index: 998">
+    <img src="{% static 'images/turnpage_logos/logo_white.png' %}" alt="turnpage logo" class="navbar-logo-img" style="z-index: 998">
     </a>
     </div>
     <nav class="navbar border-bottom border-black-50 border-2" style="z-index: 998">
         <div class="container align-items-center h-100">
             <div class="nav-brand nav-item nav-link text-white navbar-text d-none d-lg-block h-100 p-0">
-                <a href="{% url 'home'%}"><img src="../static/images/turnpage_logos/logo_white.png" alt="turnpage logo" class="navbar-logo-img"></a>
+                <a href="{% url 'home'%}"><img src="{% static 'images/turnpage_logos/logo_white.png' %}" alt="turnpage logo" class="navbar-logo-img"></a>
             </div>
 
             <div class="nav-item nav-link text-white navbar-text">

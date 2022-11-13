@@ -8,6 +8,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views import generic
 from django.contrib.auth.models import User
+from bookSwiping.models import Bookshelf
 from django.shortcuts import render, redirect
 from django.views.generic import View, UpdateView
 from .forms import SignUpForm, ProfileForm
@@ -54,7 +55,7 @@ class SignupView(View):
             user.save()
 
             current_site = get_current_site(request)
-            subject = "Activate Your MySite Account"
+            subject = "Activate Your TurnPage Account"
             message = render_to_string(
                 "profiles/emails/account_activation_email.html",
                 {
@@ -71,9 +72,9 @@ class SignupView(View):
             send_mail(subject, message, email_from, recipient_list)
 
             messages.success(
-                request, ("Please Confirm your email to complete registration.")
+                request, "Please confirm your email to complete registration."
             )
-
+            # TODO change this to redirect to a "check your email" page
             return redirect("login")
 
         return render(request, self.template_name, {"form": form})
@@ -85,6 +86,7 @@ class UserProfile(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["user"] = self.request.user
+        context["bookshelf"] = Bookshelf.objects.filter(user=self.request.user)
         return context
 
 
@@ -101,7 +103,7 @@ class ActivateAccount(View):
             user.profile.email_confirmed = True
             user.save()
             login(request, user)
-            messages.success(request, ("Your account have been confirmed."))
+            messages.success(request, "Your account have been confirmed.")
             return redirect("login")
         else:
             messages.warning(
