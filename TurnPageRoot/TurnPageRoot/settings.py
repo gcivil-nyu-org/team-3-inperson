@@ -205,3 +205,9 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = env("EMAIL")
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+
+HASHIDS = {
+    # SECURITY WARNING: keep the salt used in production secret!
+    'SALT': env("SALT"),
+    'MIN_LENGTH': 11
+}
