@@ -2,7 +2,7 @@ from .utils import REGEX
 from . import encode_id, decode_id
 
 
-class HashidsConverter():
+class HashidsConverter:
     regex = REGEX
 
     def to_python(self, value: str) -> int:

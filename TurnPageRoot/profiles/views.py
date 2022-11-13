@@ -19,10 +19,13 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib import messages
 from django.conf import settings
-from django.core.mail import send_mail
+
+# from django.core.mail import send_mail
 from django.contrib.auth import login
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
+from django.core import mail
+from django.utils.html import strip_tags
 
 
 # Create your views here.
@@ -69,7 +72,13 @@ class SignupView(View):
             #            user.email_user(subject, message)
 
             email_from = settings.EMAIL_HOST_USER
-            send_mail(subject, message, email_from, recipient_list)
+            # send_mail(subject, message, email_from, recipient_list)
+
+            plain_message = strip_tags(message)
+
+            mail.send_mail(
+                subject, plain_message, email_from, recipient_list, html_message=message
+            )
 
             messages.success(
                 request, "Please confirm your email to complete registration."

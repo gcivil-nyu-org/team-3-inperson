@@ -7,7 +7,7 @@ from django.urls import register_converter
 
 from profiles.ids_encoder import converters
 
-register_converter(converters.HashidsConverter, 'hashids')
+register_converter(converters.HashidsConverter, "hashids")
 
 urlpatterns = [
     path("login", views.UserLoginView.as_view(), name="login"),
