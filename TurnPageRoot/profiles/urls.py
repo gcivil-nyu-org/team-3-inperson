@@ -3,7 +3,11 @@ from . import views
 from django.contrib.auth import views as auth_views
 from profiles.views import ActivateAccount, ProfileView
 from profiles.views import ChangePasswordView
+from django.urls import register_converter
 
+from profiles.ids_encoder import converters
+
+register_converter(converters.HashidsConverter, "hashids")
 
 urlpatterns = [
     path("login", views.UserLoginView.as_view(), name="login"),
@@ -40,8 +44,8 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("password-change", ChangePasswordView.as_view(), name="password_change"),
-    path("<int:pk>/", ProfileView.as_view(), name="profile"),
-    path("delete_user/<int:pk>/", views.DeleteUser.as_view(), name="delete_user"),
+    path("<hashids:pk>/", ProfileView.as_view(), name="profile"),
+    path("delete_user/<hashids:pk>/", views.DeleteUser.as_view(), name="delete_user"),
 ]
 urlpatterns += [
     path("captcha/", include("captcha.urls")),
