@@ -22,16 +22,16 @@ class SignUpForm(UserCreationForm):
             "captcha",
         ]
 
-    def clean(self):
-        cleaned_data = super(SignUpForm, self).clean()
-        username = cleaned_data.get("username")
-        # email = cleaned_data.get("email")
-        if User.objects.filter(username=username).exists():
-            raise forms.ValidationError("Username already exists")
-        # TODO needs testing:
-        # if User.objects.filter(email=email).exists():
-        #     raise forms.ValidationError("Email already exists")
-        return cleaned_data
+    # def clean(self):
+    #     cleaned_data = super(SignUpForm, self).clean()
+    #     username = cleaned_data.get("username")
+    #     # email = cleaned_data.get("email")
+    #     if User.objects.filter(username=username).exists():
+    #         raise forms.ValidationError("Username already exists")
+    #     # TODO needs testing:
+    #     # if User.objects.filter(email=email).exists():
+    #     #     raise forms.ValidationError("Email already exists")
+    #     return cleaned_data
 
 
 # Profile Form
