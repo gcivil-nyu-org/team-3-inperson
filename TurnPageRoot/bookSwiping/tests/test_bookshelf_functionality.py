@@ -26,10 +26,10 @@ class TestBookshelf(TestCase):
             )
             book = Book.objects.get(title=str("test_" + str(i)))
             if i % 3 == 0:
-                addToShelf(book, self.user, 'U')
+                addToShelf(book, self.user, "U")
                 self.liked_books.append(book)
             elif i % 3 == 1:
-                addToShelf(book, self.user, 'R')
+                addToShelf(book, self.user, "R")
                 self.saved_books.append(book)
 
     def test_call_view_deny_anonymous(self):
