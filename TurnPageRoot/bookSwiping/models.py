@@ -3,6 +3,25 @@ from django.contrib.auth.models import User
 from location_field.forms.plain import PlainLocationField
 
 
+class NYT_List(models.Model):
+    list_name = models.CharField(max_length=256)
+    display_name = models.CharField(max_length=256)
+    update_schedule = models.CharField(
+        max_length=8
+    )  # storing this for reference, we don't really need to use it
+
+    def __str__(self):
+        return self.display_name
+
+
+class Genre(models.Model):
+    genre = models.CharField(max_length=128, unique=True)
+    nyt_list = models.ManyToManyField(NYT_List)
+
+    def __str__(self):
+        return self.genre
+
+
 class UserDemographics(models.Model):
     from bookSwiping.modelChoices import GENDER_CHOICES
 
@@ -31,24 +50,6 @@ class UserDemographics(models.Model):
             return today.year - self.birth_date.year - 1
         else:
             return today.year - self.birth_date.year
-
-
-class NYT_List(models.Model):
-    list_name = models.CharField(max_length=256)
-    display_name = models.CharField(max_length=256)
-    update_schedule = models.CharField(
-        max_length=8
-    )  # storing this for reference, we don't really need to use it
-
-    def __str__(self):
-        return self.display_name
-
-class Genre(models.Model):
-    genre = models.CharField(max_length=128, unique=True)
-    nyt_list = models.ManyToManyField(NYT_List)
-
-    def __str__(self):
-        return self.genre
 
 
 # Books
