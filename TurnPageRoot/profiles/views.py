@@ -84,7 +84,7 @@ class SignupView(View):
                 request, "Please confirm your email to complete registration."
             )
             # TODO change this to redirect to a "check your email" page
-            return redirect("login")
+            return redirect("token")
 
         return render(request, self.template_name, {"form": form})
 
