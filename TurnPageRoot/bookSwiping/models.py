@@ -16,7 +16,7 @@ class NYT_List(models.Model):
 
 class Genre(models.Model):
     genre = models.CharField(max_length=128, unique=True)
-    nyt_list = models.ManyToManyField(NYT_List)
+    nyt_list = models.ManyToManyField(NYT_List, blank=True)
 
     def __str__(self):
         return self.genre
