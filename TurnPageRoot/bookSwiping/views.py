@@ -18,6 +18,7 @@ class OnboardingView(TemplateView):
         context["genre_list"] = genre_list
         return context
 
+
 class BookshelfView(LoginRequiredMixin, TemplateView):
     model = Book
     template_name = "bookSwiping/bookshelf.html"
@@ -25,16 +26,18 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        bookshelf = []
-        bookshelf_objects = Bookshelf.objects.all().filter(user=user)
-        for book in bookshelf_objects:
-            bookshelf.append(book.book)
+        liked_books = []
+        liked_books_database = Bookshelf.objects.all().filter(user=user, read_status='U')
+        for book in liked_books_database:
+            liked_books.append(book.book)
 
-        context["bookshelf"] = bookshelf
+        context["bookshelf"] = liked_books
+        saved_books = []
+        saved_books_database = Bookshelf.objects.all().filter(user=user, read_status='R')
 
-        # random_items = random.sample(list(self.model.objects.all()), 10)
-        saved_books = random.sample(list(self.model.objects.all()), 10)
-        # context["books"] = random_items
+        for book in saved_books_database:
+            saved_books.append(book.book)
+
         context["saved_books"] = saved_books
         return context
 
@@ -84,6 +87,7 @@ def book_like(request):
             pass
     # if fails
     return JsonResponse({"status": "error"})
+
 
 @login_required
 @require_POST
