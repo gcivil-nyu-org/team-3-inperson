@@ -149,6 +149,7 @@ class DeleteUser(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):
     success_url = reverse_lazy("login")
 
 
-def token_send(request):
-    return render(request, 'profiles/token_send.html')
+class TokenSend(TemplateView):
+    template_name = "profiles/token_send.html"
+
 
