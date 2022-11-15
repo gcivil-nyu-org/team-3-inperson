@@ -1,4 +1,5 @@
 from captcha.fields import CaptchaField
+from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
@@ -51,7 +52,6 @@ class SignupView(View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-
             email = form.cleaned_data["email"]
             user = form.save(commit=False)
             user.is_active = False  # Deactivate account till it is confirmed
@@ -147,3 +147,8 @@ class DeleteUser(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):
     template_name = "profiles/delete_user.html"
     success_message = "User has been deleted"
     success_url = reverse_lazy("login")
+
+
+def token_send(request):
+    return render(request, 'profiles/token_send.html')
+
