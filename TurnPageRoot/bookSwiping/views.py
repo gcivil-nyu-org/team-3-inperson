@@ -28,13 +28,17 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         liked_books = []
-        liked_books_database = Bookshelf.objects.all().filter(user=user, read_status='U')
+        liked_books_database = Bookshelf.objects.all().filter(
+            user=user, read_status="U"
+        )
         for book in liked_books_database:
             liked_books.append(book.book)
 
         context["bookshelf"] = liked_books
         saved_books = []
-        saved_books_database = Bookshelf.objects.all().filter(user=user, read_status='R')
+        saved_books_database = Bookshelf.objects.all().filter(
+            user=user, read_status="R"
+        )
 
         for book in saved_books_database:
             saved_books.append(book.book)
