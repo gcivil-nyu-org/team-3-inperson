@@ -84,7 +84,7 @@ class SignupView(View):
                 request, "Please confirm your email to complete registration."
             )
             # TODO change this to redirect to a "check your email" page
-            return redirect("login")
+            return redirect("token")
 
         return render(request, self.template_name, {"form": form})
 
@@ -147,3 +147,7 @@ class DeleteUser(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):
     template_name = "profiles/delete_user.html"
     success_message = "User has been deleted"
     success_url = reverse_lazy("login")
+
+
+class TokenSend(TemplateView):
+    template_name = "profiles/token_send.html"
