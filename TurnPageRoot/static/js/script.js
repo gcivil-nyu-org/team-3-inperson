@@ -276,38 +276,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     });
 
-    // $('.next-btn').click(function () {
-    //     let selectedGenresList = genresList.getElementsByClassName('selected-genre')
-    //     let selectedGenres = []
-    //     for (let i = 0; i < selectedGenresList.length; i++) {
-    //         selectedGenres.push(selectedGenresList[i].innerText)
-    //     }
-    //     let nextBtn = this;
-    //     let formData = new FormData();
-    //     formData.append('genres', selectedGenres)
-    //     options['body'] = formData
-    //     console.log(selectedGenres)
-    //     try {
-    //         csrftoken = Cookies.get('csrftoken');
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    //
-    //     options = {
-    //         method: 'POST',
-    //         headers: {'X-CSRFToken': csrftoken},
-    //         mode: 'same-origin',
-    //     }
-    //
-    //     fetch('/onboarding/genreselection/',options)
-    //         .then(response => response.json())
-    //
-    //
-    //     // $.post("/onboarding/genreselection", {genres: selectedGenres}, function (data) {
-    //     //     console.log(data)
-    //     // });
-    // });
-
 
 });
 
