@@ -46,6 +46,7 @@ urlpatterns = [
     path("password-change", ChangePasswordView.as_view(), name="password_change"),
     path("<hashids:pk>/", ProfileView.as_view(), name="profile"),
     path("delete_user/<hashids:pk>/", views.DeleteUser.as_view(), name="delete_user"),
+    path("token", views.TokenSend.as_view(), name="token"),
 ]
 urlpatterns += [
     path("captcha/", include("captcha.urls")),
