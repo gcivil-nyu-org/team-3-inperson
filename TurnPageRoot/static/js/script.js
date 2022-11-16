@@ -238,14 +238,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let genres = null;
     let nextBtn = null;
     try {
-         genresList = document.getElementsByClassName('genres-list')[0]
-         genres = genresList.getElementsByClassName('genre')
-         nextBtn = document.getElementsByClassName('next-btn')[0]
-    }
-    catch (e){
+        genresList = document.getElementsByClassName('genres-list')[0]
+        genres = genresList.getElementsByClassName('genre')
+        nextBtn = document.getElementsByClassName('next-btn')[0]
+    } catch (e) {
         console.warn("Could not load onboarding elements.")
     }
-
 
     if (genres) {
         for (let i = 0; i < genres.length; i++) {
@@ -258,6 +256,57 @@ document.addEventListener('DOMContentLoaded', function () {
             })
         }
     }
+    $('.next-btn').click(function () {
+        let selectedGenresList = genresList.getElementsByClassName('selected-genre')
+        let selectedGenres = []
+        for (let i = 0; i < selectedGenresList.length; i++) {
+            selectedGenres.push(selectedGenresList[i].innerText)
+        }
+        $.ajax({
+            url: '/onboarding/genreselection',
+            type: 'POST',
+            headers: {'X-CSRFToken': csrftoken},
+            data: {"selected_genres": selectedGenres},
+            success: function (response) {
+                console.log("success: " + selectedGenres)
+            },
+            error: function (error) {
+                console.log("error: " + error)
+            }
+        })
+    });
+
+    // $('.next-btn').click(function () {
+    //     let selectedGenresList = genresList.getElementsByClassName('selected-genre')
+    //     let selectedGenres = []
+    //     for (let i = 0; i < selectedGenresList.length; i++) {
+    //         selectedGenres.push(selectedGenresList[i].innerText)
+    //     }
+    //     let nextBtn = this;
+    //     let formData = new FormData();
+    //     formData.append('genres', selectedGenres)
+    //     options['body'] = formData
+    //     console.log(selectedGenres)
+    //     try {
+    //         csrftoken = Cookies.get('csrftoken');
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+    //
+    //     options = {
+    //         method: 'POST',
+    //         headers: {'X-CSRFToken': csrftoken},
+    //         mode: 'same-origin',
+    //     }
+    //
+    //     fetch('/onboarding/genreselection/',options)
+    //         .then(response => response.json())
+    //
+    //
+    //     // $.post("/onboarding/genreselection", {genres: selectedGenres}, function (data) {
+    //     //     console.log(data)
+    //     // });
+    // });
 
 
 });

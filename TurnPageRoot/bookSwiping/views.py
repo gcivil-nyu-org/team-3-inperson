@@ -20,6 +20,17 @@ class OnboardingView(TemplateView):
         return context
 
 
+@require_POST
+def selected_genres(request):
+    user = request.user
+    genre_list = request.POST.get("selected_genres")
+    if genre_list:
+        # TODO add genres to users here
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
+
+
 class BookshelfView(LoginRequiredMixin, TemplateView):
     model = Book
     template_name = "bookSwiping/bookshelf.html"
