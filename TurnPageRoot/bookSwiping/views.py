@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView, TemplateView
+from django.core import serializers
 from .models import *
 from utils.db_functions import *
 import random
@@ -139,4 +140,5 @@ class HomeView(ListView):
         context["book13"] = random_items[12]
         context["book14"] = random_items[13]
         context["book15"] = random_items[14]
+        context["random_books"] = serializers.serialize('json', random_items)
         return context
