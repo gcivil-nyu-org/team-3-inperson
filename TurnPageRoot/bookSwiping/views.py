@@ -23,10 +23,11 @@ class OnboardingView(TemplateView):
 @require_POST
 @login_required
 def selected_genres(request):
-    user = request.user
+    # user = request.user
     genre_list = request.POST.get("selected_genres")
     if genre_list:
         # TODO add genres to users here
+
         return JsonResponse({"success": True})
     else:
         return JsonResponse({"success": False})
