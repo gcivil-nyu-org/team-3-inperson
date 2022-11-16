@@ -7,7 +7,9 @@ from .forms import SignUpForm
 class TestIsUserAuth(TestCase):
     def setUp(self):
         self.form = SignUpForm
-        self.user = User.objects.create_user(username="test", password="test", email="test@test.com")
+        self.user = User.objects.create_user(
+            username="test", password="test", email="test@test.com"
+        )
         self.request = self.client.get("signup")
 
     def test_user(self):
@@ -41,8 +43,11 @@ class TestIsUserAuth(TestCase):
                 "email": "James@Joyce.com",
                 "password1": "test",
                 "password2": "test",
-            })
-        self.assertFormError(form, "username", "A user with that username already exists.")
+            }
+        )
+        self.assertFormError(
+            form, "username", "A user with that username already exists."
+        )
 
     # def test_cant_login_with_email_that_is_taken(self):
     #
@@ -66,6 +71,7 @@ class TestIsUserAuth(TestCase):
                 "email": "test",
                 "password1": "123",
                 "password2": "123",
-            })
+            }
+        )
         self.assertFalse(form.is_valid())
         self.assertEquals(form.errors["email"], ["Enter a valid email address."])
