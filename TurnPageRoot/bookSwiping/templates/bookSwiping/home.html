@@ -3,6 +3,8 @@
 
 {% block content %}
     {% with users_like=all_books.users_liked_list.all %}
+    {{ random_books|json_script:'random_books' }}
+
         <div class="container-fluid main-content-container">
             <!-- Swiping -->
             <div class="row align-items-center justify-content-between book-swiping-container pt-5">
@@ -108,6 +110,12 @@
                                  alt="">
                         </div>
 
+                        <div class="plus-btn-container">
+                              <div class="plus-btn">
+                                   <div class="plus-btn-inner">+</div>
+                              </div>
+                        </div>
+
 
                     </div>
 
@@ -126,7 +134,10 @@
                     </button>
                 </div>
             </div>
+
         </div>
+        <div class="modal-background"></div>
+
 
     {% endwith %}
 

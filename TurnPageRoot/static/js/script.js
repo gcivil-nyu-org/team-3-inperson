@@ -2,6 +2,7 @@ document.onreadystatechange = function () {
     const state = document.readyState
     if (state === 'complete') {
         $('#loading').fadeOut();
+        console.log(document.getElementById('book1').offsetWidth)
     }
 }
 let csrftoken = null;
@@ -233,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loginFields[2].placeholder = 'Password'
     }
 
-    // ONBOARDING
+// ONBOARDING
     let genresList = null;
     let genres = null;
     let nextBtn = null;
@@ -277,6 +278,78 @@ document.addEventListener('DOMContentLoaded', function () {
         // it goes to HOME right now
         window.location.href="/"
     });
+
+// MODAL
+    const books = JSON.parse(JSON.parse(document.getElementById('random_books').textContent))
+    const bookImageElements = document.getElementsByClassName('book-cover-img');
+    let bookCol = document.getElementsByClassName('book-col')[0];
+    let plusBtn = document.getElementsByClassName('plus-btn')[0]
+    let plusBtnInner = plusBtn.getElementsByClassName('plus-btn-inner')[0]
+    let plusBtnMarginTop, plusBtnMarginLeft;
+    const setPlusBtnMargins = () => {
+        let topBookImageElement = bookImageElements[bookImageElements.length-counter]
+        let topBookImageElementHeight = topBookImageElement.clientHeight;
+        let topBookImageElementWidth = topBookImageElement.clientWidth;
+        let bookColHeight = document.getElementsByClassName('book-col')[0].clientHeight;
+        plusBtnMarginLeft = `calc(50% + ${topBookImageElementWidth/2-20}px)`
+        if ($(window).width() < 550) {
+            plusBtnMarginTop = `calc(${bookColHeight/2}px - ${topBookImageElementHeight/2-20}px - 30px)`
+        } else {
+            plusBtnMarginTop = '-20px'
+        }
+        plusBtn.style.marginLeft = plusBtnMarginLeft
+        plusBtn.style.marginTop = plusBtnMarginTop
+    }
+    setPlusBtnMargins();
+    $(window).resize(() => setPlusBtnMargins())
+
+    const modal = document.getElementsByClassName('modal-background')[0]
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            plusBtnShrink();
+        }
+      }
+
+    function plusBtnShrink() {
+        $('.modal-background').fadeOut();
+        plusBtn.style.width = '50px';
+        plusBtn.classList.toggle('modal-box')
+        plusBtn.innerHTML = '';
+        setPlusBtnMargins();
+        setTimeout(() => {
+            plusBtn.innerHTML = "<div class='plus-btn-inner' style='display: none;'>+</div>";
+            $('.plus-btn-inner').fadeIn(100);
+            plusBtn.getElementsByClassName('plus-btn-inner')[0].addEventListener('click', plusBtnGrow)
+        },500)
+    }
+    
+    function plusBtnGrow() {
+        $('.modal-background').fadeIn();
+        plusBtnInner.classList.toggle('modal-box-inner')
+        $('.plus-btn-inner').fadeOut(100);
+        plusBtn.style.marginLeft = $(window).width() < 800 ? '5%' : '15%'
+        setTimeout(() => {
+            plusBtn.style.width = $(window).width() < 800 ? '90%' : '70%'
+            plusBtn.classList.toggle('modal-box')
+            setTimeout(() => {
+                plusBtn.innerHTML = `
+                <div class='modal-book-info'>
+                    <span class='modal-close-btn'>&times;</span>
+                        <h2 class='modal-book-heading'>${books[counter-1].fields.title} by ${books[counter-1].fields.author}</h2>
+                    <div class='modal-book-description'>${books[counter-1].fields.description}</div>
+                </div>
+                `
+                let closeBtn = document.getElementsByClassName('modal-close-btn')[0]
+                closeBtn.addEventListener('click', () => {
+                    plusBtnShrink();
+                })
+            },500)
+        },100)
+    }
+    plusBtn.getElementsByClassName('plus-btn-inner')[0].addEventListener('click', plusBtnGrow)
+
+    
+
 
 
 });
