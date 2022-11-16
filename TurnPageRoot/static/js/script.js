@@ -274,6 +274,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log("error: " + error)
             }
         })
+        // TODO this is where we need to redirect them to the next page.
+        // it goes to HOME right now
+        window.location.href="/"
     });
 
 

@@ -21,6 +21,7 @@ class OnboardingView(TemplateView):
 
 
 @require_POST
+@login_required
 def selected_genres(request):
     user = request.user
     genre_list = request.POST.get("selected_genres")
