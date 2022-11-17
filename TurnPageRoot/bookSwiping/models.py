@@ -30,13 +30,15 @@ class UserDemographics(models.Model):
     location = PlainLocationField(
         based_fields=["city"], initial="40.790278, -73.959722", null=True
     )
-    birth_date = models.DateField(default=None)
+    birth_date = models.DateField(default=None, null=True)
     genre = models.ManyToManyField(Genre)
 
     def __str__(self):
         return str(self.user) + "'s Profile"
 
     def age(self):
+        if self.birth_date is None:
+            return -1
         import datetime
 
         today = datetime.date.today()

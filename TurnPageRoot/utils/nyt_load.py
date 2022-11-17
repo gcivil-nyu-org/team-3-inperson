@@ -27,20 +27,22 @@ def nytBookLoad():
 # this version uses a while loop to iterate backwards through previous booklists.
 # if we hit 4000 requests it'll start failing! need to possibly work around this
 def nytMassLoad(
-    booklists=nytapi.get_db_lists(), stop_date=date.today(), date="current"
+    booklists=nytapi.get_db_lists(),
+    date=date.today(),
+    stop_date=datetime.strptime("1700-01-01", "%Y-%m-%d").date(),
 ):
     for bl in booklists:
         while date != "STOP" and (
             date == "current" or datetime.strptime(date, "%Y-%m-%d").date() >= stop_date
         ):
-            time.sleep(6)
-            logging.info(date)
+            time.sleep(6.5)
+            logging.info(bl.list_name + " - " + date)
             print("loading list " + bl.display_name + " for date " + date)
             books = nytapi.get_booklist(bl.list_name, date)
             date = books["previous_published_date"]
             # when there is no prior date
             if date == "":
                 date = "STOP"
-            logging.info(books)
             loadBooklist(books)
-        return 0
+        date = "current"
+    return 0

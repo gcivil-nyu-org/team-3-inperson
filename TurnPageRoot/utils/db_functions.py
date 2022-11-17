@@ -1,6 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
-from bookSwiping.models import Book, User, Bookshelf, NYT_List
+from bookSwiping.models import Book, User, Bookshelf, NYT_List, UserDemographics, Genre
 import requests
 
 
@@ -62,3 +62,13 @@ def loadBook(b, list=""):
     if list != "":
         db_list = NYT_List.objects.get(list_name=list)
         save_book.nyt_lists.add(db_list)
+
+
+def addUserGenre(user: User, genre: Genre):
+    try:
+        ud = UserDemographics.objects.get(user=user)
+    except ObjectDoesNotExist:
+        ud = UserDemographics(user=user)
+        ud.save()
+    ud.genre.add(genre)
+    return
