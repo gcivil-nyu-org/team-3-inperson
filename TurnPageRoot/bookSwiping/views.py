@@ -158,5 +158,5 @@ class HomeView(ListView):
         context["book13"] = random_items[12]
         context["book14"] = random_items[13]
         context["book15"] = random_items[14]
-        context["random_books"] = serializers.serialize('json', random_items)
+        context["random_books"] = serializers.serialize("json", random_items)
         return context
