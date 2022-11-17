@@ -1,9 +1,10 @@
 import datetime
 
-def ageCalc(birth_date : datetime.date):
+
+def ageCalc(birth_date: datetime.date):
     if birth_date is None:
         return -1
-    
+
     today = datetime.date.today()
     try:
         birthday = birth_date.replace(year=today.year)

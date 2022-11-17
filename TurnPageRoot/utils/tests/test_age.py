@@ -3,6 +3,7 @@ from bookSwiping.models import User, UserDemographics
 from utils.age import ageCalc
 import datetime
 
+
 class ageTestCase(TestCase):
     def setUp(self):
         u1 = User(
@@ -24,7 +25,7 @@ class ageTestCase(TestCase):
         )
         u3.save()
         today = datetime.date.today()
-        bday = today.replace(year=today.year-20)
+        bday = today.replace(year=today.year - 20)
         leap_bday = datetime.datetime.strptime("2000-02-29", "%Y-%m-%d").date()
 
         UserDemographics.objects.create(user=u1, birth_date=bday)
@@ -38,14 +39,11 @@ class ageTestCase(TestCase):
     def test_leap_bday(self):
         ud = UserDemographics.objects.get(user=User.objects.get(username="testuser2"))
         today = datetime.date.today()
-        if today > today.replace(
-            month=2, day=28
-        ):
-            age = today.year-2000
+        if today > today.replace(month=2, day=28):
+            age = today.year - 2000
         else:
             age = today.year - 2001
         self.assertEqual(ageCalc(ud.birth_date), age)
-
 
     def test_blank_bday(self):
         ud = UserDemographics.objects.get(user=User.objects.get(username="testuser3"))

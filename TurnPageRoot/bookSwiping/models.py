@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from location_field.forms.plain import PlainLocationField
 from utils.age import ageCalc
 
+
 class NYT_List(models.Model):
     list_name = models.CharField(max_length=256)
     display_name = models.CharField(max_length=256)
