@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from location_field.forms.plain import PlainLocationField
+from utils.age import ageCalc
 
 
 class NYT_List(models.Model):
@@ -37,21 +38,7 @@ class UserDemographics(models.Model):
         return str(self.user) + "'s Profile"
 
     def age(self):
-        if self.birth_date is None:
-            return -1
-        import datetime
-
-        today = datetime.date.today()
-        try:
-            birthday = self.birth_date.replace(year=today.year)
-        except ValueError:  # Feb 29th on non-leap years
-            birthday = self.birth_date.replace(
-                year=today.year, month=self.birth_date.month + 1, day=1
-            )
-        if birthday > today:
-            return today.year - self.birth_date.year - 1
-        else:
-            return today.year - self.birth_date.year
+        return ageCalc(self.birth_date)
 
 
 # Books
