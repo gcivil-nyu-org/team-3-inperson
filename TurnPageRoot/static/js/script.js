@@ -270,13 +270,13 @@ document.addEventListener('DOMContentLoaded', function () {
             data: {"selected_genres": selectedGenres},
             success: function (response) {
                 console.log("success: " + selectedGenres)
+                window.location.href="/"
             },
             error: function (error) {
                 console.log("error: " + error)
             }
         })
-        // it goes to HOME right now
-        window.location.href="/"
+
     });
 
 // MODAL
