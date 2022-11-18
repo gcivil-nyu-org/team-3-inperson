@@ -15,19 +15,23 @@ class OnboardingView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        genre_list = [
-            "Romance",
-            "Sci-Fi",
-            "Fantasy",
-            "Mystery",
-            "Young Adult",
-            "Philosophy",
-            "Religion",
-            "History",
-            "Biography",
-        ]
+        genre_list = Genre.objects.all()
+        # genre_list = ["Romance", "Sci-Fi", "Fantasy", "Mystery", "Young Adult", "Philosophy", "Religion", "History", "Biography"]
         context["genre_list"] = genre_list
         return context
+
+
+@require_POST
+@login_required
+def selected_genres(request):
+    # user = request.user
+    genre_list = request.POST.get("selected_genres")
+    if genre_list:
+        for genre in genre_list.split(","):
+            addUserGenre(request.user, genre)
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
 
 
 class BookshelfView(LoginRequiredMixin, TemplateView):
