@@ -27,8 +27,8 @@ def selected_genres(request):
     # user = request.user
     genre_list = request.POST.get("selected_genres")
     if genre_list:
-        # TODO add genres to users here
-
+        for genre in genre_list.split(","):
+            addUserGenre(request.user, genre)
         return JsonResponse({"success": True})
     else:
         return JsonResponse({"success": False})
