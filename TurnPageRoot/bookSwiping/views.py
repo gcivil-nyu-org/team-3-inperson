@@ -58,6 +58,7 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
             saved_books.append(book.book)
 
         context["saved_books"] = saved_books
+        context["liked_books_json"] = serializers.serialize("json", liked_books)
         return context
 
 
