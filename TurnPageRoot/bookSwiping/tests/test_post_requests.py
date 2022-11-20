@@ -9,7 +9,7 @@ class TestPostMethods(TestCase):
         self.factory = RequestFactory()
         self.user = User.objects.create_user(username="test", email="jacob@…", password="12345")
         # self.bookshelf = models.Bookshelf.objects.create(user=self.user, book_id=1, read_status="U")
-        self.user_demo = models.UserDemographics(user=self.user)
+        self.ud = models.UserDemographics(user=self.user)
         for i in range(0, 15):
             models.Book.objects.create(
                 title=str("test_" + str(i)),

@@ -270,7 +270,8 @@ document.addEventListener('DOMContentLoaded', function () {
             data: {"selected_genres": selectedGenres},
             success: function (response) {
                 console.log("success: " + selectedGenres)
-                window.location.href="/"
+                // you can send them to a new place here
+                // window.location.href="/"
             },
             error: function (error) {
                 console.log("error: " + error)
