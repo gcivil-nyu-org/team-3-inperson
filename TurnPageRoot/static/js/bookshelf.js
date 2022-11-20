@@ -399,6 +399,10 @@ $('.my-bookshelf').flipster(
         fadeIn: 300,
         scrollwheel: false,
         // nav: true,
+        // TODO here's the plan: this will trigger another POST with the current cover. That will go into the views file as a context object? This will allow us to pull down the description.
+        onItemSwitch: function (currentItem, previousItem) {
+            console.log(currentItem);
+        }
     }
 );
 
