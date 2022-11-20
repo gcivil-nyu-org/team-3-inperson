@@ -129,34 +129,42 @@ def book_dislike(request):
     # if fails
     return JsonResponse({"status": "error"})
 
-
 class HomeView(ListView):
     model = Book
     context_object_name = "books"
     template_name = "bookSwiping/home.html"
 
+    all_books = model.objects.all()
+    items = list(all_books)
+
+    # creates a list of books, random for now, from the database
+    # change to how many random items you want
+    random_items = random.sample(items, 15)
+    random_items_json = serializers.serialize("json", random_items)
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        all_books = self.model.objects.all()
-        items = list(self.model.objects.all())
-        # change to how many random items you want
-        random_items = random.sample(items, 15)
-        # creates a list of books, random for now, from the database
-        context["all_books"] = all_books
-        context["book01"] = random_items[0]
-        context["book02"] = random_items[1]
-        context["book03"] = random_items[2]
-        context["book04"] = random_items[3]
-        context["book05"] = random_items[4]
-        context["book06"] = random_items[5]
-        context["book07"] = random_items[6]
-        context["book08"] = random_items[7]
-        context["book09"] = random_items[8]
-        context["book10"] = random_items[9]
-        context["book11"] = random_items[10]
-        context["book12"] = random_items[11]
-        context["book13"] = random_items[12]
-        context["book14"] = random_items[13]
-        context["book15"] = random_items[14]
-        context["random_books"] = serializers.serialize("json", random_items)
+        context["all_books"] = self.all_books
+        context["book01"] = self.random_items[0]
+        context["book02"] = self.random_items[1]
+        context["book03"] = self.random_items[2]
+        context["book04"] = self.random_items[3]
+        context["book05"] = self.random_items[4]
+        context["book06"] = self.random_items[5]
+        context["book07"] = self.random_items[6]
+        context["book08"] = self.random_items[7]
+        context["book09"] = self.random_items[8]
+        context["book10"] = self.random_items[9]
+        context["book11"] = self.random_items[10]
+        context["book12"] = self.random_items[11]
+        context["book13"] = self.random_items[12]
+        context["book14"] = self.random_items[13]
+        context["book15"] = self.random_items[14]
+        context["random_books"] = self.random_items_json
         return context
+
+class GetBooksForSwipingView(ListView):
+    template_name = "bookSwiping/get_books_for_swiping.html"
+    homeView = HomeView()
+    random_items = homeView.random_items_json
+    def get(self, request):
+        return JsonResponse(self.random_items, safe=False)

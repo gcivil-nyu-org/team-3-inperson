@@ -40,7 +40,7 @@ const downSwipeCutoffPoint = screen.height / 7;
 let bookshelfMoveValue = screen.width > 991 ? 400 : (screen.width > 600 ? 300 : 100);
 
 //FUNCTIONS
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     console.log("DOM loaded");
 
     function recordLikeInDatabase() {
@@ -261,42 +261,41 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 // MODAL
-    const books = JSON.parse(JSON.parse(document.getElementById('random_books').textContent))
-    const bookImageElements = document.getElementsByClassName('book-cover-img');
-    let bookCol = document.getElementsByClassName('book-col')[0];
-    let plusBtn = document.getElementsByClassName('plus-btn')[0]
-    let plusBtnInner = plusBtn.getElementsByClassName('plus-btn-inner')[0]
-    let plusBtnMarginTop, plusBtnMarginLeft;
-    const setPlusBtnMargins = () => {
-        let topBookImageElement = bookImageElements[bookImageElements.length-counter]
-        let topBookImageElementHeight = topBookImageElement.clientHeight;
-        let topBookImageElementWidth = topBookImageElement.clientWidth;
-        let bookColHeight = document.getElementsByClassName('book-col')[0].clientHeight;
-        plusBtnMarginLeft = `calc(50% + ${topBookImageElementWidth/2-20}px)`
-        if ($(window).width() < 550) {
-            plusBtnMarginTop = `calc(${bookColHeight/2}px - ${topBookImageElementHeight/2-20}px - 30px)`
-        } else {
-            plusBtnMarginTop = '-20px'
-        }
-        plusBtn.style.marginLeft = plusBtnMarginLeft
-        plusBtn.style.marginTop = plusBtnMarginTop
+    async function getSwipingBooks() {
+        let response = await fetch('/get_books_for_swiping/', {
+            method: 'get',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        })
+        return JSON.parse(await response.json())
     }
-    setPlusBtnMargins();
-    $(window).resize(() => setPlusBtnMargins())
+    const books = await getSwipingBooks()
 
     const modal = document.getElementsByClassName('modal-background')[0]
+    const bookImageElements = document.getElementsByClassName('book-cover-img');
+    let plusBtn = document.getElementsByClassName('plus-btn')[0]
+    let fakeBook = document.getElementsByClassName('fake-book')[0];
+    const setPlusBtnPosition = () => {
+        let topBookImageElement = bookImageElements[bookImageElements.length-counter]
+        let topBookImageElementWidth = topBookImageElement.clientWidth;
+        fakeBook.style.width = topBookImageElementWidth + 'px'
+    }
+    setPlusBtnPosition();
+    $(window).resize(() => setPlusBtnPosition())
+
     window.onclick = function(event) {
         if (event.target == modal) {
             plusBtnShrink();
         }
-      }
+    }
 
     function plusBtnShrink() {
         $('.modal-background').fadeOut();
-        plusBtn.style.width = '50px';
         plusBtn.classList.toggle('modal-box')
         plusBtn.innerHTML = '';
-        setPlusBtnMargins();
+        setPlusBtnPosition();
         setTimeout(() => {
             plusBtn.innerHTML = "<div class='plus-btn-inner' style='display: none;'>+</div>";
             $('.plus-btn-inner').fadeIn(100);
@@ -306,11 +305,8 @@ document.addEventListener('DOMContentLoaded', function () {
     
     function plusBtnGrow() {
         $('.modal-background').fadeIn();
-        plusBtnInner.classList.toggle('modal-box-inner')
         $('.plus-btn-inner').fadeOut(100);
-        plusBtn.style.marginLeft = $(window).width() < 800 ? '5%' : '15%'
         setTimeout(() => {
-            plusBtn.style.width = $(window).width() < 800 ? '90%' : '70%'
             plusBtn.classList.toggle('modal-box')
             setTimeout(() => {
                 plusBtn.innerHTML = `
@@ -328,10 +324,5 @@ document.addEventListener('DOMContentLoaded', function () {
         },100)
     }
     plusBtn.getElementsByClassName('plus-btn-inner')[0].addEventListener('click', plusBtnGrow)
-
-    
-
-
-
 });
 
