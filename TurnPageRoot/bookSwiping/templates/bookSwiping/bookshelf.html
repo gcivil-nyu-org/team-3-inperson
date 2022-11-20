@@ -86,17 +86,35 @@
         </div>
     </div>
 
+{##}
+{#    <div id="card">#}
+{#        <div class="front">#}
+{#            Book Title#}
+{#        </div>#}
+{#        <div class="back">#}
+{#            back#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="btn btn-success" type="button" id="description-1">#}
+{#        See Description#}
+{#    </div>#}
 
-    <div id="card">
-        <div class="front">
-            Book Title
-        </div>
-        <div class="back">
-            back
-        </div>
-    </div>
-    <div class="btn btn-success" type="button" id="description-1">
-        See Description
+    <hr/>
+
+    <div class="coverflow">
+        {% for book in bookshelf %}
+                <div id="card">
+            <div class="cover">
+                    <div class="front front-{{ forloop.counter0 }}">
+                        <img src="{{ book.cover_img }}" class="bookshelf-img img" alt="{{ book.title }}"/>
+
+                    </div>
+                    <div class="back back-{{ forloop.counter0 }} hidden">
+                        HELLO
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 
 
