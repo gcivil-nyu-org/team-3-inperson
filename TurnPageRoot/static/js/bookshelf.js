@@ -377,6 +377,9 @@ $('.coverflow').coverflow({
     enableScroll: false,
     enableTouch: true,
     index: 0,
+    confirm: function (event, cover, index) {
+        console.log('confirm', cover, index);
+    }
 
 
 }).click(function (event, cover, index) {

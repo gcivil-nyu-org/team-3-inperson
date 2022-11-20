@@ -86,25 +86,25 @@
         </div>
     </div>
 
-{##}
-{#    <div id="card">#}
-{#        <div class="front">#}
-{#            Book Title#}
-{#        </div>#}
-{#        <div class="back">#}
-{#            back#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="btn btn-success" type="button" id="description-1">#}
-{#        See Description#}
-{#    </div>#}
+    {##}
+    {#    <div id="card">#}
+    {#        <div class="front">#}
+    {#            Book Title#}
+    {#        </div>#}
+    {#        <div class="back">#}
+    {#            back#}
+    {#        </div>#}
+    {#    </div>#}
+    {#    <div class="btn btn-success" type="button" id="description-1">#}
+    {#        See Description#}
+    {#    </div>#}
 
     <hr/>
 
     <div class="coverflow">
         {% for book in bookshelf %}
-                <div id="card">
-            <div class="cover">
+            <div id="card">
+                <div class="cover"> <!-- "current" will be added here -->
                     <div class="front front-{{ forloop.counter0 }}">
                         <img src="{{ book.cover_img }}" class="bookshelf-img img" alt="{{ book.title }}"/>
 
