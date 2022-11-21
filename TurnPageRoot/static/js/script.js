@@ -239,14 +239,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let genres = null;
     let nextBtn = null;
     try {
-         genresList = document.getElementsByClassName('genres-list')[0]
-         genres = genresList.getElementsByClassName('genre')
-         nextBtn = document.getElementsByClassName('next-btn')[0]
-    }
-    catch (e){
+        genresList = document.getElementsByClassName('genres-list')[0]
+        genres = genresList.getElementsByClassName('genre')
+        nextBtn = document.getElementsByClassName('next-btn')[0]
+    } catch (e) {
         console.warn("Could not load onboarding elements.")
     }
-
 
     if (genres) {
         for (let i = 0; i < genres.length; i++) {
@@ -259,6 +257,27 @@ document.addEventListener('DOMContentLoaded', function () {
             })
         }
     }
+    $('.next-btn').click(function () {
+        let selectedGenresList = genresList.getElementsByClassName('selected-genre')
+        let selectedGenres = []
+        for (let i = 0; i < selectedGenresList.length; i++) {
+            selectedGenres.push(selectedGenresList[i].innerText)
+        }
+        $.ajax({
+            url: '/onboarding/genreselection',
+            type: 'POST',
+            headers: {'X-CSRFToken': csrftoken},
+            data: {"selected_genres": selectedGenres},
+            success: function (response) {
+                console.log("success: " + selectedGenres)
+                window.location.href="/"
+            },
+            error: function (error) {
+                console.log("error: " + error)
+            }
+        })
+
+    });
 
 // MODAL
     const books = JSON.parse(JSON.parse(document.getElementById('random_books').textContent))
