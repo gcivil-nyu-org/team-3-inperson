@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // send HTTP request
         fetch('/liked/', options)
             .then(response => response.json())
+            .then((data) => console.log(data))
     }
 
     function recordBookshelfInDatabase() {
@@ -65,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         formData.append('id', shelfButton.dataset.id);
         formData.append('action', shelfButton.dataset.action);
         options['body'] = formData;
+        console.log(options);
 
         fetch('/addToBookshelf/', options)
             .then(response => response.json())
@@ -270,7 +272,8 @@ document.addEventListener('DOMContentLoaded', function () {
             data: {"selected_genres": selectedGenres},
             success: function (response) {
                 console.log("success: " + selectedGenres)
-                window.location.href="/"
+                // you can send them to a new place here
+                // window.location.href="/"
             },
             error: function (error) {
                 console.log("error: " + error)
