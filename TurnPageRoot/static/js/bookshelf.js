@@ -10,8 +10,8 @@ function loadDescriptionOfFirstBook() {
         console.log(err + " - Error with loading initial description. See javascript.");
     }
 }
-
 loadDescriptionOfFirstBook();
+
 // FIRST BOOKSHELF
 $('.my-bookshelf').flipster(
     {
@@ -36,8 +36,6 @@ $('.my-bookshelf').flipster(
             else{
                 $('.description-of-book').append("<p>Sorry, no description available.</p>");
             }
-
-
         }
     }
 );
