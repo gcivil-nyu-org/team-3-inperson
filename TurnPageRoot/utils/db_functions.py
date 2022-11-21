@@ -34,7 +34,7 @@ def addToShelf(book: Book, user: User, read: str):
             + "&direc="
             + direc
         )
-        print(url)
+        # print(url)
         requests.get(url)
         book.likes = len(Bookshelf.objects.filter(book=book))
         book.save()
