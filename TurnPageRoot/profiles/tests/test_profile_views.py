@@ -2,11 +2,11 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-from .forms import SignUpForm
+from ..forms import SignUpForm
 
 
 # Create your tests here.
-class TestIsUserAuth(TestCase):
+class TestProfileViews(TestCase):
     def setUp(self):
         self.form = SignUpForm
         self.user = User.objects.create_user(
