@@ -1,94 +1,37 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
-from profiles.views import ActivateAccount, ProfileView, ChangePasswordView, TokenSend, DeleteUser, SignupView, LogoutInterfaceView, UserLoginView
+from profiles.views import ProfileView, ChangePasswordView, ActivateAccount, UserLoginView, SignupView, LogoutInterfaceView, DeleteUser, TokenSend
 
 
+class TestProfileUrls(SimpleTestCase):
+    def test_profile_url_is_resolved(self):
+        url = reverse("profile", args=[1])
+        self.assertEquals(resolve(url).func.view_class, ProfileView)
 
-class TestUrls(SimpleTestCase):
-    def test_ActivateAccount_url(self):
-        url = reverse("profiles:ActivateAccount")
-        # url = reverse('ActivateAccount')
-        resolved = resolve(url)
-        self.assertEqual(resolved.func, signup_page)
-        self.assertEqual(resolved.namespace, "profiles")
-        self.assertEqual(url, "/profiles/activate/uid/token/")
+    def test_password_change_url_is_resolved(self):
+        url = reverse("password_change")
+        self.assertEquals(resolve(url).func.view_class, ChangePasswordView)
 
-    def test_ProfileView_url(self):
-        url = reverse("profiles:ProfileView")
-        # url = reverse('ProfileView')
-        resolved = resolve(url)
-        self.assertEqual(resolved.func, login_page)
-        self.assertEqual(resolved.namespace, "profiles")
-        self.assertEqual(url, "/profiles/pk/")
+    def test_token_send_is_resolved(self):
+        url = reverse("token")
+        self.assertEquals(resolve(url).func.view_class, TokenSend)
 
-    def test_ChangePasswordView_url(self):
-        url = reverse("profiles:ChangePasswordView", args=["uid", "token"])
-        # url = reverse('ChangePasswordView', args=['uid', 'token'])
-        resolved = resolve(url)
-        self.assertEqual(resolved.func, activate_account_page)
-        self.assertEqual(resolved.namespace, "profiles")
-        self.assertEqual(url, "/profiles/password-change/")
+    def test_delete_user_is_resolved(self):
+        url = reverse('delete_user', args=[1])
+        self.assertEquals(resolve(url).func.view_class, DeleteUser)
 
-    def test_TokenSend_url(self):
-        url = reverse("profiles:TokenSend")
-        # url = reverse('TokenSend')
-        resolved = resolve(url)
-        self.assertEqual(resolved.func, logout_view)
-        self.assertEqual(resolved.namespace, "profiles")
-        self.assertEqual(url, "/profiles/token/")
+    def test_logout_url_is_resolved(self):
+        url = reverse('logout')
+        self.assertEquals(resolve(url).func.view_class, LogoutInterfaceView)
 
-    def test_DeleteUser_url(self):
-        url = reverse("profiles:DeleteUser")
-        # url = reverse('DeleteUser')
-        resolved = resolve(url)
-        self.assertEqual(resolved.func, logout_view)
-        self.assertEqual(resolved.namespace, "profiles")
-        self.assertEqual(url, "/profiles/delete_user/pk/")
+    def test_signup_url_is_resolved(self):
+        url = reverse('signup')
+        self.assertEquals(resolve(url).func.view_class, SignupView)
 
-    def test_SignupView_url(self):
-        url = reverse("profiles:SignupView")
-        # url = reverse('SignupView')
-        resolved = resolve(url)
-        self.assertEqual(resolved.func, logout_view)
-        self.assertEqual(resolved.namespace, "profiles")
-        self.assertEqual(url, "/profiles/signup/")
+    def test_login_url_is_resolved(self):
+        url = reverse('login')
+        self.assertEquals(resolve(url).func.view_class, UserLoginView)
 
-    def test_LogoutInterfaceView_url(self):
-        url = reverse("profiles:LogoutInterfaceView")
-        # url = reverse('LogoutInterfaceView')
-        resolved = resolve(url)
-        self.assertEqual(resolved.func, logout_view)
-        self.assertEqual(resolved.namespace, "profiles")
-        self.assertEqual(url, "/profiles/logout/")
-
-    def test_UserLoginView_url(self):
-        url = reverse("profiles:UserLoginView")
-        # url = reverse('UserLoginView')
-        resolved = resolve(url)
-        self.assertEqual(resolved.func, logout_view)
-        self.assertEqual(resolved.namespace, "profiles")
-        self.assertEqual(url, "/profiles/login/")
-
-
-# # from django.test import TestCase
-
-# # class UrlTest(TestCase):
-
-# #     def testHomePage(self):
-# #         response = self.client.get('/')
-# #         print(response)
-
-# #         self.assertEqual(response.status_code, 200)
-
-# from django.test import TestCase
-# from django.urls import reverse, resolve
-# from store.views import cart
-
-# class UrlTest(TestCase):
-
-# 	def testCartPage(self):
-
-#     	url = reverse('cart')
-#     	print("Resolve : ", resolve(url))
-
-#     	self.assertEquals(resolve(url).func, cart)
+    def test_activate_account_url_is_resolved(self):
+        url = reverse('activate', args=[1, 2])
+        self.assertEquals(resolve(url).func.view_class, ActivateAccount)
