@@ -2,7 +2,6 @@ from django.test import TestCase, RequestFactory, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .. import models
-import requests
 
 
 class TestPostMethods(TestCase):
