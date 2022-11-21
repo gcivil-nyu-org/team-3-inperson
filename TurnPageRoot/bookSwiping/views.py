@@ -64,6 +64,14 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
 
 @login_required
 @require_POST
+def delete_book(request):
+    # TODO how do we get the book id?
+    book_id = None
+    deleteFromShelf(book_id, request.user)
+
+
+@login_required
+@require_POST
 def book_shelf(request):
     user = request.user
     book_id = request.POST.get("id")
