@@ -1,9 +1,15 @@
 console.log('bookshelf.js loaded');
 
 function loadDescriptionOfFirstBook() {
-    let description = $('#book-on-shelf').attr("data-book-description");
-    $('.on-first-load').append('<p>' + description + '</p>');
+    try {
+
+        let description = $('#book-on-shelf:nth-child(3)').attr("data-book-description");
+        $('.on-first-load').append('<p>' + description + '</p>');
+    } catch (err) {
+        console.log(err + " - Error with loading initial description. See javascript.");
+    }
 }
+
 loadDescriptionOfFirstBook();
 
 
@@ -11,7 +17,7 @@ loadDescriptionOfFirstBook();
 $('.my-bookshelf').flipster(
     {
         style: 'coverflow',
-        start: 'center',
+        start: 2,
         pauseOnHover: true,
         touch: true,
         buttons: true,
@@ -22,8 +28,7 @@ $('.my-bookshelf').flipster(
             $(currentItem).addClass('active');
             $(previousItem).removeClass('active');
             $('.description-of-book').empty()
-            description = $('.active').attr("data-book-description");
-            console.log(description)
+            let description = $('.active').attr("data-book-description");
             $('.description-of-book').append('<p>' + description + '</p>');
 
 
