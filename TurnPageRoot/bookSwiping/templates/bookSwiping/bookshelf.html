@@ -16,8 +16,8 @@
                     <div class="my-bookshelf">
                         <ul>
                             {% for book in bookshelf %}
-                                <li>
-                                    <img src="{{ book.cover_img }}" class="bookshelf-img img" alt="{{ book.title }}"/>
+                                <li data-book-description="{{ book.description }}">
+                                    <img src="{{ book.cover_img }}" class="bookshelf-img img" data-book-description="{{ book.description }}" alt="{{ book.title }}"/>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -45,7 +45,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        BODY of modal
+                        <div class="description-of-book">
+
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
