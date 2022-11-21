@@ -67,6 +67,7 @@ class BookshelfTestCase(TestCase):
         self.assertEqual(
             dup, 1
         )  # addToShelf() returns 1 when the entry exists already.
+
     """
     def test_move_to_new_shelf(self):
         user = User.objects.get(username="testuser")
@@ -93,6 +94,7 @@ class BookshelfTestCase(TestCase):
         self.assertEqual(bs.read_status, Bookshelf.objects.filter(user=user).first().read_status)
         self.assertEqual(likes_before-1, likes_after)
     """
+
     def test_move_to_new_shelf(self):
         user = User.objects.get(username="testuser")
         book = Book.objects.get(title="TestU")

@@ -46,7 +46,7 @@ def addToShelf(book: Book, user: User, read: str):
 # This might be used on the bookshelf if the UserBook objects are not readily available.
 """
 def moveShelf(book: Book, user: User, new_status):
-    # Valid values are 
+    # Valid values are
     b = Bookshelf.objects.get(book=book, user=user)
     b.read_status = new_status
     b.save()
