@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // send HTTP request
         fetch('/liked/', options)
             .then(response => response.json())
+            .then((data) => console.log(data))
     }
 
     function recordBookshelfInDatabase() {
@@ -65,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         formData.append('id', shelfButton.dataset.id);
         formData.append('action', shelfButton.dataset.action);
         options['body'] = formData;
+        console.log(options);
 
         fetch('/addToBookshelf/', options)
             .then(response => response.json())

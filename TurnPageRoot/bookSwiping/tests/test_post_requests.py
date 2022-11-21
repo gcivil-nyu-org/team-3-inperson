@@ -2,13 +2,14 @@ from django.test import TestCase, RequestFactory, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .. import models
+import requests
+
 
 class TestPostMethods(TestCase):
     def setUp(self):
         self.client = Client()
         self.factory = RequestFactory()
         self.user = User.objects.create_user(username="test", email="jacob@…", password="12345")
-        # self.bookshelf = models.Bookshelf.objects.create(user=self.user, book_id=1, read_status="U")
         self.ud = models.UserDemographics(user=self.user)
         for i in range(0, 15):
             models.Book.objects.create(
@@ -20,8 +21,10 @@ class TestPostMethods(TestCase):
                 isbn10="10",
                 isbn13="13",
             )
+
+        book = models.Book.objects.get(title="test_2")
+        models.Bookshelf.objects.create(user=self.user, book=book, read_status="U")
         self.all_books = models.Book.objects.all()
-        # print(self.all_books)
 
     def test_book_like_status_code(self):
         self.client.login(username="test", password="12345")
