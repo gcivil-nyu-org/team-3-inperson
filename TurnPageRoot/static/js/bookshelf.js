@@ -10,6 +10,7 @@ function loadDescriptionOfFirstBook() {
         console.log(err + " - Error with loading initial description. See javascript.");
     }
 }
+
 loadDescriptionOfFirstBook();
 
 // FIRST BOOKSHELF
@@ -28,12 +29,11 @@ $('.my-bookshelf').flipster(
             $(previousItem).removeClass('active');
             $('.description-of-book').empty()
             let description = $('.active').attr("data-book-description");
-            if(description !== undefined || description !== "" || description === null || description.empty()) {
+            if (description !== undefined || description !== "" || description === null || description.empty()) {
                 //TODO - Add a default description if the book has no description.
                 $('.description-of-book').append('<p>' + description + '</p>');
                 console.log(description);
-            }
-            else{
+            } else {
                 $('.description-of-book').append("<p>Sorry, no description available.</p>");
             }
         }
