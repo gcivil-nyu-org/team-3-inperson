@@ -13,8 +13,8 @@ function loadDescriptionOfFirstBook() {
 
 loadDescriptionOfFirstBook();
 
-let currentLikedBook = null; // TODO make this work with default book
-let currentSavedBook = null; // TODO make this work with default book
+let currentLikedBook = $('#book-on-shelf:nth-child(3)');
+let currentSavedBook = $('#book-on-saved-shelf:nth-child(3)');
 let previousBook = null;
 // FIRST BOOKSHELF
 $('.my-bookshelf').flipster(
