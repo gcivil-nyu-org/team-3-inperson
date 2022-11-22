@@ -1,5 +1,3 @@
-console.log('bookshelf.js loaded');
-
 function loadDescriptionOfFirstBook() {
     try {
         let description = $('#book-on-shelf:nth-child(3)').attr("data-book-description");
@@ -91,6 +89,7 @@ $('#move-to-saved-books-btn').click(function () {
             'book_id': bookId
         },
         success: function (data) {
+            location.reload()
             console.log(data + " Successful move to saved books.");
         },
         error: function (data) {
@@ -109,6 +108,7 @@ $('#move-to-liked-books-btn').click(function () {
             'book_id': bookId
         },
         success: function (data) {
+            location.reload()
             console.log(data + " Successful move to liked books.");
         },
         error: function (data) {
@@ -128,6 +128,7 @@ $('.delete-from-shelf-btn').click(function () {
             'book_id': bookId
         },
         success: function (data) {
+            location.reload()
             console.log(data + " Successful deletion.");
         },
         error: function (data) {
@@ -148,6 +149,7 @@ $('.delete-from-saved-books').click(function () {
         },
         success: function (data) {
             console.log(data + " Successful deletion.");
+            location.reload()
         },
         error: function (data) {
             console.log(data + " Error with deletion.");
