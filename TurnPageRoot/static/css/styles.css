@@ -12,6 +12,11 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+.no-scroll-body {
+    height: auto;
+    overflow: hidden;
+}
+
 #loading {
     position: fixed;
     width: 100%;
@@ -407,9 +412,12 @@ h1 {
 
 .modal-box {
     width: 50vw;
+    font-weight: 400;
     margin-left: calc(-25vw + 50%);
+    /* height: auto; */
+    /* max-height: 110%; */
     height: 110%;
-    border-radius: 0;
+    border-radius: 5px;
     overflow-y: auto;
     padding: 10px;
     cursor: default;
@@ -437,12 +445,29 @@ h1 {
     background-color: rgba(100,100,100,0.8);
     z-index: 888;
     overflow: auto;
+    
 }
 
-.modal-book-description {
-    font-size: 18px;
-    font-weight: 400;
+.modal-book-info {
     text-align: left;
+}
+
+.modal-book-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.modal-book-author {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.modal-book-line-break {
+    border: 2px solid var(--primary-color);
+}
+
+.modal-book-summary {
+    font-size: 18px;
 }
 
 .modal-close-btn {

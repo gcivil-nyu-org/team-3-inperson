@@ -3,6 +3,7 @@
 
 {% block content %}
     {% with users_like=all_books.users_liked_list.all %}
+    {{ random_books|json_script:'random_books' }}
 
         <div class="container-fluid main-content-container">
             <!-- Swiping -->

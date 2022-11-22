@@ -261,17 +261,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
 // MODAL
-    async function getSwipingBooks() {
-        let response = await fetch('/get_books_for_swiping/', {
-            method: 'get',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'Content-Type': 'application/json'
-            }
-        })
-        return JSON.parse(await response.json())
-    }
-    const books = await getSwipingBooks()
+    const books = JSON.parse(JSON.parse(document.getElementById('random_books').textContent))
 
     const modal = document.getElementsByClassName('modal-background')[0]
     const bookImageElements = document.getElementsByClassName('book-cover-img');
@@ -293,6 +283,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     function plusBtnShrink() {
         $('.modal-background').fadeOut();
+        document.getElementsByTagName('body')[0].classList.toggle('no-scroll-body')
         plusBtn.classList.toggle('modal-box')
         plusBtn.innerHTML = '';
         setPlusBtnPosition();
@@ -306,14 +297,23 @@ document.addEventListener('DOMContentLoaded', async function () {
     function plusBtnGrow() {
         $('.modal-background').fadeIn();
         $('.plus-btn-inner').fadeOut(100);
+        document.getElementsByTagName('body')[0].classList.toggle('no-scroll-body')
         setTimeout(() => {
             plusBtn.classList.toggle('modal-box')
             setTimeout(() => {
                 plusBtn.innerHTML = `
                 <div class='modal-book-info'>
                     <span class='modal-close-btn'>&times;</span>
-                        <h2 class='modal-book-heading'>${books[counter-1].fields.title} by ${books[counter-1].fields.author}</h2>
-                    <div class='modal-book-description'>${books[counter-1].fields.description}</div>
+                    <div class='modal-book-title'>
+                        ${books[counter-1].fields.title}
+                    </div>
+                    <div class='modal-book-author'>
+                        ${books[counter-1].fields.author}
+                    </div>
+                    <hr class='modal-book-line-break'>
+                    <div class='modal-book-summary'>
+                        ${books[counter-1].fields.description}
+                    </div>
                 </div>
                 `
                 let closeBtn = document.getElementsByClassName('modal-close-btn')[0]

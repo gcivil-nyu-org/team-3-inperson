@@ -9,5 +9,4 @@ urlpatterns = [
     path("disliked/", views.book_dislike, name="book_disliked"),
     path("addToBookshelf/", views.book_shelf, name="addToBookshelf"),
     path("onboarding/", views.OnboardingView.as_view(), name="onboarding"),
-    path("get_books_for_swiping/", views.GetBooksForSwipingView.as_view(), name="getBooksForSwiping")
 ]
