@@ -33,6 +33,30 @@ class TestPostMethods(TestCase):
         response = self.client.post(reverse("book_liked"), data)
         self.assertEqual(response.status_code, 200)
 
+    def test_move_to_liked_books(self):
+        self.client.login(username="test", password="12345")
+        data = {
+            "book_id": 2,
+        }
+        response = self.client.post(reverse("moveToLikedBooks"), data)
+        self.assertEqual(response.status_code, 200)
+
+    def test_move_to_saved_books(self):
+        self.client.login(username="test", password="12345")
+        data = {
+            "book_id": 2,
+        }
+        response = self.client.post(reverse("moveToSavedBooks"), data)
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete_from_bookshelf(self):
+        self.client.login(username="test", password="12345")
+        data = {
+            "id": 2,
+        }
+        response = self.client.post(reverse("deleteFromBookshelf"), data)
+        self.assertEqual(response.status_code, 200)
+
     def test_book_dislike_status_code(self):
         self.client.login(username="test", password="12345")
         data = {
