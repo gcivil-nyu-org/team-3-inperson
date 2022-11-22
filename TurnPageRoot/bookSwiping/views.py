@@ -133,7 +133,6 @@ def book_dislike(request):
     # if fails
     return JsonResponse({"status": "error"})
 
-
 class HomeView(ListView):
     model = Book
     context_object_name = "books"
