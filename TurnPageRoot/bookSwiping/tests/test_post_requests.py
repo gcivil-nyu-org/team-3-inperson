@@ -8,7 +8,9 @@ class TestPostMethods(TestCase):
     def setUp(self):
         self.client = Client()
         self.factory = RequestFactory()
-        self.user = User.objects.create_user(username="test", email="jacob@…", password="12345")
+        self.user = User.objects.create_user(
+            username="test", email="jacob@…", password="12345"
+        )
         self.ud = models.UserDemographics(user=self.user)
         for i in range(0, 15):
             models.Book.objects.create(

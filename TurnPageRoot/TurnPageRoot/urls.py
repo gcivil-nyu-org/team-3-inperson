@@ -22,3 +22,8 @@ urlpatterns = [
     path("profiles/", include("profiles.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
 ]
+
+# url(r'^login/$', auth_views.login, name='login'),
+#    url(r'^logout/$', auth_views.logout, name='logout'),
+#    path("oauth/", include('social_django.urls', namespace='social')),  # <--
+#    url("admin/", admin.site.urls),
