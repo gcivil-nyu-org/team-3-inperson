@@ -1,10 +1,12 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from .forms import SignUpForm
+from django.urls import reverse
+
+from ..forms import SignUpForm
 
 
 # Create your tests here.
-class TestIsUserAuth(TestCase):
+class TestProfileViews(TestCase):
     def setUp(self):
         self.form = SignUpForm
         self.user = User.objects.create_user(
@@ -75,3 +77,17 @@ class TestIsUserAuth(TestCase):
         )
         self.assertFalse(form.is_valid())
         self.assertEquals(form.errors["email"], ["Enter a valid email address."])
+
+    def test_user_profile_view(self):
+        self.client.login(username="test", password="test")
+        response = self.client.get(reverse("user_profile"))
+        self.assertTemplateUsed(response, "profiles/user_profile.html")
+
+    def test_user_profile_context_data(self):
+        self.client.login(username="test", password="test")
+        response = self.client.get(reverse("user_profile"))
+        self.assertEquals(response.context["user"], self.user)
+
+    def test_signup_view(self):
+        response = self.client.get(reverse("signup"))
+        self.assertTemplateUsed(response, "profiles/signup.html")
