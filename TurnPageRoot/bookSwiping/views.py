@@ -77,15 +77,25 @@ def move_to_saved_books(request):
 @login_required
 @require_POST
 def move_to_liked_books(request):
-    book_id = None
-    moveShelf(book_id, request.user, "U")
+    book_id = request.POST.get("book_id")
+    if book_id:
+        book = Book.objects.get(id=book_id)
+        moveShelf(book, request.user, "U")
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
 
 
 @login_required
 @require_POST
 def delete_book(request):
-    book_id = None
-    moveShelf(book_id, request.user, "T")
+    book_id = request.POST.get("book_id")
+    if book_id:
+        book = Book.objects.get(id=book_id)
+        moveShelf(book, request.user, "T")
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
 
 
 @login_required

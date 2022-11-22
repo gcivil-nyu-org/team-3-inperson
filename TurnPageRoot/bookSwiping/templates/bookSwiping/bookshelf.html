@@ -55,7 +55,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger">Delete From Shelf</button>
+                        <button type="button" class="btn btn-danger delete-from-shelf-btn" >Delete From Shelf</button>
                         <button type="button" class="btn btn-primary" id="move-to-saved-books-btn">Move to Saved Books</button>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     <div class="saved-bookshelf">
                         <ul>
                             {% for book in saved_books %}
-                                <li id="book-on-saved-shelf" data-book-description="{{ book.description }}"
+                                <li id="book-on-saved-shelf" data-book-id="{{ book.id }}" data-book-description="{{ book.description }}"
                                     data-book-title="{{ book.title }}">
                                     <img src="{{ book.cover_img }}" class="bookshelf-img img" alt="{{ book.title }}"/>
                                 </li>
@@ -115,8 +115,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger">Delete From Shelf</button>
-                        <button type="button" class="btn btn-primary">Move to Liked Books</button>
+                        <button type="button" class="btn btn-danger delete-from-saved-books">Delete From Shelf</button>
+                        <button type="button" class="btn btn-primary" id="move-to-liked-books-btn">Move to Liked Books</button>
                     </div>
                 </div>
             </div>

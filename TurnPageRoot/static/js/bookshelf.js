@@ -13,13 +13,14 @@ function loadDescriptionOfFirstBook() {
 
 loadDescriptionOfFirstBook();
 
-let currentBook = null; // TODO make this work with default book
+let currentLikedBook = null; // TODO make this work with default book
+let currentSavedBook = null; // TODO make this work with default book
 let previousBook = null;
 // FIRST BOOKSHELF
 $('.my-bookshelf').flipster(
     {
         style: 'coverflow',
-        start: 2,
+        start: 2, //TODO maybe change this to start with the first one so it works regardless of how many books are on the shelf?
         pauseOnHover: true,
         touch: true,
         buttons: true,
@@ -27,7 +28,7 @@ $('.my-bookshelf').flipster(
         scrollwheel: false,
         // nav: 'after',
         onItemSwitch: function (currentItem, previousItem) {
-            currentBook = currentItem;
+            currentLikedBook = currentItem;
             previousBook = previousItem;
             $(currentItem).addClass('active');
             $(previousItem).removeClass('active');
@@ -54,6 +55,8 @@ $('.saved-bookshelf').flipster(
         scrollwheel: false,
         // nav: 'after',
         onItemSwitch: function (currentItem, previousItem) {
+            currentSavedBook = currentItem;
+
             $(currentItem).addClass('active');
             $(previousItem).removeClass('active');
             $('.description-of-saved-book').empty()
@@ -79,7 +82,7 @@ try {
 
 
 $('#move-to-saved-books-btn').click(function () {
-    let bookId = $(currentBook).attr("data-book-id");
+    let bookId = $(currentLikedBook).attr("data-book-id");
     $.ajax({
         url: moveToSavedBooksUrl,
         type: 'POST',
@@ -93,5 +96,61 @@ $('#move-to-saved-books-btn').click(function () {
         error: function (data) {
             console.log(data + " Error with moving book to saved books.");
         }
-    })
+    });
+});
+
+$('#move-to-liked-books-btn').click(function () {
+    let bookId = $(currentSavedBook).attr("data-book-id");
+    $.ajax({
+        url: moveToLikedBooksUrl,
+        type: 'POST',
+        headers: {'X-CSRFToken': csrftoken},
+        data: {
+            'book_id': bookId
+        },
+        success: function (data) {
+            console.log(data + " Successful move to liked books.");
+        },
+        error: function (data) {
+            console.log(data + " Error with moving book to liked books.");
+        }
+    });
+});
+
+$('.delete-from-shelf-btn').click(function () {
+    let bookId = $(currentLikedBook).attr("data-book-id");
+    console.log(bookId);
+    $.ajax({
+        url: deleteBookUrl,
+        type: 'POST',
+        headers: {'X-CSRFToken': csrftoken},
+        data: {
+            'book_id': bookId
+        },
+        success: function (data) {
+            console.log(data + " Successful deletion.");
+        },
+        error: function (data) {
+            console.log(data + " Error with deletion.");
+        }
+    });
+});
+
+$('.delete-from-saved-books').click(function () {
+    let bookId = $(currentSavedBook).attr("data-book-id");
+    console.log(bookId);
+    $.ajax({
+        url: deleteBookUrl,
+        type: 'POST',
+        headers: {'X-CSRFToken': csrftoken},
+        data: {
+            'book_id': bookId
+        },
+        success: function (data) {
+            console.log(data + " Successful deletion.");
+        },
+        error: function (data) {
+            console.log(data + " Error with deletion.");
+        }
+    });
 });
