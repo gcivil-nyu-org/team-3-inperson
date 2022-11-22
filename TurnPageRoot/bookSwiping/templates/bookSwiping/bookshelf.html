@@ -16,7 +16,7 @@
                     <div class="my-bookshelf">
                         <ul>
                             {% for book in bookshelf %}
-                                <li id="book-on-shelf" data-book-description="{{ book.description }}"
+                                <li id="book-on-shelf" data-book-id="{{ book.id }}" data-book-description="{{ book.description }}"
                                     data-book-title="{{ book.title }}" data-book-genre="{{ book.nyt_lists }}">
                                     <img src="{{ book.cover_img }}" class="bookshelf-img img" alt="{{ book.title }}"/>
                                 </li>
@@ -56,7 +56,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-danger">Delete From Shelf</button>
-                        <button type="button" class="btn btn-primary">Move to Saved Books</button>
+                        <button type="button" class="btn btn-primary" id="move-to-saved-books-btn">Move to Saved Books</button>
                     </div>
                 </div>
             </div>

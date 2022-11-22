@@ -13,6 +13,8 @@ function loadDescriptionOfFirstBook() {
 
 loadDescriptionOfFirstBook();
 
+let currentBook = null; // TODO make this work with default book
+let previousBook = null;
 // FIRST BOOKSHELF
 $('.my-bookshelf').flipster(
     {
@@ -25,6 +27,8 @@ $('.my-bookshelf').flipster(
         scrollwheel: false,
         // nav: 'after',
         onItemSwitch: function (currentItem, previousItem) {
+            currentBook = currentItem;
+            previousBook = previousItem;
             $(currentItem).addClass('active');
             $(previousItem).removeClass('active');
             $('.description-of-book').empty()
@@ -32,7 +36,6 @@ $('.my-bookshelf').flipster(
             if (description !== undefined || description !== "" || description === null || description.empty()) {
                 //TODO - Add a default description if the book has no description.
                 $('.description-of-book').append('<p>' + description + '</p>');
-                console.log(description);
             } else {
                 $('.description-of-book').append("<p>Sorry, no description available.</p>");
             }
@@ -62,16 +65,33 @@ $('.saved-bookshelf').flipster(
     }
 );
 
-const liked_books = JSON.parse(JSON.parse(document.getElementById('liked_books').textContent));
-const bookImageElements = document.getElementsByClassName('book-cover-img');
+// MOVING BOOKS BETWEEN BOOKSHELVES
+const moveToSavedBooksUrl = '/bookshelf/move_to_saved_books';
+const moveToLikedBooksUrl = '/bookshelf/move_to_liked_books';
+const deleteBookUrl = '/bookshelf/delete_book';
 
 
-//
+try {
+    csrftoken = Cookies.get('csrftoken');
+} catch (e) {
+    console.warn(e + " - Error with getting csrftoken. See javascript.");
+}
 
-// $('#card').flip({
-//     trigger: 'manual',
-// })
-//
-// $('#description-1').click(function () {
-//     $('#card').flip('toggle');
-// });
+
+$('#move-to-saved-books-btn').click(function () {
+    let bookId = $(currentBook).attr("data-book-id");
+    $.ajax({
+        url: moveToSavedBooksUrl,
+        type: 'POST',
+        headers: {'X-CSRFToken': csrftoken},
+        data: {
+            'book_id': bookId
+        },
+        success: function (data) {
+            console.log(data + " Successful move to saved books.");
+        },
+        error: function (data) {
+            console.log(data + " Error with moving book to saved books.");
+        }
+    })
+});
