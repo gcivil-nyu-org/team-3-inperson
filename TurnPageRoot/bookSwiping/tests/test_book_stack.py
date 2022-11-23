@@ -39,8 +39,6 @@ class TestUserBookInteraction(LiveServerTestCase):
         environ.Env.read_env()
 
 
-
-
 class TestBookStack(TestCase):
     def setUp(self):
         self.client = Client()

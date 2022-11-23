@@ -3,11 +3,14 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from .. import models
 
+
 class TestOnboarding(TestCase):
     def setUp(self):
         self.client = Client()
         self.factory = RequestFactory()
-        self.user = User.objects.create_user(username="test", email="jacob@…", password="12345")
+        self.user = User.objects.create_user(
+            username="test", email="jacob@…", password="12345"
+        )
         # self.bookshelf = models.Bookshelf.objects.create(user=self.user, book_id=1, read_status="U")
         self.ud = models.UserDemographics(user=self.user)
         for i in range(0, 15):
@@ -24,7 +27,7 @@ class TestOnboarding(TestCase):
 
     def test_onboarding_view(self):
         self.client.login(username="test", password="12345")
-        response = self.client.get(reverse('onboarding'))
+        response = self.client.get(reverse("onboarding"))
         self.assertEqual(response.status_code, 200)
 
     # def test_onboarding_view_post(self):
