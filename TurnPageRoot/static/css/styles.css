@@ -640,3 +640,7 @@ h6 {
     font-family: 'Open Sans', sans-serif;
     /*font-size: 12px;*/
 }
+
+#login-with-google-btn{
+    width: 65%;
+}
