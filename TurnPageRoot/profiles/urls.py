@@ -47,6 +47,7 @@ urlpatterns = [
     path("<hashids:pk>/", ProfileView.as_view(), name="profile"),
     path("delete_user/<hashids:pk>/", views.DeleteUser.as_view(), name="delete_user"),
     path("token", views.TokenSend.as_view(), name="token"),
+    path("oauth/", include("social_django.urls", namespace="social")),
 ]
 urlpatterns += [
     path("captcha/", include("captcha.urls")),
