@@ -68,7 +68,7 @@ class BookshelfTestCase(TestCase):
             dup, 1
         )  # addToShelf() returns 1 when the entry exists already.
 
-    """
+
     def test_move_to_new_shelf(self):
         user = User.objects.get(username="testuser")
         book = Book.objects.get(title="TestU")
@@ -79,8 +79,8 @@ class BookshelfTestCase(TestCase):
         self.assertEqual(bs.book, Bookshelf.objects.filter(user=user).first().book)
         self.assertEqual(bs.user, Bookshelf.objects.filter(user=user).first().user)
         self.assertEqual(bs.read_status, Bookshelf.objects.filter(user=user).first().read_status)
-    """
-    """
+
+
     def test_move_to_trash(self):
         user = User.objects.get(username="testuser")
         book = Book.objects.get(title="TestU")
@@ -93,37 +93,6 @@ class BookshelfTestCase(TestCase):
         self.assertEqual(bs.user, Bookshelf.objects.filter(user=user).first().user)
         self.assertEqual(bs.read_status, Bookshelf.objects.filter(user=user).first().read_status)
         self.assertEqual(likes_before-1, likes_after)
-    """
-
-    def test_move_to_new_shelf(self):
-        user = User.objects.get(username="testuser")
-        book = Book.objects.get(title="TestU")
-
-        addToShelf(book, user, "U")
-        bookshelf = Bookshelf.objects.get(book=book, user=user)
-        moveShelf(bookshelf, "R")
-        bs = Bookshelf(user=user, book=book, read_status="R")
-        self.assertEqual(bs.book, Bookshelf.objects.filter(user=user).first().book)
-        self.assertEqual(bs.user, Bookshelf.objects.filter(user=user).first().user)
-        self.assertEqual(
-            bs.read_status, Bookshelf.objects.filter(user=user).first().read_status
-        )
-
-    def test_move_to_trash(self):
-        user = User.objects.get(username="testuser")
-        book = Book.objects.get(title="TestU")
-        addToShelf(book, user, "U")
-        likes_before = book.likes
-        bookshelf = Bookshelf.objects.get(book=book, user=user)
-        moveShelf(bookshelf, "T")
-        likes_after = Book.objects.get(title="TestU").likes
-        bs = Bookshelf(user=user, book=book, read_status="T")
-        self.assertEqual(bs.book, Bookshelf.objects.filter(user=user).first().book)
-        self.assertEqual(bs.user, Bookshelf.objects.filter(user=user).first().user)
-        self.assertEqual(
-            bs.read_status, Bookshelf.objects.filter(user=user).first().read_status
-        )
-        self.assertEqual(likes_before - 1, likes_after)
 
 
 class userGenreTestCase(TestCase):

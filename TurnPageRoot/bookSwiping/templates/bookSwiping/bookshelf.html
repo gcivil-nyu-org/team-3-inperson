@@ -2,24 +2,29 @@
 {% load static %}
 
 {% block content %}
-
+    {{ liked_books_json | json_script:"liked_books" }}
+    <hr/>
     <div class="container">
         <div class="row">
+            <div class="display-4 text-center">
+                Liked Books
+            </div>
             <div class="col">
-
             </div>
             <div class="col-10 p-3">
                 <div id="bookshelf1">
                     <div class="my-bookshelf">
                         <ul>
                             {% for book in bookshelf %}
-                                <li>
+                                <li id="book-on-shelf" data-book-id="{{ book.id }}" data-book-description="{{ book.description }}"
+                                    data-book-title="{{ book.title }}" data-book-genre="{{ book.nyt_lists }}">
                                     <img src="{{ book.cover_img }}" class="bookshelf-img img" alt="{{ book.title }}"/>
                                 </li>
                             {% endfor %}
                         </ul>
                     </div>
                 </div>
+                {#            bookshelf image #}
                 <img src="{% static 'images/bookshelf-01.png' %}" class="img-fluid" alt="">
 
             </div>
@@ -28,25 +33,58 @@
             </div>
         </div>
     </div>
+    <div class="text-center justify-content-center">
 
-
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Book Details
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Book Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>
+                            Book Description:
+                        </h3>
+                        <div class="description-of-book on-first-load">
+                            {#BOOK DESCRIPTION GETS INSERTED HERE THROUGH JAVASCRIPT#}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger delete-from-shelf-btn" >Delete From Shelf</button>
+                        <button type="button" class="btn btn-primary" id="move-to-saved-books-btn">Move to Saved Books</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    {# SECOND BOOKSHELF #}
     <div class="container">
         <div class="row">
+            <div class="display-4 text-center">
+                Saved Books
+            </div>
             <div class="col">
-
             </div>
             <div class="col-10 p-3">
-                <div id="bookshelf2">
-                    <div class="my-bookshelf">
+                <div id="bookshelf1">
+                    <div class="saved-bookshelf">
                         <ul>
                             {% for book in saved_books %}
-                                <li>
+                                <li id="book-on-saved-shelf" data-book-id="{{ book.id }}" data-book-description="{{ book.description }}"
+                                    data-book-title="{{ book.title }}">
                                     <img src="{{ book.cover_img }}" class="bookshelf-img img" alt="{{ book.title }}"/>
                                 </li>
                             {% endfor %}
                         </ul>
                     </div>
                 </div>
+                {#            bookshelf image #}
                 <img src="{% static 'images/bookshelf-01.png' %}" class="img-fluid" alt="">
 
             </div>
@@ -55,7 +93,35 @@
             </div>
         </div>
     </div>
+    <div class="text-center justify-content-center">
 
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal2">
+            Book Details
+        </button>
+        <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Book Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="">
+                            Book Description:
+                        </h3>
+                        <div class="description-of-saved-book on-first-load-saved-book">
+                            {#BOOK DESCRIPTION GETS INSERTED HERE THROUGH JAVASCRIPT#}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger delete-from-saved-books">Delete From Shelf</button>
+                        <button type="button" class="btn btn-primary" id="move-to-liked-books-btn">Move to Liked Books</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

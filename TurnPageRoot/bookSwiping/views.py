@@ -58,7 +58,44 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
             saved_books.append(book.book)
 
         context["saved_books"] = saved_books
+        context["liked_books_json"] = serializers.serialize("json", liked_books)
         return context
+
+
+@login_required
+@require_POST
+def move_to_saved_books(request):
+    book_id = request.POST.get("book_id")
+    if book_id:
+        book = Book.objects.get(id=book_id)
+        moveShelf(book, request.user, "R")
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
+
+
+@login_required
+@require_POST
+def move_to_liked_books(request):
+    book_id = request.POST.get("book_id")
+    if book_id:
+        book = Book.objects.get(id=book_id)
+        moveShelf(book, request.user, "U")
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
+
+
+@login_required
+@require_POST
+def delete_book(request):
+    book_id = request.POST.get("book_id")
+    if book_id:
+        book = Book.objects.get(id=book_id)
+        moveShelf(book, request.user, "T")
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
 
 
 @login_required

@@ -14,6 +14,7 @@ class TestPostMethods(TestCase):
         self.ud = models.UserDemographics(user=self.user)
         for i in range(0, 15):
             models.Book.objects.create(
+                id=i,
                 title=str("test_" + str(i)),
                 published_date="2020-01-01",
                 author=str("test_" + str(i)),
@@ -49,4 +50,28 @@ class TestPostMethods(TestCase):
             "id": 2,
         }
         response = self.client.post(reverse("addToBookshelf"), data)
+        self.assertEqual(response.status_code, 200)
+
+    def test_move_to_saved_books(self):
+        self.client.login(username="test", password="12345")
+        data = {
+            "book_id": '2',
+        }
+        response = self.client.post(reverse("move_to_saved_books"), data, **{"HTTP_X_REQUESTED_WITH": "XMLHttpRequest"})
+        self.assertEqual(response.status_code, 200)
+
+    def test_move_to_liked_books(self):
+        self.client.login(username="test", password="12345")
+        data = {
+            "book_id": '2',
+        }
+        response = self.client.post(reverse("move_to_liked_books"), data, **{"HTTP_X_REQUESTED_WITH": "XMLHttpRequest"})
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete_book(self):
+        self.client.login(username="test", password="12345")
+        data = {
+            "book_id": '2',
+        }
+        response = self.client.post(reverse("delete_book"), data, **{"HTTP_X_REQUESTED_WITH": "XMLHttpRequest"})
         self.assertEqual(response.status_code, 200)
