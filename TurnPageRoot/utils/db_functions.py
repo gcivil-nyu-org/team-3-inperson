@@ -45,7 +45,6 @@ def addToShelf(book: Book, user: User, read: str):
 # Normally a single line of Bookshelf.delete() would do the trick
 # This might be used on the bookshelf if the UserBook objects are not readily available.
 
-
 def moveShelf(book: Book, user: User, new_status):
     # Valid values are
     b = Bookshelf.objects.get(book=book, user=user)
@@ -54,6 +53,7 @@ def moveShelf(book: Book, user: User, new_status):
     if new_status == "T":
         book.likes -= 1
         book.save()
+
 
 
 def loadBook(b, list=""):

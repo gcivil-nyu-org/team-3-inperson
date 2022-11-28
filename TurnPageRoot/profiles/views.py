@@ -111,9 +111,9 @@ class ActivateAccount(View):
             user.is_active = True
             user.profile.email_confirmed = True
             user.save()
-            login(request, user, backend="django.contrib.auth.backends.ModelBackend")
+            login(request, user)
             messages.success(request, "Your account have been confirmed.")
-            return redirect("onboarding")
+            return redirect("login")
         else:
             messages.warning(
                 request,
