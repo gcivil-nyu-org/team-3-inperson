@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row choose-genres-message">
+            <div class="col text-center mt-4">
+                <h3>Please choose 3 of your favorite genres</h3>
+            </div>
+        </div>
+        <div class="row">
+        {% csrf_token %}
+            <div class="col">
+                <ul class="d-flex flex-wrap genres-list">
+                    {% for genre in genre_list %}
+                        <li class="genre m-2 m-md-4 p-4 rounded">
+                            {{ genre }}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button class=" btn next-btn">Next</button>
+                <div data-id="This is a genre"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
