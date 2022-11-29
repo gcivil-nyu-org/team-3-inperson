@@ -21,19 +21,6 @@ class OnboardingView(TemplateView):
         return context
 
 
-@require_POST
-@login_required
-def selected_genres(request):
-    # user = request.user
-    genre_list = request.POST.get("selected_genres")
-    if genre_list:
-        for genre in genre_list.split(","):
-            addUserGenre(request.user, genre)
-        return JsonResponse({"success": True})
-    else:
-        return JsonResponse({"success": False})
-
-
 class BookshelfView(LoginRequiredMixin, TemplateView):
     model = Book
     template_name = "bookSwiping/bookshelf.html"
@@ -60,6 +47,19 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
         context["saved_books"] = saved_books
         context["liked_books_json"] = serializers.serialize("json", liked_books)
         return context
+
+
+@require_POST
+@login_required
+def selected_genres(request):
+    # user = request.user
+    genre_list = request.POST.getlist("selected_genres[]")
+    if genre_list:
+        for genre in genre_list:
+            addUserGenre(request.user, genre)
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
 
 
 @login_required
