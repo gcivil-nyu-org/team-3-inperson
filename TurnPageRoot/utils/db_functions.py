@@ -75,5 +75,6 @@ def addUserGenre(user: User, genre: Genre):
     except ObjectDoesNotExist:
         ud = UserDemographics(user=user)
         ud.save()
-    ud.genre.add(genre)
+    added_genre = Genre.objects.get(genre=genre)
+    ud.genre.add(added_genre)
     return
