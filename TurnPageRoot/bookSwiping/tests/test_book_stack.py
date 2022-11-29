@@ -38,31 +38,6 @@ class TestUserBookInteraction(LiveServerTestCase):
         self.env = environ.Env()
         environ.Env.read_env()
 
-    # def test_user_like_book(self):
-    #     self.client.login(username="test", password="12345")
-    #     data = {
-    #         "book_id": self.object_list[0].id,
-    #     }
-    #     response = self.client.post(reverse("book_liked"), data)
-    #
-    #
-    #     # service = Service(executable_path=ChromeDriverManager().install())
-    #     # driver = webdriver.Chrome(service=service)
-    #
-    #
-    #     # how to make this work with travis?
-    #     # driver.get('http://127.0.0.1:8000/')
-    #
-    #     # self.client.post(reverse('book_liked'), {'book_id': self.object_list[0].id}, content_type='application/json')
-    #
-    #
-    #     # button = driver.find_element(By.ID, "swipe-right-btn")
-    #     # trigger the `like` button on the book
-    #     # button.click()
-    #     # make sure book is on user's bookshelf
-    #     print(self.object_list.get(id=data["book_id"]).users_liked_list.all())
-    #     assert(response.status_code == 200)
-
 
 class TestBookStack(TestCase):
     def setUp(self):

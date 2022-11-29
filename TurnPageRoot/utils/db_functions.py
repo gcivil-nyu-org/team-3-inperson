@@ -1,6 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
-from bookSwiping.models import Book, User, Bookshelf, NYT_List
+from bookSwiping.models import Book, User, Bookshelf, NYT_List, UserDemographics, Genre
 import requests
 
 
@@ -34,7 +34,7 @@ def addToShelf(book: Book, user: User, read: str):
             + "&direc="
             + direc
         )
-        print(url)
+        # print(url)
         requests.get(url)
         book.likes = len(Bookshelf.objects.filter(book=book))
         book.save()
@@ -44,11 +44,16 @@ def addToShelf(book: Book, user: User, read: str):
 
 # Normally a single line of Bookshelf.delete() would do the trick
 # This might be used on the bookshelf if the UserBook objects are not readily available.
-def deleteFromShelf(book: Book, user: User):
+
+
+def moveShelf(book: Book, user: User, new_status):
+    # Valid values are
     b = Bookshelf.objects.get(book=book, user=user)
-    b.delete()
-    book.likes = len(Bookshelf.objects.filter(book=book))
-    book.save()
+    b.read_status = new_status
+    b.save()
+    if new_status == "T":
+        book.likes -= 1
+        book.save()
 
 
 def loadBook(b, list=""):
@@ -62,3 +67,15 @@ def loadBook(b, list=""):
     if list != "":
         db_list = NYT_List.objects.get(list_name=list)
         save_book.nyt_lists.add(db_list)
+
+
+def addUserGenre(user: User, genre: Genre):
+    try:
+        ud = UserDemographics.objects.get(user=user)
+    except ObjectDoesNotExist:
+        ud = UserDemographics(user=user)
+        ud.save()
+    # TODO add ability to add genre that doesn't exist
+    added_genre = Genre.objects.get(genre=genre)
+    ud.genre.add(added_genre)
+    return

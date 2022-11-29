@@ -36,6 +36,8 @@ class SignUpForm(UserCreationForm):
 
 # Profile Form
 class ProfileForm(forms.ModelForm):
+    disabled_fields = ["email"]
+
     class Meta:
         model = User
         fields = [
@@ -44,6 +46,15 @@ class ProfileForm(forms.ModelForm):
             "last_name",
             "email",
         ]
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, "email", None)
+        if instance and instance.pk:
+            for field in self.disabled_fields:
+                self.fields["email"].disabled = True
+        else:
+            self.fields["email"].disabled = True
 
 
 # =====================================================

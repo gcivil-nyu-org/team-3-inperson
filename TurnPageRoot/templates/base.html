@@ -11,10 +11,13 @@
     {% comment %}
     Favicons
     {% endcomment %}
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/turnpage_logos/favicons/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/turnpage_logos/favicons/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/turnpage_logos/favicons/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'images/turnpage_logos/favicons/site.webmanifest'%}">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="{% static 'images/turnpage_logos/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="{% static 'images/turnpage_logos/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="{% static 'images/turnpage_logos/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/turnpage_logos/favicons/site.webmanifest' %}">
     <link rel="mask-icon" href="{% static 'images/turnpage_logos/favicons/safari-pinned-tab.svg' %}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#eaf1fb">
@@ -76,6 +79,7 @@
 {% comment %}
     JS
 {% endcomment %}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
         integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
@@ -88,9 +92,12 @@
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="https://cdn.jsdelivr.net/sharer.js/latest/sharer.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 <script src="{% static 'js/jquery.flipster.min.js' %}"></script>
-<script src="{% static 'js/bookshelf.js' %}"></script>
+<script src="{% static 'js/coverflow_misc/jquery.interpolate.min.js' %}"></script>
+<script src="{% static 'js/coverflow_misc/jquery.touchSwipe.min.js' %}"></script>
 <script src="{% static "js/script.js" %}"></script>
+<script src="{% static 'js/bookshelf.js' %}"></script>
 {% django_browser_reload_script %}
 </body>
 </html>

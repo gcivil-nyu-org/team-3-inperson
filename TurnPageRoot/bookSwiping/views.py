@@ -15,17 +15,8 @@ class OnboardingView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        genre_list = [
-            "Romance",
-            "Sci-Fi",
-            "Fantasy",
-            "Mystery",
-            "Young Adult",
-            "Philosophy",
-            "Religion",
-            "History",
-            "Biography",
-        ]
+        genre_list = Genre.objects.all()
+        # genre_list = ["Romance", "Sci-Fi", "Fantasy", "Mystery", "Young Adult", "Philosophy", "Religion", "History", "Biography"]
         context["genre_list"] = genre_list
         return context
 
@@ -54,7 +45,57 @@ class BookshelfView(LoginRequiredMixin, TemplateView):
             saved_books.append(book.book)
 
         context["saved_books"] = saved_books
+        context["liked_books_json"] = serializers.serialize("json", liked_books)
         return context
+
+
+@require_POST
+@login_required
+def selected_genres(request):
+    # user = request.user
+    genre_list = request.POST.getlist("selected_genres[]")
+    if genre_list:
+        for genre in genre_list:
+            addUserGenre(request.user, genre)
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
+
+
+@login_required
+@require_POST
+def move_to_saved_books(request):
+    book_id = request.POST.get("book_id")
+    if book_id:
+        book = Book.objects.get(id=book_id)
+        moveShelf(book, request.user, "R")
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
+
+
+@login_required
+@require_POST
+def move_to_liked_books(request):
+    book_id = request.POST.get("book_id")
+    if book_id:
+        book = Book.objects.get(id=book_id)
+        moveShelf(book, request.user, "U")
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
+
+
+@login_required
+@require_POST
+def delete_book(request):
+    book_id = request.POST.get("book_id")
+    if book_id:
+        book = Book.objects.get(id=book_id)
+        moveShelf(book, request.user, "T")
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
 
 
 @login_required
@@ -158,5 +199,5 @@ class HomeView(ListView):
         context["book13"] = random_items[12]
         context["book14"] = random_items[13]
         context["book15"] = random_items[14]
-        context["random_books"] = serializers.serialize('json', random_items)
+        context["random_books"] = serializers.serialize("json", random_items)
         return context
