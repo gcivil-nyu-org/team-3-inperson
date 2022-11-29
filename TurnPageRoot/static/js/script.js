@@ -279,19 +279,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 console.log("AJAX error: " + error)
             }
         })
-        // console.log("Selected Genres: " + selectedGenres)
-        // options['body'] = JSON.stringify({"selected_genres": selectedGenres})
-        //
-        // fetch('/onboarding/genreselection', {
-        //     method: 'POST',
-        //     headers: {'X-CSRFToken': csrftoken},
-        //     mode: 'same-origin',
-        //     body: JSON.stringify({"selected_genres": selectedGenres})
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         console.log(data + " | genres selected: " + selectedGenres);
-        //     } )
 
     });
 
