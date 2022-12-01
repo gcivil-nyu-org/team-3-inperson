@@ -89,7 +89,7 @@ class Bookshelf(models.Model):
     class Meta:
         unique_together = ("book", "user")
 
-class Book_Report(models.model):
+class Book_Report(models.Model):
     from bookSwiping.modelChoices import BR_CATEGORY_CHOICES, BR_STATUS_CHOICES
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     category = models.CharField(max_length=24,choices=BR_CATEGORY_CHOICES)
