@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 import environ
 from django.urls import reverse
 from .. import views
+from bookSwiping.models import UserDemographics, Genre, NYT_List
+from datetime import date
 
 # from selenium import webdriver
 # from selenium.webdriver.chrome.service import Service
@@ -22,7 +24,7 @@ class TestUserBookInteraction(LiveServerTestCase):
         self.user = User.objects.create_user(
             username="test", email="jacob@…", password="12345"
         )
-
+        
         for i in range(0, 15):
             models.Book.objects.create(
                 title=str("test_" + str(i)),
@@ -46,9 +48,57 @@ class TestBookStack(TestCase):
         self.user = User.objects.create_user(
             username="test", email="jacob@…", password="12345"
         )
+        
+        self.user2 = User.objects.create_user(
+            username="test2", email="jacob@…", password="12345"
+        )
+
+        self.user3 = User.objects.create_user(
+            username="test-blank", email="jacob@…", password="12345"
+        )
+
+        self.ud = UserDemographics.objects.create(
+            user=self.user,
+            gender="M",
+            birth_date = date.today().replace(year=1991),
+        )
+
+        self.ud2 = UserDemographics.objects.create(
+            user=self.user2,
+            gender="M",
+            birth_date = date.today().replace(year=1991),
+        )
+        
+        
+        self.list_hf = NYT_List.objects.create(
+                    list_name="hardcover-fiction",
+                    display_name="Hardcover Fiction",
+                    update_schedule="WEEKLY"
+                )
+
+        genres = [
+            "Dystopian",
+            "Fantasy",
+            "Fiction",
+        ]
+
+        genres_nolist = [
+            "Children",
+            "Cooking",
+            "LGBTQ+"
+        ]
+
+        for g in genres:
+            gen = Genre.objects.create(genre=g)
+            gen.nyt_list.add(self.list_hf)
+            self.ud.genre.add(gen)
+
+        for g in genres_nolist:
+            gen = Genre.objects.create(genre=g)
+            self.ud2.genre.add(gen)
 
         for i in range(0, 15):
-            models.Book.objects.create(
+            b = models.Book.objects.create(
                 title=str("test_" + str(i)),
                 published_date="2020-01-01",
                 author=str("test_" + str(i)),
@@ -57,6 +107,7 @@ class TestBookStack(TestCase):
                 isbn10="10" + str(i),
                 isbn13="13" + str(i),
             )
+            b.nyt_lists.add(self.list_hf)
         self.object_list = models.Book.objects.all()
 
     def test_books_can_be_created(self):
@@ -83,6 +134,7 @@ class TestBookStack(TestCase):
         assert random_item[4] is not None
 
     def test_books_in_context_for_HomeView(self):
+        self.client.login(username="test", password="12345")
         response = self.client.get(reverse("home"))
         self.assertIn("book01", response.context)
         self.assertIn("book02", response.context)
@@ -100,6 +152,7 @@ class TestBookStack(TestCase):
         self.assertIn("book14", response.context)
 
     def test_book_in_context_view_is_in_database(self):
+        self.client.login(username="test2", password="12345")
         response = self.client.get(reverse("home"))
         assert response.context["book01"] in self.object_list
         assert response.context["book02"] in self.object_list
@@ -124,6 +177,41 @@ class TestBookStack(TestCase):
         response = views.book_like(request)
         assert response.status_code != 200
 
+    def test_book_in_context_view_is_in_database_empty_list(self):
+        self.client.login(username="test2", password="12345")
+        response = self.client.get(reverse("home"))
+        assert response.context["book01"] in self.object_list
+        assert response.context["book02"] in self.object_list
+        assert response.context["book03"] in self.object_list
+        assert response.context["book04"] in self.object_list
+        assert response.context["book05"] in self.object_list
+        assert response.context["book06"] in self.object_list
+        assert response.context["book07"] in self.object_list
+        assert response.context["book08"] in self.object_list
+        assert response.context["book09"] in self.object_list
+        assert response.context["book10"] in self.object_list
+        assert response.context["book11"] in self.object_list
+        assert response.context["book12"] in self.object_list
+        assert response.context["book13"] in self.object_list
+        assert response.context["book14"] in self.object_list
+
+    def test_book_in_context_view_is_in_database_no_userdemo(self):
+        self.client.login(username="test-blank", password="12345")
+        response = self.client.get(reverse("home"))
+        assert response.context["book01"] in self.object_list
+        assert response.context["book02"] in self.object_list
+        assert response.context["book03"] in self.object_list
+        assert response.context["book04"] in self.object_list
+        assert response.context["book05"] in self.object_list
+        assert response.context["book06"] in self.object_list
+        assert response.context["book07"] in self.object_list
+        assert response.context["book08"] in self.object_list
+        assert response.context["book09"] in self.object_list
+        assert response.context["book10"] in self.object_list
+        assert response.context["book11"] in self.object_list
+        assert response.context["book12"] in self.object_list
+        assert response.context["book13"] in self.object_list
+        assert response.context["book14"] in self.object_list
 
 class TestLiveServer(LiveServerTestCase):
     def setUp(cls):
