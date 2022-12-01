@@ -29,7 +29,7 @@ class UserDemographics(models.Model):
     gender = models.CharField(max_length=24, choices=GENDER_CHOICES, null=True)
     birth_date = models.DateField(default=None, null=True)
     genre = models.ManyToManyField(Genre)
-    following = models.ManyToManyField(User, on_delete=models.CASCADE, related_name="+")
+    following = models.ManyToManyField(User, blank=True, related_name="following")
 
     def __str__(self):
         return str(self.user) + "'s Profile"
