@@ -15,3 +15,5 @@ class BookAdmin(admin.ModelAdmin):
 admin.site.register(UserDemographics)
 admin.site.register(Bookshelf)
 admin.site.register(NYT_List)
+admin.site.register(Book_Report)
+admin.site.register(Genre)

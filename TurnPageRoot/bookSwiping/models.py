@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from location_field.forms.plain import PlainLocationField
 from utils.age import ageCalc
 
 
@@ -28,11 +27,9 @@ class UserDemographics(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(max_length=24, choices=GENDER_CHOICES, null=True)
-    location = PlainLocationField(
-        based_fields=["city"], initial="40.790278, -73.959722", null=True
-    )
     birth_date = models.DateField(default=None, null=True)
     genre = models.ManyToManyField(Genre)
+    following = models.ManyToManyField(User, blank=True, related_name="following")
 
     def __str__(self):
         return str(self.user) + "'s Profile"
@@ -89,9 +86,20 @@ class Bookshelf(models.Model):
         unique_together = ("book", "user")
 
 
-# Language is commented out in all places it is called for the time being. I have included it where necessary if we decide to use it.
-"""
-class Language(models.Model):
-    # 2 character ISO 639-1 language code. Contains 5 characters to accommodate cases like brazilian portugese, "pt-BR"
-    code = models.CharField(max_length=5, primary_key=True)
-"""
+class Book_Report(models.Model):
+    from bookSwiping.modelChoices import (
+        BR_CATEGORY_CHOICES,
+        BR_STATUS_CHOICES,
+        INFO,
+        OPEN,
+    )
+
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    category = models.CharField(
+        max_length=24, choices=BR_CATEGORY_CHOICES, default=INFO
+    )
+    status = models.CharField(max_length=24, choices=BR_STATUS_CHOICES, default=OPEN)
+    report_body = models.CharField(max_length=2056)
+
+    def __str__(self):
+        return self.book.title + " - " + self.category + " - " + self.status

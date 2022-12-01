@@ -141,3 +141,5 @@ GitHub.sublime-settings
 .history
 ```
 TurnPageRoot/bookSwiping/management/commands/.DS_Store
+*.config
+.DS_Store
