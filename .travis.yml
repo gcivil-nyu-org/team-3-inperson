@@ -2,23 +2,11 @@ language: python
 python:
   - "3.8"
 
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-
-services:
-  - xvfb
-
 install:
   - pip install -r requirements.txt
 
 before_script:
   - python TurnPageRoot/manage.py migrate
-  - export DISPLAY=99:0
-  - sleep 3
 
 script:
   - black ./
