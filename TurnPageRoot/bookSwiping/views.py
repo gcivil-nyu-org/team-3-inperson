@@ -179,7 +179,7 @@ class HomeView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         all_books = self.model.objects.all()
-
+        
         try:
             ud = UserDemographics.objects.get(user=self.request.user)
             genres = list(ud.genre.all())
