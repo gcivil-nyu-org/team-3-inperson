@@ -10,7 +10,7 @@ import random
 
 
 # Create your views here.
-class OnboardingView(TemplateView):
+class OnboardingView(LoginRequiredMixin, TemplateView):
     template_name = "bookSwiping/onboarding.html"
 
     def get_context_data(self, **kwargs):
@@ -171,7 +171,7 @@ def book_dislike(request):
     return JsonResponse({"status": "error"})
 
 
-class HomeView(ListView):
+class HomeView(LoginRequiredMixin, ListView):
     model = Book
     context_object_name = "books"
     template_name = "bookSwiping/home.html"
