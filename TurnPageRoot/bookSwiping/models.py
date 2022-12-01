@@ -33,6 +33,7 @@ class UserDemographics(models.Model):
     )
     birth_date = models.DateField(default=None, null=True)
     genre = models.ManyToManyField(Genre)
+    following = models.ManyToManyField(User)
 
     def __str__(self):
         return str(self.user) + "'s Profile"
@@ -87,6 +88,17 @@ class Bookshelf(models.Model):
 
     class Meta:
         unique_together = ("book", "user")
+
+class Book_Report(models.model):
+    from bookSwiping.modelChoices import BR_CATEGORY_CHOICES, BR_STATUS_CHOICES
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    category = models.CharField(max_length=24,choices=BR_CATEGORY_CHOICES)
+    status = models.CharField(max_length=24, choices=BR_STATUS_CHOICES)
+    report_body = models.CharField(max_length=2056)
+
+    def __str__(self):
+        return self.book.title + " - " + self.category + " - " + self.status
+
 
 
 # Language is commented out in all places it is called for the time being. I have included it where necessary if we decide to use it.
