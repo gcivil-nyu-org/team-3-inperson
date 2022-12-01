@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 import environ
 from django.urls import reverse
 from .. import views
+from bookSwiping.models import UserDemographics, Genre, NYT_List
+from datetime import date
 
 # from selenium import webdriver
 # from selenium.webdriver.chrome.service import Service
@@ -46,9 +48,33 @@ class TestBookStack(TestCase):
         self.user = User.objects.create_user(
             username="test", email="jacob@…", password="12345"
         )
+        
+        self.ud = UserDemographics.objects.create(
+            user=self.user,
+            gender="M",
+            birth_date = date.today().replace(year=1991),
+        )
+        self.client.login(username="test", password="12345")
+        
+        self.list_hf = NYT_List.objects.create(
+                    list_name="hardcover-fiction",
+                    display_name="Hardcover Fiction",
+                    update_schedule="WEEKLY"
+                )
+
+        genres = [
+            "Dystopian",
+            "Fantasy",
+            "Fiction",
+        ]
+
+        for g in genres:
+            gen = Genre.objects.create(genre=g)
+            gen.nyt_list.add(self.list_hf)
+            self.ud.genre.add(gen)
 
         for i in range(0, 15):
-            models.Book.objects.create(
+            b = models.Book.objects.create(
                 title=str("test_" + str(i)),
                 published_date="2020-01-01",
                 author=str("test_" + str(i)),
@@ -57,6 +83,7 @@ class TestBookStack(TestCase):
                 isbn10="10" + str(i),
                 isbn13="13" + str(i),
             )
+            b.nyt_lists.add(self.list_hf)
         self.object_list = models.Book.objects.all()
 
     def test_books_can_be_created(self):
