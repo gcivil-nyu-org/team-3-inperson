@@ -24,7 +24,7 @@ class TestUserBookInteraction(LiveServerTestCase):
         self.user = User.objects.create_user(
             username="test", email="jacob@…", password="12345"
         )
-        
+
         for i in range(0, 15):
             models.Book.objects.create(
                 title=str("test_" + str(i)),
@@ -48,7 +48,7 @@ class TestBookStack(TestCase):
         self.user = User.objects.create_user(
             username="test", email="jacob@…", password="12345"
         )
-        
+
         self.user2 = User.objects.create_user(
             username="test2", email="jacob@…", password="12345"
         )
@@ -60,21 +60,20 @@ class TestBookStack(TestCase):
         self.ud = UserDemographics.objects.create(
             user=self.user,
             gender="M",
-            birth_date = date.today().replace(year=1991),
+            birth_date=date.today().replace(year=1991),
         )
 
         self.ud2 = UserDemographics.objects.create(
             user=self.user2,
             gender="M",
-            birth_date = date.today().replace(year=1991),
+            birth_date=date.today().replace(year=1991),
         )
-        
-        
+
         self.list_hf = NYT_List.objects.create(
-                    list_name="hardcover-fiction",
-                    display_name="Hardcover Fiction",
-                    update_schedule="WEEKLY"
-                )
+            list_name="hardcover-fiction",
+            display_name="Hardcover Fiction",
+            update_schedule="WEEKLY",
+        )
 
         genres = [
             "Dystopian",
@@ -82,11 +81,7 @@ class TestBookStack(TestCase):
             "Fiction",
         ]
 
-        genres_nolist = [
-            "Children",
-            "Cooking",
-            "LGBTQ+"
-        ]
+        genres_nolist = ["Children", "Cooking", "LGBTQ+"]
 
         for g in genres:
             gen = Genre.objects.create(genre=g)
@@ -212,6 +207,7 @@ class TestBookStack(TestCase):
         assert response.context["book12"] in self.object_list
         assert response.context["book13"] in self.object_list
         assert response.context["book14"] in self.object_list
+
 
 class TestLiveServer(LiveServerTestCase):
     def setUp(cls):
