@@ -196,16 +196,21 @@ class HomeView(LoginRequiredMixin, ListView):
         except ObjectDoesNotExist:
             # if any of the above aren't found, give the default
             items = list(self.model.objects.all())
+        
         ubs = list(Bookshelf.objects.filter(user=self.request.user))
-        for i in range(len(items)):
-            if items[i] in ubs:
-                del items[i]
 
         # change to how many random items you wants
         random_items = random.sample(items, 12)
+        for i in range(len(random_items)):
+            while random_items[i] in ubs:
+                random_items[i] = random.choice(items)    
 
         #Mix in 3 totally random books and shuffle
         ran_all = random.sample(list(all_books),3)
+        for i in range(len(ran_all)):
+            while ran_all[i] in ubs:
+                ran_all[i] = random.choice(all_books)
+        
         for r in ran_all:
             random_items.append(r)
         random.shuffle(random_items)
