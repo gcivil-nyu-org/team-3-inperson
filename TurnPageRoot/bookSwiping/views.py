@@ -176,10 +176,15 @@ class HomeView(LoginRequiredMixin, ListView):
     context_object_name = "books"
     template_name = "bookSwiping/home.html"
 
+    def dupe_replace(self, random_items, ubs, items):
+        for i in range(len(random_items)):
+            while random_items[i] in ubs:
+                random_items[i] = random.choice(items)
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         all_books = self.model.objects.all()
-        
+
         try:
             ud = UserDemographics.objects.get(user=self.request.user)
             genres = list(ud.genre.all())
@@ -196,25 +201,21 @@ class HomeView(LoginRequiredMixin, ListView):
         except ObjectDoesNotExist:
             # if any of the above aren't found, give the default
             items = list(self.model.objects.all())
-        
+
         ubs = list(Bookshelf.objects.filter(user=self.request.user))
 
         # change to how many random items you wants
         random_items = random.sample(items, 12)
-        for i in range(len(random_items)):
-            while random_items[i] in ubs:
-                random_items[i] = random.choice(items)    
+        self.dupe_replace(random_items, ubs, items)
 
-        #Mix in 3 totally random books and shuffle
-        ran_all = random.sample(list(all_books),3)
-        for i in range(len(ran_all)):
-            while ran_all[i] in ubs:
-                ran_all[i] = random.choice(all_books)
-        
+        # Mix in 3 totally random books and shuffle
+        ran_all = random.sample(list(all_books), 3)
+        self.dupe_replace(ran_all, ubs, all_books)
+
         for r in ran_all:
             random_items.append(r)
         random.shuffle(random_items)
-        
+
         # creates a list of books, random for now, from the database
         context["all_books"] = all_books
         context["book01"] = random_items[0]
