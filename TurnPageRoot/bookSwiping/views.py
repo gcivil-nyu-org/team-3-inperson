@@ -201,8 +201,15 @@ class HomeView(LoginRequiredMixin, ListView):
             if items[i] in ubs:
                 del items[i]
 
-        # change to how many random items you want
-        random_items = random.sample(items, 15)
+        # change to how many random items you wants
+        random_items = random.sample(items, 12)
+
+        #Mix in 3 totally random books and shuffle
+        ran_all = random.sample(list(all_books),3)
+        for r in ran_all:
+            random_items.append(r)
+        random.shuffle(random_items)
+        
         # creates a list of books, random for now, from the database
         context["all_books"] = all_books
         context["book01"] = random_items[0]
