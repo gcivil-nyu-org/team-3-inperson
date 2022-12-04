@@ -36,7 +36,7 @@ def nytMassLoad(
             date == "current" or datetime.strptime(date, "%Y-%m-%d").date() >= stop_date
         ):
             time.sleep(6.5)
-            logging.info(bl.list_name + " - " + date)
+            # logging.info(bl.list_name + " - " + date)
             print("loading list " + bl.display_name + " for date " + date)
             books = nytapi.get_booklist(bl.list_name, date)
             date = books["previous_published_date"]

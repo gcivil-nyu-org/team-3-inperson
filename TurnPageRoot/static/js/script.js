@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             success: function (response) {
                 console.log(response +  "| success: " + selectedGenres)
                 // you can send them to a new place here:
-                // window.location.href="/"
+                window.location.href="/"
             },
             error: function (error) {
                 console.log("AJAX error: " + error)
