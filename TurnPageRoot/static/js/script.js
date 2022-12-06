@@ -287,17 +287,27 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 // MODAL
     const books = JSON.parse(JSON.parse(document.getElementById('random_books').textContent))
-
+    
     const modal = document.getElementsByClassName('modal-background')[0]
     let plusBtn = document.getElementsByClassName('plus-btn')[0]
     let fakeBook = document.getElementsByClassName('fake-book')[0];
+    let allBooksLoaded = false;
+
     const setPlusBtnPosition = () => {
         const bookImageElements = document.getElementsByClassName('book-cover-img');
         let topBookImageElement = bookImageElements[bookImageElements.length-counter]
         let topBookImageElementWidth = topBookImageElement.clientWidth;
         fakeBook.style.width = topBookImageElementWidth + 'px'
     }
-    setPlusBtnPosition();
+
+    while (!allBooksLoaded) {
+        const bookImageElements = document.getElementsByClassName('book-cover-img');
+        if (bookImageElements.length === 15) {
+            allBooksLoaded = true;
+            setPlusBtnPosition()
+        }
+    }
+    
     $(window).resize(() => setPlusBtnPosition())
 
     window.onclick = function(event) {
