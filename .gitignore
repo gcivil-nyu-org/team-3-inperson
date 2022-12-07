@@ -15,6 +15,7 @@ media
 
 # If you are using PyCharm #
 # User-specific stuff
+.idea
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -139,5 +140,5 @@ GitHub.sublime-settings
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
-```
+
 TurnPageRoot/bookSwiping/management/commands/.DS_Store

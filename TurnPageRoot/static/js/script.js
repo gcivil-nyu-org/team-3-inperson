@@ -2,7 +2,6 @@ document.onreadystatechange = function () {
     const state = document.readyState
     if (state === 'complete') {
         $('#loading').fadeOut();
-        console.log(document.getElementById('book1').offsetWidth)
     }
 }
 let csrftoken = null;
@@ -109,6 +108,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             .hide("fade", {percent: 0}, 150);
     }
 
+    let reported = false;
+
     function nextBook() {
         //swiped book
         $('#book' + counter).removeClass('draggable').hide('fade', {percent: 0}, 1000);
@@ -119,6 +120,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         $('#book' + counter + '-img').addClass('top-of-stack');
         //this is required to activate the dragging mechanism again
         makeDraggable();
+        reported = false;
+        setPlusBtnPosition()
     }
 
     function makeDraggable() {
@@ -273,7 +276,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             success: function (response) {
                 console.log(response +  "| success: " + selectedGenres)
                 // you can send them to a new place here:
-                // window.location.href="/"
+                window.location.href="/"
             },
             error: function (error) {
                 console.log("AJAX error: " + error)
@@ -284,17 +287,27 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 // MODAL
     const books = JSON.parse(JSON.parse(document.getElementById('random_books').textContent))
-
+    
     const modal = document.getElementsByClassName('modal-background')[0]
-    const bookImageElements = document.getElementsByClassName('book-cover-img');
     let plusBtn = document.getElementsByClassName('plus-btn')[0]
     let fakeBook = document.getElementsByClassName('fake-book')[0];
+    let allBooksLoaded = false;
+
     const setPlusBtnPosition = () => {
+        const bookImageElements = document.getElementsByClassName('book-cover-img');
         let topBookImageElement = bookImageElements[bookImageElements.length-counter]
         let topBookImageElementWidth = topBookImageElement.clientWidth;
         fakeBook.style.width = topBookImageElementWidth + 'px'
     }
-    setPlusBtnPosition();
+
+    while (!allBooksLoaded) {
+        const bookImageElements = document.getElementsByClassName('book-cover-img');
+        if (bookImageElements.length === 15) {
+            allBooksLoaded = true;
+            setPlusBtnPosition()
+        }
+    }
+    
     $(window).resize(() => setPlusBtnPosition())
 
     window.onclick = function(event) {
@@ -334,13 +347,32 @@ document.addEventListener('DOMContentLoaded', async function () {
                     </div>
                     <hr class='modal-book-line-break'>
                     <div class='modal-book-summary'>
-                        ${books[counter-1].fields.description}
-                    </div>
+                        <div>
+                            ${books[counter-1].fields.description}
+                        </div>
+                        <button class='${reported ? "modal-report-button-reported' disabled" : "modal-report-button'"} >
+                            <span class="material-symbols-outlined">
+                                flag
+                            </span>
+                            <span class='tooltip-text'>
+                                ${reported ? 'Description reported' : 'Report book description as missing/wrong'}
+                            </span>
+                        </button>
+                    </div>                    
                 </div>
                 `
                 let closeBtn = document.getElementsByClassName('modal-close-btn')[0]
                 closeBtn.addEventListener('click', () => {
                     plusBtnShrink();
+                })
+                const reportButton = document.getElementsByClassName('modal-report-button')[0]
+                const tooltipText = reportButton.getElementsByClassName('tooltip-text')[0]
+                reportButton.addEventListener('click', () => {
+                    reportButton.classList.toggle('modal-report-button')
+                    reportButton.classList.toggle('modal-report-button-reported')
+                    reportButton.disabled = true
+                    tooltipText.innerHTML = "Description reported"
+                    reported = true;
                 })
             },500)
         },100)
