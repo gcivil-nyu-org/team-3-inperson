@@ -17,7 +17,11 @@
             </div>
             <div class="nav-item nav-link text-white navbar-text">
                 {% if user.is_authenticated %}
-                    <a href="{% url 'user_profile' %}">My Profile</a>
+
+                    <a style="padding: 7px 10px;" href="{% url 'user_profile' %}">My Profile</a>
+                    <a style="padding: 7px 10px;" href="{% url 'blog-home' %}">Blogs</a>
+                    <a style="padding: 7px 10px;" href="{% url 'post-create' %}">Create a Post</a>
+                    <a style="padding: 7px 10px;" href="{% url 'logout' %}">Logout</a>
 
                 {% else %}
                     <a href="{% url 'login' %}">Login</a>

@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    "blog.apps.BlogConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "multiselectfield",
     "social_django",
+    "rest_framework",
+    "crispy_forms",
 ]
 
 # https://pypi.org/project/django-crontab/ for details
