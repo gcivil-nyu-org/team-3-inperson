@@ -27,6 +27,8 @@ from django.utils.http import urlsafe_base64_decode
 from django.core import mail
 from django.utils.html import strip_tags
 
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 class UserLoginView(LoginView):
@@ -151,3 +153,13 @@ class DeleteUser(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):
 
 class TokenSend(TemplateView):
     template_name = "profiles/token_send.html"
+
+
+@login_required
+def SearchView(request):
+    if request.method == "POST":
+        kerko = request.POST.get("search")
+        print(kerko)
+        results = User.objects.filter(username__contains=kerko)
+        context = {"results": results}
+        return render(request, "profiles/search_result.html", context)

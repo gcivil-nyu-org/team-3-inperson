@@ -21,4 +21,5 @@ urlpatterns = [
     path("", include("bookSwiping.urls")),
     path("profiles/", include("profiles.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
+    path("blog/", include("blog.urls")),
 ]
