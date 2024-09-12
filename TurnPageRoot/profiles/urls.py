@@ -4,7 +4,6 @@ from django.contrib.auth import views as auth_views
 from profiles.views import ActivateAccount, ProfileView
 from profiles.views import ChangePasswordView
 from django.urls import register_converter
-
 from profiles.ids_encoder import converters
 
 register_converter(converters.HashidsConverter, "hashids")
@@ -48,6 +47,7 @@ urlpatterns = [
     path("delete_user/<hashids:pk>/", views.DeleteUser.as_view(), name="delete_user"),
     path("token", views.TokenSend.as_view(), name="token"),
     path("oauth/", include("social_django.urls", namespace="social")),
+    path("search/", views.SearchView, name="search"),
 ]
 urlpatterns += [
     path("captcha/", include("captcha.urls")),
